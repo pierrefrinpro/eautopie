@@ -1,0 +1,150 @@
+---
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+---
+
+<div
+  class="mx-auto max-w-2xl rounded-3xl border border-bleu-pale bg-white p-6 shadow-sm sm:p-8"
+  data-diagnostic-guide
+  data-slug={slug}
+>
+  <div data-guide-app>
+    <p class="text-center text-gris-onde">Chargement du diagnostic…</p>
+  </div>
+</div>
+
+<script>
+  import { GUIDES, genererVerdict } from '../../lib/diagnostics-guides';
+
+  function escape(s: string): string {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function initGuides() {
+    document
+      .querySelectorAll<HTMLElement>('[data-diagnostic-guide]')
+      .forEach((root) => {
+        const slug = root.getAttribute('data-slug') || '';
+        const guide = GUIDES[slug];
+        const app = root.querySelector<HTMLElement>('[data-guide-app]');
+        if (!guide || !app) return;
+
+        const reponses: Record<string, string> = {};
+        const N = guide.questions.length;
+        let etape = 0;
+
+        const progress = (courant: number) => `
+          <div class="mb-6">
+            <div class="mb-2 flex items-center justify-between text-xs font-medium text-gris-onde">
+              <span>Question ${courant} / ${N}</span>
+              <span>${Math.round((courant / N) * 100)} %</span>
+            </div>
+            <div class="h-2 w-full overflow-hidden rounded-full bg-bleu-pale">
+              <div class="h-full rounded-full bg-bleu-eau transition-all duration-300" style="width:${(courant / N) * 100}%"></div>
+            </div>
+          </div>`;
+
+        const boutonRetour =
+          '<button type="button" data-back class="mt-5 text-sm font-medium text-gris-onde hover:text-bleu-profond">← Retour</button>';
+
+        function render() {
+          if (etape < N) renderQuestion(etape);
+          else renderVerdict();
+          app!.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function renderQuestion(i: number) {
+          const q = guide.questions[i];
+          app!.innerHTML = `
+            ${progress(i + 1)}
+            <h2 class="font-display text-2xl font-semibold text-noir-eau">${escape(q.question)}</h2>
+            ${q.aide ? `<p class="mt-2 text-sm text-gris-onde">${escape(q.aide)}</p>` : ''}
+            <div class="mt-5 grid gap-3">
+              ${q.options
+                .map(
+                  (o) => `
+                <button type="button" data-val="${o.value}"
+                  class="group flex items-center gap-4 rounded-2xl border border-bleu-pale bg-white px-4 py-4 text-left transition hover:border-bleu-eau hover:bg-bleu-pale/30">
+                  ${o.emoji ? `<span class="text-2xl" aria-hidden="true">${o.emoji}</span>` : ''}
+                  <span class="flex-1 font-medium text-noir-eau">${escape(o.label)}</span>
+                  <span class="text-bleu-eau opacity-0 transition group-hover:opacity-100" aria-hidden="true">→</span>
+                </button>`
+                )
+                .join('')}
+            </div>
+            ${i > 0 ? boutonRetour : ''}
+          `;
+
+          app!.querySelectorAll<HTMLButtonElement>('[data-val]').forEach((b) => {
+            b.addEventListener('click', () => {
+              reponses[q.id] = b.getAttribute('data-val')!;
+              etape++;
+              render();
+            });
+          });
+          app!
+            .querySelector<HTMLButtonElement>('[data-back]')
+            ?.addEventListener('click', () => {
+              if (etape > 0) etape--;
+              render();
+            });
+        }
+
+        function renderVerdict() {
+          const causes = genererVerdict(guide, reponses);
+          const principale = causes[0];
+          const secondaire = causes[1];
+
+          const carte = (c: typeof principale, principal: boolean) => `
+            <div class="rounded-2xl border p-5 ${principal ? 'border-bleu-ciel bg-bleu-pale/30' : 'border-bleu-pale bg-white'}">
+              ${principal ? '<p class="text-xs font-medium uppercase tracking-wide text-bleu-eau">Cause la plus probable</p>' : '<p class="text-xs font-medium uppercase tracking-wide text-gris-onde">Ça peut aussi être…</p>'}
+              <h3 class="mt-1 font-display text-xl font-semibold text-noir-eau">${escape(c.titre)}</h3>
+              <p class="mt-2 text-sm text-noir-eau/80">${escape(c.conseil)}</p>
+              ${
+                c.liens && c.liens.length
+                  ? `<div class="mt-3 flex flex-wrap gap-2">${c.liens
+                      .map(
+                        (l) =>
+                          `<a href="${l.href}" class="inline-flex items-center gap-1 rounded-lg bg-bleu-eau px-3 py-1.5 text-sm font-medium text-white transition hover:bg-bleu-profond">${escape(l.label)} →</a>`
+                      )
+                      .join('')}</div>`
+                  : ''
+              }
+            </div>`;
+
+          app!.innerHTML = `
+            <div class="rounded-2xl bg-bleu-profond p-5 text-white">
+              <p class="text-xs font-medium uppercase tracking-wide text-bleu-ciel">Ton diagnostic</p>
+              <h2 class="mt-1 font-display text-2xl font-semibold">Voici ce qui se passe probablement</h2>
+            </div>
+            <div class="mt-5 space-y-3">
+              ${carte(principale, true)}
+              ${secondaire ? carte(secondaire, false) : ''}
+            </div>
+            <button type="button" data-restart
+              class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-medium text-bleu-profond ring-1 ring-bleu-ciel transition hover:bg-bleu-pale">
+              Recommencer le diagnostic
+            </button>
+            <p class="mt-4 rounded-xl bg-bleu-pale/40 px-4 py-3 text-xs text-bleu-profond">
+              💡 Diagnostic indicatif. En cas de doute persistant, demande conseil à un pisciniste.
+            </p>
+          `;
+
+          app!
+            .querySelector<HTMLButtonElement>('[data-restart]')
+            ?.addEventListener('click', () => {
+              for (const k of Object.keys(reponses)) delete reponses[k];
+              etape = 0;
+              render();
+            });
+        }
+
+        render();
+      });
+  }
+
+  initGuides();
+  document.addEventListener('astro:page-load', initGuides);
+</script>

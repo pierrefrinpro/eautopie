@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MiniCalc from '../../components/calculators/MiniCalc.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faq from '../../components/Faq.astro';
+import PremiumButton from '../../components/ui/PremiumButton.astro';
+
+const SITE = 'https://eautopie.fr';
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Calculateurs', url: '/calculateur' },
+  { name: 'Floculant', url: '/calculateur/floculant' },
+];
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Calculateur de floculant piscine',
+    description:
+      'Calcule la dose de floculant liquide à ajouter selon ton volume (filtres à sable).',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    url: `${SITE}/calculateur/floculant`,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+];
+const champs = [
+  { id: 'volume', label: 'Volume de la piscine', suffix: 'm³', placeholder: 'Ex: 25' },
+];
+const note =
+  '<strong>Filtres à sable uniquement</strong> (jamais sur cartouche). À utiliser après un chlore choc si l’eau reste laiteuse, le soir, en filtration douce.';
+const faqItems = [
+  {
+    question: 'Floculant ou clarifiant ?',
+    answer:
+      'Le floculant est réservé aux filtres à sable (il forme de gros amas que le sable retient). Sur cartouche, utilise plutôt un clarifiant.',
+  },
+  {
+    question: 'Quand utiliser un floculant ?',
+    answer:
+      'Quand l’eau reste trouble/laiteuse malgré une bonne filtration et un chlore correct, généralement après un traitement choc.',
+  },
+];
+---
+
+<BaseLayout
+  title="Calculateur de floculant piscine (dose par m³) | EauTopie"
+  description="Quelle dose de floculant pour clarifier ta piscine ? Calcule la quantité selon ton volume (filtres à sable). Gratuit."
+  schemas={schemas}
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
+    <div class="mb-8 text-center">
+      <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond">
+        💧 Calculateur
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">Floculant</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Eau qui reste laiteuse ? Le floculant agglomère les fines particules pour
+        que ton filtre les capture.
+      </p>
+    </div>
+
+    <MiniCalc kind="floculant" champs={champs} note={note} />
+
+    <p class="mx-auto mt-6 max-w-xl text-center text-xs text-gris-onde">
+      Estimation indicative. Filtres à sable uniquement — vérifie ton produit.
+    </p>
+
+    <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
+
+    <div class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center">
+      <p class="font-display text-lg font-semibold text-noir-eau">
+        Eau trouble : trouve la cause
+      </p>
+      <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href="/blog/eau-trouble-piscine-causes-solutions" class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond">
+          Lire le guide eau trouble
+        </a>
+        <PremiumButton source="calculateur-floculant" variant="secondary" size="md" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

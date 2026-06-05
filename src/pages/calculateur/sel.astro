@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MiniCalc from '../../components/calculators/MiniCalc.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faq from '../../components/Faq.astro';
+import PremiumButton from '../../components/ui/PremiumButton.astro';
+
+const SITE = 'https://eautopie.fr';
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Calculateurs', url: '/calculateur' },
+  { name: 'Sel pour électrolyseur', url: '/calculateur/sel' },
+];
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Calculateur de sel piscine',
+    description:
+      'Calcule la quantité de sel à ajouter à ta piscine au sel selon ton volume et ton taux actuel.',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    url: `${SITE}/calculateur/sel`,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+];
+const champs = [
+  { id: 'volume', label: 'Volume de la piscine', suffix: 'm³', placeholder: 'Ex: 50' },
+  { id: 'actuel', label: 'Sel actuel', suffix: 'g/L', placeholder: 'Ex: 2' },
+  { id: 'cible', label: 'Sel visé', suffix: 'g/L', value: '4' },
+];
+const note =
+  'Vérifie la cible recommandée par <strong>ton électrolyseur</strong> (souvent 3 à 5 g/L). Ajoute le sel pompe en marche (électrolyse coupée) et laisse dissoudre 24–48 h avant de relancer.';
+const faqItems = [
+  {
+    question: 'Combien de sel pour une piscine au sel ?',
+    answer:
+      'La plupart des électrolyseurs visent 3 à 5 g/L (souvent 4 g/L). Le calculateur te donne la quantité exacte à ajouter selon ton volume et ta mesure.',
+  },
+  {
+    question: 'Comment ajouter le sel ?',
+    answer:
+      'Verse-le directement dans le bassin, pompe en marche et électrolyse coupée, puis laisse tourner 24 à 48 h le temps qu’il se dissolve complètement.',
+  },
+];
+---
+
+<BaseLayout
+  title="Calculateur de sel piscine (électrolyseur) | EauTopie"
+  description="Combien de sel ajouter à ta piscine au sel ? Calcule la quantité exacte selon ton volume et ton taux actuel pour atteindre la cible de ton électrolyseur."
+  schemas={schemas}
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
+    <div class="mb-8 text-center">
+      <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond">
+        🧂 Calculateur
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">Sel pour électrolyseur</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Piscine au sel ? On calcule la quantité de sel à ajouter pour atteindre
+        la cible de ton électrolyseur.
+      </p>
+    </div>
+
+    <MiniCalc kind="sel" champs={champs} note={note} />
+
+    <p class="mx-auto mt-6 max-w-xl text-center text-xs text-gris-onde">
+      Estimation indicative. Reporte-toi à la notice de ton électrolyseur.
+    </p>
+
+    <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
+
+    <div class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center">
+      <p class="font-display text-lg font-semibold text-noir-eau">
+        Garde une eau au top toute la saison 🌊
+      </p>
+      <div class="mt-4">
+        <PremiumButton source="calculateur-sel" variant="primary" size="md" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

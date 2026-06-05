@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DiagnosticGuide from '../../components/diagnostic/DiagnosticGuide.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Diagnostic', url: '/diagnostic' },
+  { name: 'Eau trouble', url: '/diagnostic/eau-trouble' },
+];
+---
+
+<BaseLayout
+  title="Eau de piscine trouble : diagnostic guidé | EauTopie"
+  description="Ton eau de piscine est trouble ou laiteuse ? Réponds à quelques questions, on identifie la cause (filtration, pH, calcaire…) et on te dit quoi faire."
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
+    <div class="mb-8 text-center">
+      <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-soleil/15 px-3 py-1 text-sm font-medium text-soleil">
+        🔬 Diagnostic guidé
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">Mon eau est trouble</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Blanchâtre, laiteuse ? Réponds à quelques questions, on identifie la cause
+        et on te guide vers la solution.
+      </p>
+    </div>
+
+    <DiagnosticGuide slug="eau-trouble" />
+
+    <p class="mx-auto mt-6 max-w-2xl text-center text-xs text-gris-onde">
+      Diagnostic indicatif. Pour aller plus loin, lis notre
+      <a href="/blog/eau-trouble-piscine-causes-solutions" class="text-bleu-eau hover:underline">guide complet sur l’eau trouble</a>.
+    </p>
+  </section>
+</BaseLayout>

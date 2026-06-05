@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MiniCalc from '../../components/calculators/MiniCalc.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faq from '../../components/Faq.astro';
+import PremiumButton from '../../components/ui/PremiumButton.astro';
+
+const SITE = 'https://eautopie.fr';
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Calculateurs', url: '/calculateur' },
+  { name: 'Stabilisant', url: '/calculateur/stabilisant' },
+];
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Calculateur de stabilisant piscine',
+    description:
+      'Calcule la dose de stabilisant (acide cyanurique) à ajouter pour atteindre le taux idéal selon ton volume.',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    url: `${SITE}/calculateur/stabilisant`,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+];
+const champs = [
+  { id: 'volume', label: 'Volume de la piscine', suffix: 'm³', placeholder: 'Ex: 25' },
+  { id: 'actuel', label: 'Stabilisant actuel', suffix: 'mg/L', placeholder: 'Ex: 20' },
+  { id: 'cible', label: 'Stabilisant visé', suffix: 'mg/L', value: '40' },
+];
+const note =
+  '1 g/m³ ≈ +1 mg/L. Verse dilué dans un seau, filtration en marche. Pour <strong>faire baisser</strong> le stabilisant, seule la vidange partielle fonctionne.';
+const faqItems = [
+  {
+    question: 'Quel taux de stabilisant viser ?',
+    answer:
+      'Entre 30 et 50 mg/L. On évite de dépasser 75 mg/L, car au-delà le stabilisant bloque l’efficacité du chlore.',
+  },
+  {
+    question: 'Comment faire baisser le stabilisant ?',
+    answer:
+      'Il n’existe pas de produit pour ça : la seule solution est de renouveler une partie de l’eau (vidange partielle puis remise à niveau).',
+  },
+];
+---
+
+<BaseLayout
+  title="Calculateur de stabilisant piscine (acide cyanurique) | EauTopie"
+  description="Calcule la dose de stabilisant à ajouter pour atteindre le bon taux (30–50 mg/L) selon ton volume et ta mesure. Gratuit."
+  schemas={schemas}
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
+    <div class="mb-8 text-center">
+      <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond">
+        🧪 Calculateur
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">Stabilisant</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Le stabilisant protège ton chlore du soleil. On te dit combien en ajouter
+        pour viser le bon taux.
+      </p>
+    </div>
+
+    <MiniCalc kind="stabilisant" champs={champs} note={note} />
+
+    <p class="mx-auto mt-6 max-w-xl text-center text-xs text-gris-onde">
+      Estimation indicative. Vérifie les indications de ton produit.
+    </p>
+
+    <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
+
+    <div class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center">
+      <p class="font-display text-lg font-semibold text-noir-eau">
+        Ton chlore semble inefficace ?
+      </p>
+      <p class="mx-auto mt-1.5 max-w-md text-sm text-gris-onde">
+        Un stabilisant trop élevé en est souvent la cause. On t’explique tout.
+      </p>
+      <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href="/blog/stabilisant-piscine-trop-eleve-que-faire" class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond">
+          Lire le guide
+        </a>
+        <PremiumButton source="calculateur-stabilisant" variant="secondary" size="md" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

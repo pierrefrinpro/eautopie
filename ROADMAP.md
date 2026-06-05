@@ -4,101 +4,86 @@
 > complet qui accompagne un particulier sur **tous les cas réels** d'entretien
 > de sa piscine — du dosage quotidien à la remise en route après l'hiver.
 
-## ✅ Fait (MVP — jour 1)
+## ✅ Fait
 
+**Fondations & déploiement**
 - Projet Astro 4 + TypeScript + Tailwind (charte EauTopie) + polices.
-- BaseLayout (SEO, Open Graph), Header, Footer.
-- Page d'accueil (hero, 3 piliers, CTA blog).
-- **Calculateur de chlore d'entretien** (LocalStorage, mini-calc volume).
-- Déploiement Cloudflare + domaine eautopie.fr (chez Gandi).
+- BaseLayout (SEO, Open Graph), Header, Footer 3 colonnes.
+- Page d'accueil (hero, 3 piliers, H2 SEO, section Premium, CTA blog).
+- Déploiement Cloudflare + domaine eautopie.fr (Gandi), HTTPS, www.
+- Page 404, image de partage (og-image).
 
-## 🔜 Prochains calculateurs (`pages/calculateur/`)
+**Calculateurs**
+- [x] **Chlore d'entretien** (LocalStorage, mini-calc volume, sauvegarde mesure).
+- [x] **Chlore choc** (dose par m³ selon gravité).
+- [x] **pH+ / pH−** (dose selon mesure et cible).
 
-> ⭐ **Priorité immédiate après le SEO/blog** : **Chlore choc** et **pH**.
-> Une fois créés, il FAUT les brancher dans le diagnostic « eau verte » :
-> l'étape « Chlore choc » du plan doit lier le calculateur de chlore choc, et
-> l'étape « Règle le pH » doit lier le calculateur de pH (liens retirés pour
-> l'instant pour ne pas tromper l'utilisateur).
+**Diagnostic & suivi**
+- [x] **Diagnostic eau verte** complet (questionnaire → plan calculé au volume,
+      checklist, planning 5 jours, sauvegarde 1 planning).
+- [x] **Suivi** (« Suis ton eau ») : historique des mesures + planning sauvegardé.
 
-- [ ] **Chlore choc** (eau qui a viré / forte fréquentation).
-- [ ] **pH+ / pH−** (rééquilibrage du pH).
-- [ ] **Stabilisant** (acide cyanurique).
-- [ ] **Anti-algues** (dosage selon volume).
-- [ ] **Floculant / clarifiant** (eau trouble).
-- [ ] **TAC / dureté** (alcalinité, eau agressive ou entartrante).
+**Premium (vitrine)**
+- [x] Waitlist Premium (page /premium, formulaire Formspree, état LocalStorage,
+      boutons « Passer à Premium » partout).
+- [x] Levier de conversion : preview gratuite planning 5 j + teaser verrouillé.
 
-## 🔬 Diagnostics guidés (`pages/diagnostic/`)
+**SEO**
+- [x] Sitemap + robots.txt.
+- [x] JSON-LD (WebSite, Organization, SoftwareApplication, HowTo, Article,
+      BreadcrumbList, FAQPage).
+- [x] Breadcrumbs + pages index /calculateur & /diagnostic.
+- [x] FAQ (calculateurs) + métas/H2 optimisés.
+- [x] **Blog : 10 articles (lot 1)** maillés entre eux et vers les outils.
 
-Parcours pas-à-pas qui posent des questions et orientent vers le bon traitement
-+ les bons calculateurs.
+**Légal & RGPD**
+- [x] Mentions légales (GROKIUM EURL) + politique de confidentialité dédiée.
+- [x] Bandeau de consentement cookies (GTM chargé uniquement après accord).
+- [x] GTM (GTM-5T6CKBDJ) actif.
 
-- [ ] **Eau verte** — distinguer les cas :
-  - Sortie d'hivernage / 0 entretien → **remise en route complète**
-    (rééquilibrer pH + TAC, chlore choc, anti-algues, brossage/nettoyage,
-    filtration en continu, floculant si besoin).
-  - Eau verte « légère » en saison → chlore choc + anti-algues.
-- [ ] **Eau trouble** (blanchâtre / laiteuse) → pH, filtration, floculant.
-- [ ] **Ça pique aux yeux / odeur de chlore** → chloramines, pH, chlore choc.
-- [ ] **Eau qui s'évapore / niveau** , **dépôts/tartre**, etc.
+## ✅ Calculateurs (complets : 8)
 
-## 💧 Suivi de l'eau (« Suis ton eau »)
+- [x] Chlore d'entretien · [x] Chlore choc · [x] pH+/pH−
+- [x] **Stabilisant** · [x] **Sel** · [x] **Anti-algues** · [x] **Floculant** · [x] **TAC**
+- Composant générique `MiniCalc` (config-driven).
 
-- [ ] Saisie régulière des paramètres (chlore, pH, TAC, température…).
-- [ ] Affichage de l'historique + tendances.
+## ✅ Diagnostics guidés (4)
 
-## ⭐ Premium (~4,99 €/mois)
+- [x] **Eau verte** (moteur complet : plan + planning + sauvegarde).
+- [x] **Eau trouble** · [x] **Ça pique aux yeux** · [x] **Taches sur le liner**
+      (mini-parcours guidés, composant `DiagnosticGuide`).
+- [ ] À venir si besoin : dépôts/tartre, niveau d'eau, etc.
 
-Ce qui justifie l'abonnement (au-delà des calculs, qui restent gratuits) :
+## ✍️ Blog — lot 2 (à valider/écrire)
 
-- [ ] **Sauvegarde des données** (au-delà du LocalStorage : compte + backend,
-      synchro multi-appareils, pas de perte si on change de téléphone).
-- [ ] **Planning d'entretien personnalisé** (rappels intelligents : « teste ton
-      eau », « ajoute du stabilisant », saisonnalité hivernage / remise en route).
-- [ ] **Multi-piscines**.
-- [ ] **Historique avancé** (graphes, export).
-- [ ] **Dashboard connecté** : après paiement, l'utilisateur a un espace avec
-      ses infos (volume, type de piscine), ses diagnostics passés, ses plannings
-      et ses rappels.
+Idées proposées : hivernage, piscine au sel, TAC/alcalinité, anti-algues,
+floculant, eau dure/calcaire, tester son eau, après l'orage, nettoyer le filtre à
+sable, taches sur le liner.
 
-### Levier de conversion (en cours de mise en place)
+## 📈 Analytics
 
-- [x] À la fin d'un diagnostic : **preview gratuite du planning des 5 prochains
-      jours** (visible), puis **teaser verrouillé** du planning quotidien +
-      hebdomadaire avec rappels → débloqué par le Premium.
-- [ ] Brancher un vrai paiement (Stripe) + comptes.
+- [ ] Créer la **balise GA4** dans GTM (ID `G-XXXXXXXXXX`) et publier le conteneur.
+
+## ⭐ Premium (~4,99 €/mois) — à construire
+
+- [ ] **Comptes + backend** (sauvegarde au-delà du LocalStorage, synchro multi-appareils).
+- [ ] **Paiement Stripe**.
+- [ ] **Planning d'entretien** quotidien/hebdo + **rappels intelligents** (météo).
+- [ ] **Multi-piscines**, **historique avancé** (graphes, export).
+- [ ] **Dashboard connecté** (infos, diagnostics passés, plannings, rappels).
 
 ## 🤖 Idées avancées (vision)
 
-- [ ] **Analyse photo de l'eau** : l'utilisateur prend une photo de sa piscine
-      (et/ou d'une bandelette de test), l'appli analyse la couleur/limpidité et
-      en déduit un diagnostic + planning détaillé. → IA de vision + backend.
-- [ ] Reconnaissance de bandelette (lecture des couleurs = valeurs chlore / pH /
-      TAC sans saisie manuelle).
-
-## ✍️ Blog — calendrier éditorial (lot 1)
-
-- [x] **1.** eau-verte-piscine-que-faire — « Mon eau de piscine est verte : que faire en 24h »
-- [ ] **2.** dosage-chlore-piscine-tableau-complet — dosage chlore (tableau + calculateur)
-- [ ] **3.** ph-piscine-comment-equilibrer — équilibrer le pH
-- [ ] **4.** eau-trouble-piscine-causes-solutions — eau trouble, 6 causes
-- [ ] **5.** entretien-piscine-hors-sol-debutant — hors-sol débutant (+ affiliation Amazon)
-- [ ] **6.** stabilisant-piscine-trop-eleve-que-faire — stabilisant trop élevé
-- [ ] **7.** traitement-choc-piscine-quand-comment — traitement choc
-- [ ] **8.** remise-en-route-piscine-printemps — remise en route printemps (saisonnier)
-- [ ] **9.** temps-filtration-piscine-calcul — temps de filtration
-- [ ] **10.** eau-piscine-pique-aux-yeux — irritations / chloramines
-
-> Lot 2 (idées proposées) : hivernage, piscine au sel, TAC/alcalinité, anti-algues,
-> floculant, eau dure/calcaire, tester son eau, après l'orage, nettoyer le filtre à
-> sable, taches sur le liner.
+- [ ] **Analyse photo de l'eau** (et/ou bandelette) → diagnostic IA + planning.
+- [ ] Reconnaissance de bandelette (lecture des couleurs sans saisie manuelle).
 
 ## 🧱 Plus tard
 
-- [ ] Blog SEO + affiliation Amazon.
+- [ ] Affiliation Amazon (liens produits dans les articles, ex. hors-sol).
 - [ ] PWA (manifest + service worker, installable, hors-ligne).
-- [ ] Backend (comptes, sync) — quand le Premium le nécessite.
+- [ ] Moteur de recherche interne (le `SearchAction` du schema est déjà prêt).
 
 ---
 
-_La fondation actuelle (dossiers `calculateur/`, `diagnostic/`, `lib/storage.ts`,
-`premium.astro`) est pensée pour empiler ces briques sans tout refaire._
+_La fondation (dossiers `calculateur/`, `diagnostic/`, `lib/`, content collections
+`blog`) est pensée pour empiler ces briques sans tout refaire._
