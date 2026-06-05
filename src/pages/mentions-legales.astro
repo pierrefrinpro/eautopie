@@ -15,14 +15,12 @@ const majDate = '5 juin 2026';
 ---
 
 <BaseLayout
-  title="Mentions légales & confidentialité — EauTopie"
-  description="Mentions légales, éditeur, hébergeur et politique de confidentialité (RGPD) du site EauTopie, édité par GROKIUM EURL."
+  title="Mentions légales — EauTopie"
+  description="Mentions légales du site EauTopie : éditeur (GROKIUM EURL), hébergeur, propriété intellectuelle et responsabilité."
 >
   <section class="mx-auto max-w-2xl px-6 py-12 sm:py-16">
-    <h1 class="text-3xl text-noir-eau sm:text-4xl">
-      Mentions légales & confidentialité
-    </h1>
-    <p class="mt-2 text-sm text-gris-onde">En vigueur au {majDate}.</p>
+    <h1 class="text-3xl text-noir-eau sm:text-4xl">Mentions légales</h1>
+    <p class="mt-2 text-sm text-gris-onde">Dernière mise à jour : {majDate}.</p>
 
     <div class="mt-8 space-y-10 text-noir-eau/90">
       <!-- 1. Éditeur -->
@@ -58,7 +56,6 @@ const majDate = '5 juin 2026';
         <h2 class="font-display text-xl font-semibold text-noir-eau">
           2. Hébergement
         </h2>
-        <p class="mt-3 leading-relaxed">Le site est hébergé par :</p>
         <ul class="mt-3 space-y-1 text-sm leading-relaxed text-gris-onde">
           <li><strong class="text-noir-eau">Cloudflare, Inc.</strong></li>
           <li>101 Townsend Street, San Francisco, CA 94107, États-Unis</li>
@@ -72,7 +69,7 @@ const majDate = '5 juin 2026';
           </li>
         </ul>
         <p class="mt-2 text-sm leading-relaxed text-gris-onde">
-          Le nom de domaine est géré via le registrar
+          Nom de domaine géré via le registrar
           <a
             href="https://www.gandi.net"
             class="text-bleu-eau hover:underline"
@@ -82,174 +79,10 @@ const majDate = '5 juin 2026';
         </p>
       </div>
 
-      <!-- 3. Responsable du traitement -->
+      <!-- 3. Propriété intellectuelle -->
       <div>
         <h2 class="font-display text-xl font-semibold text-noir-eau">
-          3. Responsable du traitement des données
-        </h2>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          Le responsable du traitement des données personnelles est
-          <strong class="text-noir-eau">{societe.raisonSociale}</strong>,
-          représentée par son gérant {societe.gerant} (SIRET {societe.siret}).
-          Pour toute question relative à tes données : <strong
-            class="text-noir-eau">{societe.email}</strong
-          >.
-        </p>
-      </div>
-
-      <!-- 4. Données collectées -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          4. Données collectées
-        </h2>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          EauTopie est conçu pour <strong class="text-noir-eau"
-            >minimiser la collecte de données</strong
-          >.
-        </p>
-        <p class="mt-3 text-sm font-semibold text-noir-eau">
-          a) Inscription à la liste d’attente Premium
-        </p>
-        <p class="mt-1 text-sm leading-relaxed text-gris-onde">
-          Si tu t’inscris volontairement via le formulaire, nous recueillons :
-          ton <strong class="text-noir-eau">adresse email</strong>, ainsi que la
-          date et la page d’origine de ta demande.
-        </p>
-        <p class="mt-3 text-sm font-semibold text-noir-eau">
-          b) Données enregistrées sur ton appareil
-        </p>
-        <p class="mt-1 text-sm leading-relaxed text-gris-onde">
-          Tes saisies dans les calculateurs, le suivi et les plannings (volume,
-          mesures, etc.) sont stockées <strong class="text-noir-eau"
-            >localement dans ton navigateur</strong
-          > (LocalStorage). Elles ne sont pas transmises à nos serveurs et restent
-          sur ton appareil.
-        </p>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          Aucune donnée n’est collectée à des fins de traçage publicitaire ou de
-          profilage.
-        </p>
-      </div>
-
-      <!-- 5. Finalité -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          5. Finalité du traitement
-        </h2>
-        <ul class="mt-3 space-y-1 text-sm leading-relaxed text-gris-onde">
-          <li>
-            Te prévenir du lancement de l’offre Premium et de son avant-première ;
-          </li>
-          <li>
-            Assurer le bon fonctionnement des outils (données conservées
-            localement sur ton appareil) ;
-          </li>
-          <li>Mesurer l’audience du site de façon agrégée.</li>
-        </ul>
-        <p class="mt-2 text-sm leading-relaxed text-gris-onde">
-          Aucune prospection commerciale non sollicitée n’est effectuée.
-        </p>
-      </div>
-
-      <!-- 6. Base légale -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          6. Base légale
-        </h2>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          Le traitement repose sur ton <strong class="text-noir-eau"
-            >consentement explicite</strong
-          >, matérialisé par l’envoi volontaire du formulaire.
-        </p>
-      </div>
-
-      <!-- 7. Durée de conservation -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          7. Durée de conservation
-        </h2>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          Ton email est conservé jusqu’au lancement de l’offre Premium ou jusqu’à
-          ta désinscription, et au maximum <strong class="text-noir-eau"
-            >3 ans à compter du dernier échange</strong
-          >, puis supprimé ou anonymisé. Les données enregistrées localement
-          restent sur ton appareil tant que tu ne les supprimes pas.
-        </p>
-      </div>
-
-      <!-- 8. Destinataires -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          8. Destinataires & sous-traitants
-        </h2>
-        <ul class="mt-3 space-y-1 text-sm leading-relaxed text-gris-onde">
-          <li>
-            <strong class="text-noir-eau">Formspree</strong> (formspree.io) —
-            traite l’envoi du formulaire de liste d’attente pour notre compte.
-          </li>
-          <li>
-            <strong class="text-noir-eau">Google</strong> (Google Analytics 4 &
-            Tag Manager) — mesure d’audience.
-          </li>
-        </ul>
-        <p class="mt-2 text-sm leading-relaxed text-gris-onde">
-          Aucune autre transmission à des tiers n’est effectuée. Tes données ne
-          sont jamais vendues.
-        </p>
-      </div>
-
-      <!-- 9. Droits RGPD -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          9. Tes droits (RGPD)
-        </h2>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          Tu disposes des droits d’accès, de rectification, d’effacement,
-          d’opposition, de limitation et de portabilité de tes données. Pour les
-          exercer, écris-nous à <strong class="text-noir-eau"
-            >{societe.email}</strong
-          > ; nous répondons dans un délai d’un mois. Tu peux aussi saisir la
-          <a
-            href="https://www.cnil.fr"
-            class="text-bleu-eau hover:underline"
-            rel="noopener"
-            target="_blank">CNIL</a
-          >.
-        </p>
-      </div>
-
-      <!-- 10. Cookies & audience -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          10. Cookies & mesure d’audience
-        </h2>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          EauTopie utilise <strong class="text-noir-eau">Google Analytics 4</strong>
-          via <strong class="text-noir-eau">Google Tag Manager</strong> (conteneur
-          GTM-5T6CKBDJ) pour mesurer l’audience du site de manière agrégée. Aucun
-          cookie publicitaire n’est utilisé. Le stockage local (LocalStorage)
-          sert uniquement au fonctionnement des outils et ne te piste pas. Tu
-          peux t’opposer à la mesure d’audience via les réglages de ton
-          navigateur.
-        </p>
-      </div>
-
-      <!-- 11. Sécurité -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          11. Sécurité
-        </h2>
-        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
-          Les échanges avec le site sont chiffrés via <strong
-            class="text-noir-eau">HTTPS (TLS)</strong
-          >, et l’accès aux données de la liste d’attente est restreint.
-        </p>
-      </div>
-
-      <!-- 12. Propriété intellectuelle -->
-      <div>
-        <h2 class="font-display text-xl font-semibold text-noir-eau">
-          12. Propriété intellectuelle
+          3. Propriété intellectuelle
         </h2>
         <p class="mt-3 text-sm leading-relaxed text-gris-onde">
           L’ensemble des contenus présents sur EauTopie (textes, calculateurs,
@@ -260,10 +93,10 @@ const majDate = '5 juin 2026';
         </p>
       </div>
 
-      <!-- 13. Responsabilité -->
+      <!-- 4. Responsabilité -->
       <div>
         <h2 class="font-display text-xl font-semibold text-noir-eau">
-          13. Responsabilité
+          4. Responsabilité
         </h2>
         <p class="mt-3 text-sm leading-relaxed text-gris-onde">
           Les calculateurs et diagnostics d’EauTopie fournissent des
@@ -272,6 +105,21 @@ const majDate = '5 juin 2026';
           d’un professionnel. Vérifie toujours les indications des produits que
           tu utilises. L’éditeur ne saurait être tenu responsable d’un mauvais
           dosage ou d’une mauvaise manipulation.
+        </p>
+      </div>
+
+      <!-- 5. Données personnelles -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          5. Données personnelles & cookies
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Le traitement de tes données et l’usage des cookies sont détaillés dans
+          notre <a
+            href="/politique-confidentialite"
+            class="text-bleu-eau hover:underline"
+            >politique de confidentialité</a
+          >.
         </p>
       </div>
     </div>

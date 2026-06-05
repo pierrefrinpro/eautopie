@@ -1,0 +1,119 @@
+---
+// Bandeau de consentement cookies. GTM (mesure d'audience) ne se charge
+// QU'APRÈS acceptation. Le choix est mémorisé dans le LocalStorage.
+---
+
+<div
+  id="cookie-banner"
+  style="display: none;"
+  class="fixed inset-x-0 bottom-0 z-[100] px-4 pb-4 sm:px-6"
+  role="dialog"
+  aria-label="Consentement aux cookies"
+>
+  <div
+    class="mx-auto max-w-3xl rounded-2xl border border-bleu-pale bg-white p-5 shadow-lg"
+  >
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+      <p class="flex-1 text-sm text-noir-eau/80">
+        🍪 On utilise des cookies de <strong class="text-noir-eau"
+          >mesure d'audience</strong
+        > (Google Analytics) pour améliorer le site. Tu peux accepter ou refuser.
+        <a
+          href="/politique-confidentialite"
+          class="font-medium text-bleu-eau underline">En savoir plus</a
+        >.
+      </p>
+      <div class="flex shrink-0 gap-2">
+        <button
+          type="button"
+          data-cookie-refuse
+          class="rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-bleu-profond ring-1 ring-bleu-ciel transition hover:bg-bleu-pale"
+        >
+          Refuser
+        </button>
+        <button
+          type="button"
+          data-cookie-accept
+          class="rounded-xl bg-bleu-eau px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+        >
+          Accepter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { GTM_ID } from '../consts';
+
+  const KEY = 'eautopie_cookie_consent';
+
+  function loadGTM() {
+    if (!GTM_ID || (window as any).__gtmLoaded) return;
+    (window as any).__gtmLoaded = true;
+    (function (w: any, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      const f = d.getElementsByTagName(s)[0];
+      const j = d.createElement(s) as HTMLScriptElement;
+      const dl = l !== 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode!.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', GTM_ID);
+  }
+
+  function getConsent(): string | null {
+    try {
+      return window.localStorage.getItem(KEY);
+    } catch {
+      return null;
+    }
+  }
+  function setConsent(v: string) {
+    try {
+      window.localStorage.setItem(KEY, v);
+    } catch {
+      /* silencieux */
+    }
+  }
+
+  function initCookies() {
+    const banner = document.getElementById('cookie-banner');
+    const show = () => {
+      if (banner) banner.style.display = 'block';
+    };
+    const hide = () => {
+      if (banner) banner.style.display = 'none';
+    };
+
+    const consent = getConsent();
+    if (consent === 'granted') loadGTM();
+    else if (consent !== 'denied') show();
+
+    banner
+      ?.querySelector('[data-cookie-accept]')
+      ?.addEventListener('click', () => {
+        setConsent('granted');
+        loadGTM();
+        hide();
+      });
+    banner
+      ?.querySelector('[data-cookie-refuse]')
+      ?.addEventListener('click', () => {
+        setConsent('denied');
+        hide();
+      });
+
+    // Liens "Gérer les cookies" (footer, etc.) -> rouvrent le bandeau
+    document.querySelectorAll('[data-cookie-manage]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        show();
+      });
+    });
+  }
+
+  initCookies();
+  document.addEventListener('astro:page-load', initCookies);
+</script>

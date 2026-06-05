@@ -31,6 +31,7 @@ const colonnes = [
       { nom: 'Le blog', href: '/blog' },
       { nom: 'Premium (bientôt)', href: '/premium' },
       { nom: 'Mentions légales', href: '/mentions-legales' },
+      { nom: 'Confidentialité', href: '/politique-confidentialite' },
       { nom: 'Contact', href: 'mailto:contact@eautopie.fr' },
     ],
   },
@@ -86,12 +87,21 @@ const colonnes = [
         <span class="font-display font-semibold text-bleu-profond">EauTopie</span>
         <span>© {annee}</span>
       </p>
-      <a
-        href="/mentions-legales"
-        class="text-gris-onde transition-colors hover:text-bleu-profond"
-      >
-        Mentions légales
-      </a>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <a
+          href="/mentions-legales"
+          class="text-gris-onde transition-colors hover:text-bleu-profond"
+        >
+          Mentions légales
+        </a>
+        <button
+          type="button"
+          data-cookie-manage
+          class="text-gris-onde underline-offset-2 transition-colors hover:text-bleu-profond hover:underline"
+        >
+          Gérer les cookies
+        </button>
+      </div>
     </div>
   </div>
 </footer>

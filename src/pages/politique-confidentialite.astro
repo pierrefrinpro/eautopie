@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const societe = {
+  raisonSociale: 'GROKIUM',
+  forme: 'EURL au capital variable',
+  gerant: 'Pierre Frin',
+  siret: '103 561 296 00015',
+  email: 'contact@eautopie.fr',
+};
+const majDate = '5 juin 2026';
+---
+
+<BaseLayout
+  title="Politique de confidentialité — EauTopie"
+  description="Politique de confidentialité d’EauTopie : données collectées, finalités, base légale, durée, sous-traitants, cookies et tes droits (RGPD)."
+>
+  <section class="mx-auto max-w-2xl px-6 py-12 sm:py-16">
+    <h1 class="text-3xl text-noir-eau sm:text-4xl">
+      Politique de confidentialité
+    </h1>
+    <p class="mt-2 text-sm text-gris-onde">En vigueur au {majDate}.</p>
+
+    <div class="mt-8 space-y-10 text-noir-eau/90">
+      <!-- Responsable du traitement -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          1. Responsable du traitement
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Le responsable du traitement des données personnelles est
+          <strong class="text-noir-eau">{societe.raisonSociale}</strong>
+          ({societe.forme}), représentée par son gérant {societe.gerant} (SIRET {
+            societe.siret
+          }). Contact : <strong class="text-noir-eau">{societe.email}</strong>.
+        </p>
+      </div>
+
+      <!-- Données collectées -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          2. Données collectées
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          EauTopie est conçu pour <strong class="text-noir-eau"
+            >minimiser la collecte de données</strong
+          >.
+        </p>
+        <p class="mt-3 text-sm font-semibold text-noir-eau">
+          a) Liste d’attente Premium
+        </p>
+        <p class="mt-1 text-sm leading-relaxed text-gris-onde">
+          Si tu t’inscris volontairement via le formulaire, nous recueillons ton
+          <strong class="text-noir-eau">adresse email</strong>, ainsi que la date
+          et la page d’origine de ta demande.
+        </p>
+        <p class="mt-3 text-sm font-semibold text-noir-eau">
+          b) Données enregistrées sur ton appareil
+        </p>
+        <p class="mt-1 text-sm leading-relaxed text-gris-onde">
+          Tes saisies dans les calculateurs, le suivi et les plannings sont
+          stockées <strong class="text-noir-eau">localement</strong> dans ton
+          navigateur (LocalStorage) et ne sont pas transmises à nos serveurs.
+        </p>
+      </div>
+
+      <!-- Finalité -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          3. Finalité du traitement
+        </h2>
+        <ul class="mt-3 space-y-1 text-sm leading-relaxed text-gris-onde">
+          <li>Te prévenir du lancement de l’offre Premium ;</li>
+          <li>Assurer le bon fonctionnement des outils ;</li>
+          <li>Mesurer l’audience du site de façon agrégée (avec ton consentement).</li>
+        </ul>
+        <p class="mt-2 text-sm leading-relaxed text-gris-onde">
+          Aucune prospection commerciale non sollicitée n’est effectuée, et tes
+          données ne sont jamais vendues.
+        </p>
+      </div>
+
+      <!-- Base légale -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          4. Base légale
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Le traitement repose sur ton <strong class="text-noir-eau"
+            >consentement explicite</strong
+          > (envoi du formulaire, acceptation des cookies de mesure d’audience).
+        </p>
+      </div>
+
+      <!-- Durée -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          5. Durée de conservation
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Ton email est conservé jusqu’au lancement de l’offre Premium ou jusqu’à
+          ta désinscription, et au maximum <strong class="text-noir-eau"
+            >3 ans</strong
+          > après le dernier échange. Les données locales restent sur ton appareil
+          tant que tu ne les supprimes pas.
+        </p>
+      </div>
+
+      <!-- Destinataires -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          6. Destinataires & sous-traitants
+        </h2>
+        <ul class="mt-3 space-y-1 text-sm leading-relaxed text-gris-onde">
+          <li>
+            <strong class="text-noir-eau">Formspree</strong> (formspree.io) —
+            traite l’envoi du formulaire de liste d’attente.
+          </li>
+          <li>
+            <strong class="text-noir-eau">Google</strong> (Google Analytics 4 &
+            Tag Manager) — mesure d’audience, uniquement après consentement.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Cookies -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          7. Cookies & mesure d’audience
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          À ta première visite, un <strong class="text-noir-eau"
+            >bandeau de consentement</strong
+          > te permet d’accepter ou de refuser la mesure d’audience. Les outils
+          <strong class="text-noir-eau">Google Analytics 4 / Tag Manager</strong>
+          ne se chargent <strong class="text-noir-eau">qu’après ton accord</strong>.
+          Aucun cookie publicitaire n’est utilisé. Le stockage local (LocalStorage)
+          sert uniquement au fonctionnement des outils et ne te piste pas. Tu peux
+          modifier ton choix à tout moment via le lien
+          <strong class="text-noir-eau">« Gérer les cookies »</strong> en bas de page.
+        </p>
+      </div>
+
+      <!-- Droits -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          8. Tes droits (RGPD)
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Tu disposes des droits d’accès, de rectification, d’effacement,
+          d’opposition, de limitation et de portabilité. Pour les exercer, écris
+          à <strong class="text-noir-eau">{societe.email}</strong> ; nous
+          répondons sous un mois. Tu peux aussi saisir la
+          <a
+            href="https://www.cnil.fr"
+            class="text-bleu-eau hover:underline"
+            rel="noopener"
+            target="_blank">CNIL</a
+          >.
+        </p>
+      </div>
+
+      <!-- Sécurité -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          9. Sécurité
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Les échanges avec le site sont chiffrés via <strong
+            class="text-noir-eau">HTTPS (TLS)</strong
+          >, et l’accès aux données de la liste d’attente est restreint.
+        </p>
+      </div>
+
+      <p class="text-sm text-gris-onde">
+        Voir aussi nos <a
+          href="/mentions-legales"
+          class="text-bleu-eau hover:underline">mentions légales</a
+        >.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

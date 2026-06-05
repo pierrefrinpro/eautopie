@@ -14,7 +14,9 @@ export default defineConfig({
     sitemap({
       // On exclut les pages non indexables du sitemap.
       filter: (page) =>
-        !page.includes('/mentions-legales') && !page.includes('/404'),
+        !page.includes('/mentions-legales') &&
+        !page.includes('/politique-confidentialite') &&
+        !page.includes('/404'),
     }),
   ],
 });
