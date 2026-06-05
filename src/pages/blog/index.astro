@@ -1,21 +1,112 @@
 ---
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../../content/config';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Button from '../../components/ui/Button.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const CATEGORY_LABELS: Record<string, string> = {
+  entretien: 'Entretien',
+  problemes: 'Problèmes d’eau',
+  debutants: 'Débutants',
+  equipement: 'Équipement',
+};
+
+const articles = (await getCollection('blog', (e) => !e.data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const groupes = CATEGORIES.map((cat) => ({
+  cat,
+  label: CATEGORY_LABELS[cat] ?? cat,
+  items: articles.filter((a) => a.data.category === cat),
+})).filter((g) => g.items.length > 0);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Blog', url: '/blog' },
+];
 ---
 
 <BaseLayout
-  title="Le blog EauTopie — apprends l’entretien de ta piscine"
-  description="Guides, astuces et explications pour entretenir ta piscine comme un pro. Le blog EauTopie arrive bientôt."
+  title="Le blog EauTopie — guides et conseils d’entretien de piscine"
+  description="Guides, astuces et conseils pour entretenir ta piscine sans prise de tête : eau verte, chlore, pH, équipement… du débutant total à l’eau cristalline."
 >
-  <section class="mx-auto max-w-2xl px-6 py-20 text-center">
-    <div class="text-6xl" aria-hidden="true">📚</div>
-    <h1 class="mt-6 text-4xl text-noir-eau">Le blog arrive bientôt</h1>
-    <p class="mt-4 text-lg text-gris-onde">
-      On prépare des guides clairs pour t’apprendre l’entretien de ta piscine,
-      du débutant total au pro de l’eau cristalline.
+  <section class="mx-auto max-w-3xl px-6 py-10 sm:py-14">
+    <Breadcrumbs items={fil} class="mb-6" />
+
+    <h1 class="text-3xl text-noir-eau sm:text-4xl">Le blog</h1>
+    <p class="mt-3 max-w-xl text-gris-onde">
+      Guides, astuces et conseils pour entretenir ta piscine comme un pro — du
+      débutant total à l’eau cristalline.
     </p>
-    <div class="mt-8">
-      <Button href="/" variant="primary" size="lg">Retour à l’accueil</Button>
-    </div>
+
+    {
+      articles.length === 0 ? (
+        <div class="mt-10 rounded-3xl border border-bleu-pale bg-white p-8 text-center shadow-sm">
+          <div class="text-5xl" aria-hidden="true">
+            📚
+          </div>
+          <h2 class="mt-4 font-display text-2xl font-semibold text-noir-eau">
+            Les premiers articles arrivent très bientôt
+          </h2>
+          <p class="mx-auto mt-2 max-w-sm text-gris-onde">
+            En attendant, jette un œil à nos calculateurs et au diagnostic.
+          </p>
+          <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href="/calculateur"
+              class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+            >
+              Les calculateurs
+            </a>
+            <a
+              href="/diagnostic"
+              class="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-medium text-bleu-profond ring-1 ring-bleu-ciel transition hover:bg-bleu-pale"
+            >
+              Voir les diagnostics
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div class="mt-10 space-y-14">
+          {groupes.map((groupe) => (
+            <section id={groupe.cat} class="scroll-mt-24">
+              <h2 class="font-display text-2xl font-semibold text-noir-eau">
+                {groupe.label}
+              </h2>
+              <div class="mt-5 space-y-4">
+                {groupe.items.map((a) => (
+                  <a
+                    href={`/blog/${a.slug}`}
+                    class="group block rounded-2xl border border-bleu-pale bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <h3 class="text-lg font-semibold text-noir-eau group-hover:text-bleu-profond">
+                      {a.data.title}
+                    </h3>
+                    <p class="mt-1.5 text-sm text-gris-onde">
+                      {a.data.description}
+                    </p>
+                    <p class="mt-3 flex items-center gap-2 text-xs text-gris-onde">
+                      <time datetime={a.data.pubDate.toISOString()}>
+                        {fmtDate(a.data.pubDate)}
+                      </time>
+                      <span aria-hidden="true">·</span>
+                      <span>{a.data.readTime} min de lecture</span>
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      )
+    }
   </section>
 </BaseLayout>

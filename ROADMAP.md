@@ -14,6 +14,12 @@
 
 ## 🔜 Prochains calculateurs (`pages/calculateur/`)
 
+> ⭐ **Priorité immédiate après le SEO/blog** : **Chlore choc** et **pH**.
+> Une fois créés, il FAUT les brancher dans le diagnostic « eau verte » :
+> l'étape « Chlore choc » du plan doit lier le calculateur de chlore choc, et
+> l'étape « Règle le pH » doit lier le calculateur de pH (liens retirés pour
+> l'instant pour ne pas tromper l'utilisateur).
+
 - [ ] **Chlore choc** (eau qui a viré / forte fréquentation).
 - [ ] **pH+ / pH−** (rééquilibrage du pH).
 - [ ] **Stabilisant** (acide cyanurique).
