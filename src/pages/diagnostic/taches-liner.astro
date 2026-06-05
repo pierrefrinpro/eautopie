@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DiagnosticGuide from '../../components/diagnostic/DiagnosticGuide.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Diagnostic', url: '/diagnostic' },
+  { name: 'Taches sur le liner', url: '/diagnostic/taches-liner' },
+];
+---
+
+<BaseLayout
+  title="Taches sur le liner de piscine : diagnostic guidé | EauTopie"
+  description="Des taches sur ton liner ? Identifie leur origine (algues, calcaire, métaux, organique) en quelques questions et découvre comment les enlever."
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
+    <div class="mb-8 text-center">
+      <p class="mb-3 inline-flex items-center gap-2 rounded-full bg-soleil/15 px-3 py-1 text-sm font-medium text-soleil">
+        🔬 Diagnostic guidé
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">Taches sur le liner</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Couleur, toucher, emplacement : trois questions suffisent souvent à
+        identifier l’origine des taches et à savoir comment les traiter.
+      </p>
+    </div>
+
+    <DiagnosticGuide slug="taches-liner" />
+
+    <p class="mx-auto mt-6 max-w-2xl text-center text-xs text-gris-onde">
+      Diagnostic indicatif. Pour les taches tenaces, un pisciniste pourra
+      confirmer l’origine.
+    </p>
+  </section>
+</BaseLayout>

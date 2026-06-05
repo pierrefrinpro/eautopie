@@ -1,0 +1,234 @@
+---
+import Input from '../ui/Input.astro';
+import Button from '../ui/Button.astro';
+
+interface Champ {
+  id: string;
+  label: string;
+  type?: 'number' | 'select';
+  suffix?: string;
+  placeholder?: string;
+  value?: string;
+  hint?: string;
+  step?: string;
+  options?: { value: string; label: string }[];
+}
+interface Props {
+  kind: string;
+  champs: Champ[];
+  note: string;
+}
+
+const { kind, champs, note } = Astro.props;
+---
+
+<div
+  class="mx-auto max-w-xl rounded-3xl border border-bleu-pale bg-white p-6 shadow-sm sm:p-8"
+  data-minicalc
+  data-kind={kind}
+>
+  <form data-form novalidate>
+    {
+      champs.map((c, i) =>
+        c.type === 'select' ? (
+          <div class={i > 0 ? 'mt-6' : ''}>
+            <label
+              for={c.id}
+              class="block text-sm font-medium text-noir-eau"
+            >
+              {c.label}
+            </label>
+            <select
+              id={c.id}
+              data-champ={c.id}
+              class="mt-1.5 w-full rounded-xl border border-bleu-pale bg-white px-4 py-3 text-noir-eau shadow-sm outline-none focus:border-bleu-eau focus:ring-2 focus:ring-bleu-eau/30"
+            >
+              {c.options?.map((o) => (
+                <option value={o.value}>{o.label}</option>
+              ))}
+            </select>
+            {c.hint && <p class="mt-1.5 text-xs text-gris-onde">{c.hint}</p>}
+          </div>
+        ) : (
+          <div data-wrap={c.id} class={i > 0 ? 'mt-6' : ''}>
+            <Input
+              id={c.id}
+              label={c.label}
+              type="number"
+              placeholder={c.placeholder}
+              step={c.step ?? '0.1'}
+              min="0"
+              inputmode="decimal"
+              suffix={c.suffix}
+              hint={c.hint}
+            />
+          </div>
+        )
+      )
+    }
+
+    <div class="mt-7">
+      <Button type="submit" variant="primary" size="lg" class="w-full">
+        Calculer
+      </Button>
+    </div>
+
+    <p
+      data-erreur
+      style="display: none;"
+      class="mt-3 rounded-xl bg-rouge-alerte/10 px-4 py-3 text-sm font-medium text-rouge-alerte"
+    >
+    </p>
+  </form>
+
+  <div data-resultat hidden class="mt-6">
+    <div class="rounded-2xl bg-bleu-profond p-6 text-center text-white">
+      <p class="text-sm font-medium uppercase tracking-wide text-bleu-ciel">
+        Résultat
+      </p>
+      <p
+        data-resultat-titre
+        class="mt-2 text-3xl font-display font-semibold sm:text-4xl"
+      >
+      </p>
+      <p data-resultat-sous class="mt-2 text-sm text-bleu-ciel"></p>
+    </div>
+    <div
+      class="mt-4 flex items-start gap-3 rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-4 text-sm text-noir-eau"
+    >
+      <span class="text-lg" aria-hidden="true">💡</span>
+      <p set:html={note} />
+    </div>
+  </div>
+</div>
+
+<script>
+  import {
+    calculerStabilisant,
+    calculerSel,
+    calculerAntiAlgues,
+    calculerFloculant,
+    calculerTac,
+  } from '../../lib/calculations';
+  import { getVolume, setVolume } from '../../lib/storage';
+
+  type Res = { titre: string; sous: string };
+  const g = (n: number) => `${n.toLocaleString('fr-FR')} g`;
+  const dose = (val: string, unite: string) =>
+    `Ajoute <span class="text-soleil">${val} ${unite}</span>`;
+
+  function compute(kind: string, v: Record<string, number | string>): Res {
+    const vol = v.volume as number;
+    switch (kind) {
+      case 'stabilisant': {
+        const r = calculerStabilisant(vol, v.actuel as number, v.cible as number);
+        return r <= 0
+          ? {
+              titre: 'Stabilisant déjà suffisant 👍',
+              sous: 'Pour le faire baisser, il faut renouveler une partie de l’eau.',
+            }
+          : {
+              titre: dose(r.toLocaleString('fr-FR'), 'g de stabilisant'),
+              sous: `Pour passer de ${v.actuel} à ${v.cible} mg/L dans ${vol} m³.`,
+            };
+      }
+      case 'tac': {
+        const r = calculerTac(vol, v.actuel as number, v.cible as number);
+        return r <= 0
+          ? {
+              titre: 'TAC déjà dans la cible 👍',
+              sous: 'Pour le baisser, utilise du pH− et aère l’eau.',
+            }
+          : {
+              titre: dose(r.toLocaleString('fr-FR'), 'g de bicarbonate'),
+              sous: `Pour monter le TAC de ${v.actuel} à ${v.cible} mg/L.`,
+            };
+      }
+      case 'sel': {
+        const r = calculerSel(vol, v.actuel as number, v.cible as number);
+        return r <= 0
+          ? {
+              titre: 'Niveau de sel déjà bon 👍',
+              sous: 'Tu es au-dessus ou à la cible : n’ajoute rien.',
+            }
+          : {
+              titre: dose(r.toLocaleString('fr-FR'), 'kg de sel'),
+              sous: `Pour passer de ${v.actuel} à ${v.cible} g/L dans ${vol} m³.`,
+            };
+      }
+      case 'anti-algues': {
+        const r = calculerAntiAlgues(vol, v.mode as 'preventif' | 'curatif');
+        const ml = r >= 1000 ? `${(r / 1000).toFixed(1)} L` : `${r} ml`;
+        return {
+          titre: dose(ml, 'd’anti-algues'),
+          sous: `Dose ${v.mode === 'curatif' ? 'curative' : 'préventive'} pour ${vol} m³.`,
+        };
+      }
+      case 'floculant': {
+        const r = calculerFloculant(vol);
+        const ml = r >= 1000 ? `${(r / 1000).toFixed(1)} L` : `${r} ml`;
+        return {
+          titre: dose(ml, 'de floculant'),
+          sous: `Pour ${vol} m³ (filtre à sable uniquement).`,
+        };
+      }
+      default:
+        return { titre: '—', sous: '' };
+    }
+  }
+
+  function initMiniCalcs() {
+    document.querySelectorAll<HTMLElement>('[data-minicalc]').forEach((root) => {
+      const kind = root.getAttribute('data-kind') || '';
+      const form = root.querySelector<HTMLFormElement>('[data-form]');
+      const erreur = root.querySelector<HTMLElement>('[data-erreur]');
+      const resultat = root.querySelector<HTMLElement>('[data-resultat]');
+      const titre = root.querySelector<HTMLElement>('[data-resultat-titre]');
+      const sous = root.querySelector<HTMLElement>('[data-resultat-sous]');
+      if (!form || !resultat) return;
+
+      const volumeEl = root.querySelector<HTMLInputElement>('[data-champ="volume"], #volume');
+      const v = getVolume();
+      if (volumeEl && v !== null) volumeEl.value = String(v);
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (erreur) erreur.style.display = 'none';
+
+        const vals: Record<string, number | string> = {};
+        let invalide = false;
+        root
+          .querySelectorAll<HTMLInputElement | HTMLSelectElement>('[data-champ], input[id], select[id]')
+          .forEach((el) => {
+            const id = el.getAttribute('data-champ') || el.id;
+            if (!id) return;
+            if (el.tagName === 'SELECT') {
+              vals[id] = (el as HTMLSelectElement).value;
+            } else {
+              const n = parseFloat((el as HTMLInputElement).value);
+              if (!Number.isFinite(n) || n < 0) invalide = true;
+              vals[id] = n;
+            }
+          });
+
+        if (invalide || !((vals.volume as number) > 0)) {
+          if (erreur) {
+            erreur.textContent = 'Remplis tous les champs avec des valeurs valides.';
+            erreur.style.display = 'block';
+          }
+          return;
+        }
+        setVolume(vals.volume as number);
+
+        const res = compute(kind, vals);
+        if (titre) titre.innerHTML = res.titre;
+        if (sous) sous.textContent = res.sous;
+        resultat.hidden = false;
+        resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  }
+
+  initMiniCalcs();
+  document.addEventListener('astro:page-load', initMiniCalcs);
+</script>
