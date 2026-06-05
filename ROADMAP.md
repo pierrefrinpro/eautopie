@@ -75,6 +75,23 @@ Ce qui justifie l'abonnement (au-delà des calculs, qui restent gratuits) :
 - [ ] Reconnaissance de bandelette (lecture des couleurs = valeurs chlore / pH /
       TAC sans saisie manuelle).
 
+## ✍️ Blog — calendrier éditorial (lot 1)
+
+- [x] **1.** eau-verte-piscine-que-faire — « Mon eau de piscine est verte : que faire en 24h »
+- [ ] **2.** dosage-chlore-piscine-tableau-complet — dosage chlore (tableau + calculateur)
+- [ ] **3.** ph-piscine-comment-equilibrer — équilibrer le pH
+- [ ] **4.** eau-trouble-piscine-causes-solutions — eau trouble, 6 causes
+- [ ] **5.** entretien-piscine-hors-sol-debutant — hors-sol débutant (+ affiliation Amazon)
+- [ ] **6.** stabilisant-piscine-trop-eleve-que-faire — stabilisant trop élevé
+- [ ] **7.** traitement-choc-piscine-quand-comment — traitement choc
+- [ ] **8.** remise-en-route-piscine-printemps — remise en route printemps (saisonnier)
+- [ ] **9.** temps-filtration-piscine-calcul — temps de filtration
+- [ ] **10.** eau-piscine-pique-aux-yeux — irritations / chloramines
+
+> Lot 2 (idées proposées) : hivernage, piscine au sel, TAC/alcalinité, anti-algues,
+> floculant, eau dure/calcaire, tester son eau, après l'orage, nettoyer le filtre à
+> sable, taches sur le liner.
+
 ## 🧱 Plus tard
 
 - [ ] Blog SEO + affiliation Amazon.
