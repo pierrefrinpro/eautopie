@@ -1,0 +1,21 @@
+---
+const annee = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-bleu-pale bg-white">
+  <div
+    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-gris-onde sm:flex-row"
+  >
+    <p class="flex items-center gap-2">
+      <span aria-hidden="true">💧</span>
+      <span class="font-display font-semibold text-bleu-profond">EauTopie</span>
+      <span>© {annee}</span>
+    </p>
+    <nav class="flex items-center gap-5" aria-label="Liens de pied de page">
+      <a href="/mentions-legales" class="hover:text-bleu-profond">
+        Mentions légales
+      </a>
+      <a href="/blog" class="hover:text-bleu-profond">Blog</a>
+    </nav>
+  </div>
+</footer>

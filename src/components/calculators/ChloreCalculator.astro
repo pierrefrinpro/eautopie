@@ -1,0 +1,431 @@
+---
+import Input from '../ui/Input.astro';
+import Button from '../ui/Button.astro';
+---
+
+<div
+  class="mx-auto max-w-xl rounded-3xl border border-bleu-pale bg-white p-6 shadow-sm sm:p-8"
+  data-chlore-calculator
+>
+  <form id="chlore-form" novalidate>
+    <!-- Volume -->
+    <Input
+      id="volume"
+      label="Volume de la piscine"
+      type="number"
+      placeholder="Ex: 25"
+      step="0.1"
+      min="0"
+      inputmode="decimal"
+      suffix="m³"
+    />
+    <button
+      type="button"
+      id="toggle-volume-helper"
+      class="mt-2 text-sm font-medium text-bleu-eau underline-offset-2 hover:underline"
+      aria-expanded="false"
+      aria-controls="volume-helper"
+    >
+      Je ne connais pas mon volume
+    </button>
+
+    <!-- Mini-calculateur de volume -->
+    <div
+      id="volume-helper"
+      hidden
+      class="mt-3 rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-4"
+    >
+      <div>
+        <label for="forme" class="block text-sm font-medium text-noir-eau">
+          Forme du bassin
+        </label>
+        <select
+          id="forme"
+          class="mt-1.5 w-full rounded-xl border border-bleu-pale bg-white px-4 py-3 text-noir-eau shadow-sm outline-none focus:border-bleu-eau focus:ring-2 focus:ring-bleu-eau/30"
+        >
+          <option value="rectangulaire">Rectangulaire / ovale</option>
+          <option value="rond">Ronde</option>
+        </select>
+      </div>
+
+      <!-- Champs rectangulaire -->
+      <div id="champs-rectangulaire" class="mt-3 grid grid-cols-2 gap-3">
+        <Input
+          id="rect-longueur"
+          label="Longueur"
+          type="number"
+          placeholder="Ex: 8"
+          step="0.1"
+          min="0"
+          inputmode="decimal"
+          suffix="m"
+        />
+        <Input
+          id="rect-largeur"
+          label="Largeur"
+          type="number"
+          placeholder="Ex: 4"
+          step="0.1"
+          min="0"
+          inputmode="decimal"
+          suffix="m"
+        />
+        <Input
+          id="rect-profondeur"
+          label="Profondeur moyenne"
+          type="number"
+          placeholder="Ex: 1.4"
+          step="0.1"
+          min="0"
+          inputmode="decimal"
+          suffix="m"
+          class="col-span-2"
+        />
+      </div>
+
+      <!-- Champs ronde -->
+      <div
+        id="champs-rond"
+        class="mt-3 grid grid-cols-2 gap-3"
+        style="display: none;"
+      >
+        <Input
+          id="rond-diametre"
+          label="Diamètre"
+          type="number"
+          placeholder="Ex: 4.5"
+          step="0.1"
+          min="0"
+          inputmode="decimal"
+          suffix="m"
+        />
+        <Input
+          id="rond-profondeur"
+          label="Profondeur"
+          type="number"
+          placeholder="Ex: 1.2"
+          step="0.1"
+          min="0"
+          inputmode="decimal"
+          suffix="m"
+        />
+      </div>
+
+      <div class="mt-4">
+        <Button type="button" variant="secondary" size="md" class="w-full">
+          <span id="btn-estimer-label">Estimer mon volume</span>
+        </Button>
+      </div>
+    </div>
+
+    <!-- Chlore actuel -->
+    <Input
+      id="chlore-actuel"
+      label="Chlore actuel mesuré"
+      type="number"
+      placeholder="Ex: 0.3"
+      step="0.1"
+      min="0"
+      inputmode="decimal"
+      suffix="mg/L"
+      hint="Mesure-le avec une bandelette ou un testeur."
+      class="mt-6"
+    />
+
+    <!-- Chlore visé -->
+    <div class="mt-6">
+      <div class="flex items-baseline justify-between">
+        <label for="chlore-cible" class="text-sm font-medium text-noir-eau">
+          Chlore visé
+        </label>
+        <span
+          class="rounded-lg bg-bleu-pale px-2.5 py-1 text-sm font-semibold text-bleu-profond"
+        >
+          <span id="chlore-cible-valeur">1.0</span> mg/L
+        </span>
+      </div>
+      <p class="mt-1.5 text-xs text-gris-onde">
+        C’est le taux de chlore que tu veux atteindre dans l’eau. Pour la
+        plupart des piscines, <strong class="text-noir-eau">1 mg/L</strong> est
+        le réglage parfait — laisse-le par défaut si tu débutes.
+      </p>
+      <input
+        id="chlore-cible"
+        type="range"
+        min="0.5"
+        max="1.5"
+        step="0.1"
+        value="1"
+        class="mt-3 w-full accent-bleu-eau"
+      />
+      <div class="mt-1 flex justify-between text-xs text-gris-onde">
+        <span>0,5 mini</span>
+        <span>1,5 maxi</span>
+      </div>
+      <p
+        id="chlore-cible-conseil"
+        class="mt-2 flex items-start gap-2 rounded-xl bg-bleu-pale/40 px-3 py-2 text-xs text-bleu-profond"
+      >
+      </p>
+    </div>
+
+    <!-- Bouton calculer -->
+    <div class="mt-7">
+      <Button type="submit" variant="primary" size="lg" class="w-full">
+        Calculer
+      </Button>
+    </div>
+
+    <!-- Message d'erreur -->
+    <p
+      id="form-erreur"
+      hidden
+      class="mt-3 rounded-xl bg-rouge-alerte/10 px-4 py-3 text-sm font-medium text-rouge-alerte"
+    >
+    </p>
+  </form>
+
+  <!-- Résultat -->
+  <div id="resultat" hidden class="mt-6">
+    <div class="rounded-2xl bg-bleu-profond p-6 text-center text-white">
+      <p class="text-sm font-medium uppercase tracking-wide text-bleu-ciel">
+        Ta dose recommandée
+      </p>
+      <p id="resultat-titre" class="mt-2 text-3xl font-display font-semibold sm:text-4xl">
+      </p>
+      <p id="resultat-sous-titre" class="mt-2 text-sm text-bleu-ciel"></p>
+    </div>
+
+    <div
+      class="mt-4 flex items-start gap-3 rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-4 text-sm text-noir-eau"
+    >
+      <span class="text-lg" aria-hidden="true">💡</span>
+      <p>
+        Verse dans un seau d’eau avant d’ajouter au bassin, filtration en
+        marche, idéalement le soir.
+      </p>
+    </div>
+
+    <div class="mt-4">
+      <Button type="button" variant="secondary" size="md" class="w-full">
+        <span id="btn-sauver-label">💾 Sauver cette mesure</span>
+      </Button>
+    </div>
+    <p
+      id="sauver-confirmation"
+      hidden
+      class="mt-3 rounded-xl bg-vert-ok/10 px-4 py-3 text-center text-sm font-medium text-vert-ok"
+    >
+      Mesure sauvegardée ✓
+    </p>
+  </div>
+</div>
+
+<script>
+  import {
+    calculerChloreEntretien,
+    volumeRectangulaire,
+    volumeRond,
+  } from '../../lib/calculations';
+  import {
+    getVolume,
+    setVolume,
+    ajouterMesureChlore,
+    type MesureChlore,
+  } from '../../lib/storage';
+
+  function init() {
+    const root = document.querySelector<HTMLElement>('[data-chlore-calculator]');
+    if (!root) return;
+
+    const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+      root.querySelector<T>(`#${id}`);
+
+    const form = $<HTMLFormElement>('chlore-form');
+    const volumeInput = $<HTMLInputElement>('volume');
+    const chloreActuelInput = $<HTMLInputElement>('chlore-actuel');
+    const chloreCibleInput = $<HTMLInputElement>('chlore-cible');
+    const chloreCibleValeur = $('chlore-cible-valeur');
+    const chloreCibleConseil = $('chlore-cible-conseil');
+    const erreur = $('form-erreur');
+
+    const resultat = $('resultat');
+    const resultatTitre = $('resultat-titre');
+    const resultatSousTitre = $('resultat-sous-titre');
+
+    const toggleHelper = $<HTMLButtonElement>('toggle-volume-helper');
+    const helper = $('volume-helper');
+    const forme = $<HTMLSelectElement>('forme');
+    const champsRect = $('champs-rectangulaire');
+    const champsRond = $('champs-rond');
+    const btnEstimerLabel = $('btn-estimer-label');
+    const btnSauverLabel = $('btn-sauver-label');
+    const sauverConfirmation = $('sauver-confirmation');
+
+    if (
+      !form ||
+      !volumeInput ||
+      !chloreActuelInput ||
+      !chloreCibleInput ||
+      !resultat
+    )
+      return;
+
+    // --- Volume mémorisé entre les visites ---
+    const volumeMemorise = getVolume();
+    if (volumeMemorise !== null) volumeInput.value = String(volumeMemorise);
+
+    // --- Slider chlore visé ---
+    const conseilPourCible = (
+      valeur: number
+    ): { emoji: string; texte: string } => {
+      if (valeur <= 0.7)
+        return {
+          emoji: '🌥️',
+          texte:
+            'Réglage minimal : ok pour une piscine peu fréquentée et à l’ombre.',
+        };
+      if (valeur <= 1.2)
+        return {
+          emoji: '✅',
+          texte: 'Le réglage idéal pour la grande majorité des piscines.',
+        };
+      return {
+        emoji: '☀️',
+        texte:
+          'Plus protecteur : conseillé en pleine chaleur, forte baignade ou si ton eau a tendance à virer.',
+      };
+    };
+
+    const majCibleLabel = () => {
+      const valeur = Number(chloreCibleInput.value);
+      if (chloreCibleValeur) chloreCibleValeur.textContent = valeur.toFixed(1);
+      if (chloreCibleConseil) {
+        const { emoji, texte } = conseilPourCible(valeur);
+        chloreCibleConseil.innerHTML = `<span aria-hidden="true">${emoji}</span><span>${texte}</span>`;
+      }
+    };
+    chloreCibleInput.addEventListener('input', majCibleLabel);
+    majCibleLabel();
+
+    // --- Mini-calculateur de volume ---
+    toggleHelper?.addEventListener('click', () => {
+      if (!helper) return;
+      const ouvert = !helper.hidden;
+      helper.hidden = ouvert;
+      toggleHelper.setAttribute('aria-expanded', String(!ouvert));
+    });
+
+    forme?.addEventListener('change', () => {
+      const estRond = forme.value === 'rond';
+      // On pilote l'affichage via le style en ligne : l'attribut `hidden`
+      // serait écrasé par la classe Tailwind `grid` (display: grid).
+      if (champsRond) champsRond.style.display = estRond ? 'grid' : 'none';
+      if (champsRect) champsRect.style.display = estRond ? 'none' : 'grid';
+    });
+
+    const lireNombre = (id: string): number => {
+      const el = $<HTMLInputElement>(id);
+      const n = el ? parseFloat(el.value) : NaN;
+      return Number.isFinite(n) ? n : NaN;
+    };
+
+    // Bouton "Estimer mon volume"
+    btnEstimerLabel?.closest('button')?.addEventListener('click', () => {
+      let volume = NaN;
+      if (forme?.value === 'rond') {
+        const d = lireNombre('rond-diametre');
+        const p = lireNombre('rond-profondeur');
+        if (d > 0 && p > 0) volume = volumeRond(d, p);
+      } else {
+        const lo = lireNombre('rect-longueur');
+        const la = lireNombre('rect-largeur');
+        const pr = lireNombre('rect-profondeur');
+        if (lo > 0 && la > 0 && pr > 0) volume = volumeRectangulaire(lo, la, pr);
+      }
+
+      if (!Number.isFinite(volume) || volume <= 0) {
+        afficherErreur('Remplis les dimensions pour estimer le volume.');
+        return;
+      }
+      volumeInput.value = String(volume);
+      setVolume(volume);
+      if (helper) helper.hidden = true;
+      toggleHelper?.setAttribute('aria-expanded', 'false');
+      cacherErreur();
+    });
+
+    // --- Erreurs ---
+    const afficherErreur = (msg: string) => {
+      if (!erreur) return;
+      erreur.textContent = msg;
+      erreur.hidden = false;
+    };
+    const cacherErreur = () => {
+      if (erreur) erreur.hidden = true;
+    };
+
+    // --- Calcul principal ---
+    let derniereMesure: MesureChlore | null = null;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      cacherErreur();
+
+      const volume = parseFloat(volumeInput.value);
+      const chloreActuel = parseFloat(chloreActuelInput.value);
+      const chloreCible = parseFloat(chloreCibleInput.value);
+
+      if (!Number.isFinite(volume) || volume <= 0) {
+        afficherErreur('Indique d’abord le volume de ta piscine (en m³).');
+        return;
+      }
+      if (!Number.isFinite(chloreActuel) || chloreActuel < 0) {
+        afficherErreur('Indique ton chlore actuel mesuré (en mg/L).');
+        return;
+      }
+
+      // Mémorise le volume pour la prochaine visite
+      setVolume(volume);
+
+      const grammes = calculerChloreEntretien(volume, chloreActuel, chloreCible);
+
+      if (resultatTitre && resultatSousTitre) {
+        if (grammes <= 0) {
+          resultatTitre.textContent = 'Rien à ajouter 👍';
+          resultatSousTitre.textContent = `Ton chlore (${chloreActuel} mg/L) atteint déjà ta cible de ${chloreCible.toFixed(
+            1
+          )} mg/L.`;
+        } else {
+          resultatTitre.innerHTML = `Ajoute <span class="text-soleil">${grammes} g</span> de chlore granulé`;
+          resultatSousTitre.textContent = `Pour passer de ${chloreActuel} à ${chloreCible.toFixed(
+            1
+          )} mg/L dans ${volume} m³.`;
+        }
+      }
+
+      derniereMesure = {
+        date: new Date().toISOString(),
+        volume,
+        chloreActuel,
+        chloreCible,
+        grammes,
+      };
+
+      resultat.hidden = false;
+      if (sauverConfirmation) sauverConfirmation.hidden = true;
+      resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // --- Sauvegarde de la mesure ---
+    btnSauverLabel?.closest('button')?.addEventListener('click', () => {
+      if (!derniereMesure) return;
+      ajouterMesureChlore(derniereMesure);
+      if (sauverConfirmation) sauverConfirmation.hidden = false;
+    });
+  }
+
+  init();
+  // Au cas où le script s'exécute après navigation (View Transitions / Astro)
+  document.addEventListener('astro:page-load', init);
+</script>

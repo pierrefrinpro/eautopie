@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChloreCalculator from '../../components/calculators/ChloreCalculator.astro';
+---
+
+<BaseLayout
+  title="Calculateur de chlore d’entretien — EauTopie"
+  description="Calcule la dose exacte de chlore granulé pour ta piscine selon ton volume et ta mesure. Gratuit, précis, en 30 secondes."
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <div class="mb-8 text-center">
+      <p
+        class="mb-3 inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond"
+      >
+        🧮 Calculateur
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">
+        Chlore d’entretien
+      </h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Indique ton volume et ta mesure : on te dit exactement combien de chlore
+        granulé ajouter pour garder une eau saine.
+      </p>
+    </div>
+
+    <ChloreCalculator />
+
+    <p class="mx-auto mt-6 max-w-xl text-center text-xs text-gris-onde">
+      Estimation pour du chlore granulé stabilisé (~65 %). Vérifie toujours les
+      indications de ton produit et re-teste ton eau après quelques heures.
+    </p>
+  </section>
+</BaseLayout>

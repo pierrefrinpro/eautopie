@@ -1,0 +1,49 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'alerte';
+  size?: 'md' | 'lg';
+  type?: 'button' | 'submit';
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  class: className = '',
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bleu-eau disabled:opacity-50 disabled:cursor-not-allowed';
+
+const sizes: Record<string, string> = {
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-7 py-3.5 text-base',
+};
+
+const variants: Record<string, string> = {
+  primary:
+    'bg-bleu-eau text-white shadow-sm hover:bg-bleu-profond hover:shadow-md active:scale-[0.98]',
+  secondary:
+    'bg-white text-bleu-profond ring-1 ring-bleu-ciel hover:bg-bleu-pale active:scale-[0.98]',
+  ghost: 'text-bleu-profond hover:bg-bleu-pale',
+  alerte:
+    'bg-rouge-alerte text-white shadow-sm hover:brightness-110 active:scale-[0.98]',
+};
+
+const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}

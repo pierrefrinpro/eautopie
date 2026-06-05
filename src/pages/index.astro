@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+
+const piliers = [
+  {
+    emoji: '🧮',
+    titre: 'Calcule',
+    texte:
+      'Le bon dosage, à la goutte près, selon ton volume et ton produit.',
+    href: '/calculateur/chlore',
+    cta: 'Calculer mes doses',
+  },
+  {
+    emoji: '🔬',
+    titre: 'Diagnostique',
+    texte:
+      'Ton eau a un problème ? Décris-le, on te guide étape par étape.',
+    href: '/diagnostic/eau-verte',
+    cta: 'Diagnostiquer mon eau',
+  },
+  {
+    emoji: '📊',
+    titre: 'Suis ton eau',
+    texte:
+      'Note tes paramètres, vois les tendances, anticipe les soucis.',
+    href: '/calculateur/chlore',
+    cta: 'Suivre mes mesures',
+  },
+];
+---
+
+<BaseLayout>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <!-- décor : dégradé d'eau -->
+    <div
+      class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-bleu-pale/70 via-creme to-creme"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full bg-bleu-ciel/40 blur-3xl"
+    >
+    </div>
+
+    <div class="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28">
+      <p
+        class="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-medium text-bleu-profond ring-1 ring-bleu-ciel"
+      >
+        <span aria-hidden="true">✨</span>
+        Pas besoin d’être pisciniste
+      </p>
+
+      <h1
+        class="text-balance text-4xl leading-tight text-noir-eau sm:text-5xl md:text-6xl"
+      >
+        L’eau parfaite de ta piscine,
+        <span class="text-bleu-eau"> sans casse-tête.</span>
+      </h1>
+
+      <p
+        class="mx-auto mt-6 max-w-2xl text-pretty text-lg text-gris-onde sm:text-xl"
+      >
+        EauTopie te guide pas à pas. Calculs précis, diagnostic en 30 secondes,
+        rappels intelligents — pour que tu profites de ta piscine au lieu de la
+        subir.
+      </p>
+
+      <div
+        class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+      >
+        <Button href="/diagnostic/eau-verte" variant="alerte" size="lg">
+          🆘 Mon eau est verte, vite !
+        </Button>
+        <Button href="/calculateur/chlore" variant="secondary" size="lg">
+          Je veux juste calculer mes doses
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 PILIERS -->
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl text-noir-eau sm:text-4xl">
+        Trois gestes pour une eau au top
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Tout ce qu’il te faut pour garder une eau saine, sans y passer tes
+        week-ends.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        piliers.map((p) => (
+          <Card class="flex flex-col">
+            <div
+              class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-bleu-pale text-3xl"
+              aria-hidden="true"
+            >
+              {p.emoji}
+            </div>
+            <h3 class="text-2xl text-noir-eau">{p.titre}</h3>
+            <p class="mt-2 flex-1 text-gris-onde">{p.texte}</p>
+            <a
+              href={p.href}
+              class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-bleu-eau hover:text-bleu-profond"
+            >
+              {p.cta}
+              <span aria-hidden="true">→</span>
+            </a>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA BLOG -->
+  <section class="mx-auto max-w-6xl px-6 pb-8">
+    <div
+      class="relative overflow-hidden rounded-3xl bg-bleu-profond px-8 py-12 text-center sm:px-12 sm:py-16"
+    >
+      <div
+        class="pointer-events-none absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-bleu-eau/30 blur-3xl"
+      >
+      </div>
+      <div class="relative">
+        <h2 class="text-3xl text-white sm:text-4xl">
+          Et si ta piscine n’avait plus de secrets ?
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-pretty text-bleu-ciel">
+          Nos guides t’expliquent tout, simplement — du premier plongeon à
+          l’eau toujours cristalline.
+        </p>
+        <div class="mt-8">
+          <Button href="/blog" variant="primary" size="lg">
+            Lire le blog
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

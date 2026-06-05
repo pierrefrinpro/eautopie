@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+---
+
+<BaseLayout
+  title="Eau verte : le diagnostic — EauTopie"
+  description="Ton eau de piscine est verte ? Le diagnostic guidé EauTopie arrive bientôt pour t’aider à la récupérer, étape par étape."
+>
+  <section class="mx-auto max-w-2xl px-6 py-20 text-center">
+    <div class="text-6xl" aria-hidden="true">🟢</div>
+    <h1 class="mt-6 text-4xl text-noir-eau">Eau verte ? On arrive.</h1>
+    <p class="mt-4 text-lg text-gris-onde">
+      Le diagnostic guidé « eau verte » est en cours de préparation. En
+      attendant, le calculateur de chlore est déjà là pour t’aider à
+      désinfecter.
+    </p>
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <Button href="/calculateur/chlore" variant="primary" size="lg">
+        Calculer mon chlore
+      </Button>
+      <Button href="/" variant="ghost" size="lg">Retour à l’accueil</Button>
+    </div>
+  </section>
+</BaseLayout>

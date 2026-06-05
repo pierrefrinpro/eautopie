@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<BaseLayout
+  title="EauTopie Premium — l’entretien sans y penser"
+  description="Historique avancé, rappels intelligents, multi-piscines. EauTopie Premium arrive bientôt à 4,99 €/mois."
+>
+  <section class="mx-auto max-w-2xl px-6 py-20 text-center">
+    <div class="text-6xl" aria-hidden="true">⭐</div>
+    <h1 class="mt-6 text-4xl text-noir-eau">Premium arrive bientôt</h1>
+    <p class="mt-4 text-lg text-gris-onde">
+      Historique avancé, rappels intelligents, gestion multi-piscines — pour
+      ~4,99 €/mois. On peaufine tout ça.
+    </p>
+    <div class="mt-8">
+      <Button href="/" variant="primary" size="lg">Retour à l’accueil</Button>
+    </div>
+  </section>
+</BaseLayout>
