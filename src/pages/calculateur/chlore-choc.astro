@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChloreChocCalculator from '../../components/calculators/ChloreChocCalculator.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faq from '../../components/Faq.astro';
+import PremiumButton from '../../components/ui/PremiumButton.astro';
+
+const SITE = 'https://eautopie.fr';
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Calculateurs', url: '/calculateur' },
+  { name: 'Chlore choc', url: '/calculateur/chlore-choc' },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Calculateur de chlore choc',
+    description:
+      'Calcule la dose de chlore choc à ajouter dans ta piscine selon son volume et l’intensité du problème (eau verte, remise en route).',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    url: `${SITE}/calculateur/chlore-choc`,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+];
+
+const faqItems = [
+  {
+    question: 'Quelle dose de chlore choc par m³ ?',
+    answer:
+      'Compte environ 15 g/m³ pour une eau légèrement verte, 20 g/m³ pour une eau bien verte, et jusqu’à 25 g/m³ pour une eau très verte ou une remise en route. Le calculateur ci-dessus fait le total pour ton volume.',
+  },
+  {
+    question: 'Quand peut-on se baigner après un chlore choc ?',
+    answer:
+      'Attends que le taux de chlore soit redescendu sous 3 mg/L, soit généralement 24 à 48 h selon la dose. Vérifie avec une bandelette avant de te baigner.',
+  },
+  {
+    question: 'Faut-il régler le pH avant le chlore choc ?',
+    answer:
+      'Oui. Le chlore choc est bien plus efficace à pH bas (7,0–7,2). Règle ton pH d’abord, sinon une partie du traitement est gaspillée.',
+  },
+];
+---
+
+<BaseLayout
+  title="Calculateur de chlore choc — dose par m³ | EauTopie"
+  description="Calcule la dose de chlore choc pour ta piscine selon ton volume et la gravité (eau verte, remise en route). Gratuit, en 30 secondes."
+  schemas={schemas}
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
+    <div class="mb-8 text-center">
+      <p
+        class="mb-3 inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond"
+      >
+        💥 Calculateur
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">Chlore choc</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Eau verte, remise en route, forte fréquentation ? On te dit combien de
+        chlore choc verser pour ton bassin.
+      </p>
+    </div>
+
+    <ChloreChocCalculator />
+
+    <p class="mx-auto mt-6 max-w-xl text-center text-xs text-gris-onde">
+      Estimation indicative. Vérifie toujours la dose conseillée sur ton produit,
+      et re-teste ton eau après le traitement.
+    </p>
+
+    <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
+
+    <div
+      class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center"
+    >
+      <p class="font-display text-lg font-semibold text-noir-eau">
+        Une eau verte à rattraper ? 🟢
+      </p>
+      <p class="mx-auto mt-1.5 max-w-md text-sm text-gris-onde">
+        Notre diagnostic te construit le plan complet, étape par étape.
+      </p>
+      <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="/diagnostic/eau-verte"
+          class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+        >
+          Diagnostic eau verte
+        </a>
+        <PremiumButton source="calculateur-chlore-choc" variant="secondary" size="md" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
