@@ -47,3 +47,47 @@ export function volumeRond(diametre: number, profondeur: number): number {
 function arrondir1(n: number): number {
   return Math.round(n * 10) / 10;
 }
+
+/**
+ * Chlore choc : grammes à ajouter selon le dosage par m³ choisi.
+ * @param volume - volume du bassin en m³
+ * @param gParM3 - dose en g/m³ (15 léger, 20 fort, 25 très fort)
+ */
+export function calculerChloreChoc(volume: number, gParM3: number): number {
+  return Math.round(volume * gParM3);
+}
+
+export type SensPh = 'baisser' | 'monter' | 'ok';
+
+export interface CorrectionPh {
+  sens: SensPh;
+  grammes: number;
+  produit: '' | 'pH−' | 'pH+';
+}
+
+/**
+ * Correction du pH : indique s'il faut monter/baisser et la dose indicative.
+ *
+ * ⚠️ Estimation de DÉPART : la dose réelle dépend fortement de l'alcalinité (TAC)
+ * et de la concentration du produit. On conseille toujours de verser la moitié,
+ * re-tester après 2-4 h de filtration, puis ajuster.
+ *
+ * @param volume - volume du bassin en m³
+ * @param phActuel - pH mesuré
+ * @param phCible - pH visé (idéal 7,2 - 7,4)
+ */
+export function calculerCorrectionPh(
+  volume: number,
+  phActuel: number,
+  phCible: number
+): CorrectionPh {
+  const delta = phCible - phActuel;
+  if (Math.abs(delta) < 0.05) return { sens: 'ok', grammes: 0, produit: '' };
+
+  // ~8 g/m³ pour décaler le pH de 0,1 (ordre de grandeur, produit granulé).
+  const grammes = Math.round((volume * (Math.abs(delta) / 0.1) * 8) / 5) * 5;
+
+  return delta < 0
+    ? { sens: 'baisser', grammes, produit: 'pH−' }
+    : { sens: 'monter', grammes, produit: 'pH+' };
+}

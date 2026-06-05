@@ -1,5 +1,5 @@
 ---
-title: 'pH de la piscine : comment l’équilibrer (guide complet)'
+title: 'pH de la piscine : comment l’équilibrer (avec calculateur)'
 description: 'pH trop élevé ou trop bas dans ta piscine ? Comprends le pH, la plage idéale (7,2–7,4), et suis nos protocoles pas à pas pour le rééquilibrer facilement.'
 pubDate: 2026-06-05
 category: 'entretien'
@@ -52,7 +52,7 @@ Retiens ce repère : **7,2–7,4, c'est la zone de confort.**
 4. Attends **2 à 4 heures** de circulation, puis **re-teste**.
 5. Répète si besoin par petites doses — mieux vaut deux ajustements doux qu'un excès difficile à rattraper.
 
-> 📌 Notre **calculateur de pH** (dose exacte de pH− selon ton volume) arrive très bientôt — il est dans nos prochains [outils](/calculateur).
+> 📌 Utilise notre [calculateur de pH](/calculateur/ph) : il te donne une dose de départ de pH− (ou pH+) selon ton volume et ta mesure.
 
 ## pH trop bas : le protocole pour le faire monter
 

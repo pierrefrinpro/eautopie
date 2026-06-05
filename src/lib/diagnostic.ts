@@ -208,6 +208,7 @@ export function genererPlanEauVerte(
     comment:
       'Teste le pH. S’il est au-dessus de 7,2, ajoute du pH− (réducteur) avant de chlorer. Re-teste après 1–2 h de filtration.',
     duree: '~2 h (avec circulation)',
+    lien: { href: '/calculateur/ph', label: 'Calculateur de pH' },
   });
 
   // 3. Chlore choc — l'étape clé
@@ -222,6 +223,10 @@ export function genererPlanEauVerte(
       'puis verse-le devant les refoulements, filtration en marche, de préférence le soir (le soleil détruit le chlore).',
     duree: 'Agit en 12–24 h',
     cle: true,
+    lien: {
+      href: '/calculateur/chlore-choc',
+      label: 'Calculateur de chlore choc',
+    },
   });
 
   // 4. Anti-algues si algues accrochées / eau bien verte

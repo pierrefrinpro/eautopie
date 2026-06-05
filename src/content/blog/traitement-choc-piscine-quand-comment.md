@@ -39,7 +39,7 @@ La dose dépend de la gravité, mais un bon repère est **~20 g/m³** de chlore 
 | 40 m³ | ~800 g |
 | 50 m³ | ~1 000 g |
 
-> 💡 Vérifie toujours la dose conseillée sur **ton produit** (les concentrations varient). Notre **calculateur de chlore choc** dédié arrive bientôt dans nos [outils](/calculateur).
+> 💡 Vérifie toujours la dose conseillée sur **ton produit** (les concentrations varient). Pour le total selon ton volume, utilise notre [calculateur de chlore choc](/calculateur/chlore-choc).
 
 ## Comment procéder, étape par étape
 

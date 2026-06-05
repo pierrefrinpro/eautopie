@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PhCalculator from '../../components/calculators/PhCalculator.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faq from '../../components/Faq.astro';
+import PremiumButton from '../../components/ui/PremiumButton.astro';
+
+const SITE = 'https://eautopie.fr';
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Calculateurs', url: '/calculateur' },
+  { name: 'pH+ / pH−', url: '/calculateur/ph' },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Calculateur de pH (pH+ / pH−)',
+    description:
+      'Calcule la dose de pH+ ou pH− pour ramener le pH de ta piscine dans la zone idéale (7,2–7,4), selon ton volume et ta mesure.',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    url: `${SITE}/calculateur/ph`,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+];
+
+const faqItems = [
+  {
+    question: 'Quel pH viser pour une piscine ?',
+    answer:
+      'La zone idéale est entre 7,2 et 7,4. C’est là que le chlore est le plus efficace et que l’eau est la plus confortable.',
+  },
+  {
+    question: 'Comment faire baisser le pH de ma piscine ?',
+    answer:
+      'Ajoute du pH− (réducteur), progressivement, filtration en marche, puis re-teste après 2 à 4 heures. Le calculateur te donne une dose de départ.',
+  },
+  {
+    question: 'Mon pH remonte sans arrêt, pourquoi ?',
+    answer:
+      'C’est souvent que ton TAC (alcalinité) est trop élevé, ou que l’eau est très aérée (cascade, jets). Vérifie ton TAC pour stabiliser le pH.',
+  },
+];
+---
+
+<BaseLayout
+  title="Calculateur de pH piscine (pH+ / pH−) | EauTopie"
+  description="Calcule la dose de pH+ ou pH− pour équilibrer ta piscine entre 7,2 et 7,4, selon ton volume et ta mesure. Gratuit et sans inscription."
+  schemas={schemas}
+>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
+    <div class="mb-8 text-center">
+      <p
+        class="mb-3 inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond"
+      >
+        ⚗️ Calculateur
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">pH+ / pH−</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Ton pH est trop haut ou trop bas ? Indique ta mesure, on te dit quoi
+        ajouter et combien.
+      </p>
+    </div>
+
+    <PhCalculator />
+
+    <p class="mx-auto mt-6 max-w-xl text-center text-xs text-gris-onde">
+      Dose de départ indicative (elle varie selon le TAC et le produit). Ajoute
+      progressivement et re-teste.
+    </p>
+
+    <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
+
+    <div
+      class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center"
+    >
+      <p class="font-display text-lg font-semibold text-noir-eau">
+        Tout comprendre au pH 💧
+      </p>
+      <p class="mx-auto mt-1.5 max-w-md text-sm text-gris-onde">
+        Notre guide t'explique pourquoi le pH bouge et comment le garder stable.
+      </p>
+      <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="/blog/ph-piscine-comment-equilibrer"
+          class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+        >
+          Lire le guide du pH
+        </a>
+        <PremiumButton source="calculateur-ph" variant="secondary" size="md" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,132 @@
+---
+import Input from '../ui/Input.astro';
+import Button from '../ui/Button.astro';
+---
+
+<div
+  class="mx-auto max-w-xl rounded-3xl border border-bleu-pale bg-white p-6 shadow-sm sm:p-8"
+  data-chlore-choc
+>
+  <form id="choc-form" novalidate>
+    <Input
+      id="choc-volume"
+      label="Volume de la piscine"
+      type="number"
+      placeholder="Ex: 25"
+      step="0.1"
+      min="0"
+      inputmode="decimal"
+      suffix="m³"
+    />
+
+    <div class="mt-6">
+      <label for="choc-situation" class="block text-sm font-medium text-noir-eau">
+        Ta situation
+      </label>
+      <select
+        id="choc-situation"
+        class="mt-1.5 w-full rounded-xl border border-bleu-pale bg-white px-4 py-3 text-noir-eau shadow-sm outline-none focus:border-bleu-eau focus:ring-2 focus:ring-bleu-eau/30"
+      >
+        <option value="15">Eau légèrement verte / préventif (15 g/m³)</option>
+        <option value="20" selected
+          >Eau bien verte / forte fréquentation (20 g/m³)</option
+        >
+        <option value="25">Eau très verte / remise en route (25 g/m³)</option>
+      </select>
+      <p class="mt-1.5 text-xs text-gris-onde">
+        Plus l'eau est dégradée, plus la dose de choc est forte.
+      </p>
+    </div>
+
+    <div class="mt-7">
+      <Button type="submit" variant="primary" size="lg" class="w-full">
+        Calculer ma dose de choc
+      </Button>
+    </div>
+
+    <p
+      id="choc-erreur"
+      style="display: none;"
+      class="mt-3 rounded-xl bg-rouge-alerte/10 px-4 py-3 text-sm font-medium text-rouge-alerte"
+    >
+    </p>
+  </form>
+
+  <div id="choc-resultat" hidden class="mt-6">
+    <div class="rounded-2xl bg-bleu-profond p-6 text-center text-white">
+      <p class="text-sm font-medium uppercase tracking-wide text-bleu-ciel">
+        Ta dose de chlore choc
+      </p>
+      <p
+        id="choc-resultat-titre"
+        class="mt-2 text-3xl font-display font-semibold sm:text-4xl"
+      >
+      </p>
+      <p id="choc-resultat-sous" class="mt-2 text-sm text-bleu-ciel"></p>
+    </div>
+
+    <div
+      class="mt-4 flex items-start gap-3 rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-4 text-sm text-noir-eau"
+    >
+      <span class="text-lg" aria-hidden="true">💡</span>
+      <p>
+        Règle d'abord le pH (7,0-7,2). Dilue dans un seau, verse le soir,
+        filtration en marche. Attends que le chlore repasse sous 3 mg/L avant de
+        te baigner.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { calculerChloreChoc } from '../../lib/calculations';
+  import { getVolume, setVolume } from '../../lib/storage';
+
+  function initChoc() {
+    const root = document.querySelector<HTMLElement>('[data-chlore-choc]');
+    if (!root) return;
+    const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+      root.querySelector<T>(`#${id}`);
+
+    const form = $<HTMLFormElement>('choc-form');
+    const volumeInput = $<HTMLInputElement>('choc-volume');
+    const situation = $<HTMLSelectElement>('choc-situation');
+    const erreur = $('choc-erreur');
+    const resultat = $('choc-resultat');
+    const titre = $('choc-resultat-titre');
+    const sous = $('choc-resultat-sous');
+    if (!form || !volumeInput || !situation || !resultat) return;
+
+    const v = getVolume();
+    if (v !== null) volumeInput.value = String(v);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (erreur) erreur.style.display = 'none';
+
+      const volume = parseFloat(volumeInput.value);
+      if (!Number.isFinite(volume) || volume <= 0) {
+        if (erreur) {
+          erreur.textContent = 'Indique le volume de ta piscine (en m³).';
+          erreur.style.display = 'block';
+        }
+        return;
+      }
+      setVolume(volume);
+
+      const gParM3 = parseInt(situation.value, 10);
+      const grammes = calculerChloreChoc(volume, gParM3);
+
+      if (titre)
+        titre.innerHTML = `Ajoute <span class="text-soleil">${grammes.toLocaleString('fr-FR')} g</span> de chlore choc`;
+      if (sous)
+        sous.textContent = `Soit ${gParM3} g/m³ pour tes ${volume.toLocaleString('fr-FR')} m³.`;
+
+      resultat.hidden = false;
+      resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  initChoc();
+  document.addEventListener('astro:page-load', initChoc);
+</script>
