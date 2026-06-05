@@ -36,9 +36,42 @@ const piliers = [
     accent: 'text-vert-ok',
   },
 ];
+
+const SITE = 'https://eautopie.fr';
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'EauTopie',
+    url: SITE,
+    description:
+      'Calculateurs de doses, diagnostic des problèmes d’eau et conseils d’entretien de piscine.',
+    inLanguage: 'fr-FR',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE}/recherche?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'EauTopie',
+    url: SITE,
+    logo: `${SITE}/og-image.png`,
+    sameAs: [],
+  },
+];
 ---
 
-<BaseLayout>
+<BaseLayout
+  description="Calculateurs de doses chlore et pH, diagnostic d’eau verte, conseils d’entretien — EauTopie t’aide à garder une eau de piscine parfaite, gratuitement et sans inscription."
+  schemas={schemas}
+>
   <!-- HERO -->
   <section class="relative overflow-hidden">
     <!-- décor : dégradé d'eau + lueurs -->
@@ -116,6 +149,16 @@ const piliers = [
           sur ton appareil
         </span>
       </p>
+    </div>
+  </section>
+
+  <!-- H2 SEO (mots-clés cibles) -->
+  <section class="border-y border-bleu-pale/60 bg-white/60">
+    <div class="mx-auto max-w-4xl px-6 py-6 text-center">
+      <h2 class="text-lg font-medium text-bleu-profond sm:text-xl">
+        Calcule tes doses de chlore, sauve une eau verte, équilibre ton pH —
+        <span class="text-bleu-eau">tous nos outils gratuits</span>
+      </h2>
     </div>
   </section>
 

@@ -2,13 +2,83 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ChloreCalculator from '../../components/calculators/ChloreCalculator.astro';
 import PremiumButton from '../../components/ui/PremiumButton.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Faq from '../../components/Faq.astro';
+
+const faqItems = [
+  {
+    question: 'Combien de chlore mettre dans une piscine ?',
+    answer:
+      'Pour un entretien normal, vise un taux de chlore libre entre 0,5 et 1,5 mg/L dans l’eau. La quantité exacte de chlore granulé à ajouter dépend de ton volume et de ta mesure actuelle — utilise le calculateur ci-dessus pour obtenir la dose précise.',
+  },
+  {
+    question: 'Quelle est la différence entre chlore d’entretien et chlore choc ?',
+    answer:
+      'Le chlore d’entretien (ce calculateur) maintient un taux stable au quotidien, généralement à 1 mg/L. Le chlore choc est un traitement ponctuel beaucoup plus concentré (20 g/m³) pour rattraper une eau verte, après un orage ou une forte fréquentation. Utilise notre calculateur de chlore choc pour cet usage.',
+  },
+  {
+    question: 'Quand ajouter le chlore dans la piscine ?',
+    answer:
+      'Idéalement le soir, après la baignade, filtration en marche. Les UV du soleil dégradent rapidement le chlore en journée, donc l’ajouter le matin réduit son efficacité.',
+  },
+  {
+    question: 'Mon chlore ne monte pas malgré l’ajout, pourquoi ?',
+    answer:
+      'Trois causes principales : un pH trop élevé (au-delà de 7,4 le chlore perd jusqu’à 50 % de son efficacité), un taux de stabilisant trop haut (au-delà de 75 mg/L il bloque le chlore), ou une eau très polluée qui consomme le chlore plus vite qu’il n’agit. Commence par vérifier ton pH.',
+  },
+  {
+    question: 'Combien de fois par semaine ajouter du chlore ?',
+    answer:
+      'En général 1 à 2 fois par semaine en pleine saison, après mesure. En cas de forte chaleur, d’orage ou de baignade intensive, vérifie plus souvent. Une bonne habitude : mesurer ton eau tous les 3 jours.',
+  },
+  {
+    question: 'Le chlore granulé et les galets, quelle différence ?',
+    answer:
+      'Le chlore granulé est à dissolution rapide, idéal pour un ajustement précis ou un choc. Les galets se dissolvent lentement dans un skimmer ou un diffuseur flottant, pour un entretien continu sur 5 à 7 jours. Beaucoup de propriétaires combinent les deux selon les besoins.',
+  },
+];
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Calculateurs', url: '/calculateur' },
+  { name: 'Chlore d’entretien', url: '/calculateur/chlore' },
+];
+
+const SITE = 'https://eautopie.fr';
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Calculateur de chlore d’entretien',
+    description:
+      'Calcule la dose exacte de chlore granulé à ajouter dans ta piscine selon son volume et ta mesure actuelle.',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    url: `${SITE}/calculateur/chlore`,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+    },
+    // À activer quand on aura des avis utilisateurs :
+    // aggregateRating: {
+    //   '@type': 'AggregateRating',
+    //   ratingValue: '4.8',
+    //   reviewCount: '120',
+    // },
+  },
+];
 ---
 
 <BaseLayout
   title="Calculateur de chlore d’entretien — EauTopie"
   description="Calcule la dose exacte de chlore granulé pour ta piscine selon ton volume et ta mesure. Gratuit, précis, en 30 secondes."
+  schemas={schemas}
 >
   <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
     <div class="mb-8 text-center">
       <p
         class="mb-3 inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond"
@@ -31,8 +101,10 @@ import PremiumButton from '../../components/ui/PremiumButton.astro';
       indications de ton produit et re-teste ton eau après quelques heures.
     </p>
 
+    <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
+
     <div
-      class="mx-auto mt-10 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center"
+      class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center"
     >
       <p class="font-display text-lg font-semibold text-noir-eau">
         Garde un œil sur ton eau, automatiquement 🌊

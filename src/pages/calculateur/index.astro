@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const outils = [
+  {
+    emoji: '🧮',
+    nom: 'Chlore d’entretien',
+    desc: 'La dose exacte de chlore granulé selon ton volume et ta mesure.',
+    href: '/calculateur/chlore',
+  },
+  {
+    emoji: '💥',
+    nom: 'Chlore choc',
+    desc: 'Le traitement concentré pour rattraper une eau verte ou troublée.',
+    href: null,
+  },
+  {
+    emoji: '⚗️',
+    nom: 'pH+ / pH−',
+    desc: 'Rééquilibrer le pH de ton eau vers la zone idéale (7,0–7,4).',
+    href: null,
+  },
+  {
+    emoji: '🧪',
+    nom: 'Stabilisant',
+    desc: 'Le bon taux d’acide cyanurique pour protéger ton chlore du soleil.',
+    href: null,
+  },
+  {
+    emoji: '🧂',
+    nom: 'Sel pour électrolyseur',
+    desc: 'La quantité de sel à ajouter pour ta piscine au sel.',
+    href: null,
+  },
+];
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Calculateurs', url: '/calculateur' },
+];
+---
+
+<BaseLayout
+  title="Calculateurs piscine — doses chlore, pH, sel | EauTopie"
+  description="Tous les calculateurs EauTopie pour doser ta piscine au plus juste : chlore d’entretien, chlore choc, pH, stabilisant, sel. Gratuits et sans inscription."
+>
+  <section class="mx-auto max-w-4xl px-6 py-10 sm:py-14">
+    <Breadcrumbs items={fil} class="mb-6" />
+
+    <h1 class="text-3xl text-noir-eau sm:text-4xl">Les calculateurs</h1>
+    <p class="mt-3 max-w-xl text-gris-onde">
+      Choisis ton calcul : on te donne la dose précise pour <em>ta</em> piscine,
+      à la goutte près.
+    </p>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        outils.map((o) =>
+          o.href ? (
+            <a
+              href={o.href}
+              class="group flex gap-4 rounded-2xl border border-bleu-pale bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <span class="text-3xl" aria-hidden="true">
+                {o.emoji}
+              </span>
+              <div class="flex-1">
+                <h2 class="font-semibold text-noir-eau">{o.nom}</h2>
+                <p class="mt-1 text-sm text-gris-onde">{o.desc}</p>
+                <span class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-eau">
+                  Calculer
+                  <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">
+                    →
+                  </span>
+                </span>
+              </div>
+            </a>
+          ) : (
+            <div class="flex gap-4 rounded-2xl border border-bleu-pale bg-creme/60 p-5">
+              <span class="text-3xl opacity-50" aria-hidden="true">
+                {o.emoji}
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <h2 class="font-semibold text-gris-onde">{o.nom}</h2>
+                  <span class="rounded-full bg-bleu-pale px-2 py-0.5 text-[11px] font-semibold uppercase text-bleu-profond">
+                    Bientôt
+                  </span>
+                </div>
+                <p class="mt-1 text-sm text-gris-onde/80">{o.desc}</p>
+              </div>
+            </div>
+          )
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,100 @@
+---
+import StructuredData from './StructuredData.astro';
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+interface Props {
+  items: FaqItem[];
+  title?: string;
+  class?: string;
+}
+
+const { items, title = 'Questions fréquentes', class: className = '' } =
+  Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((it) => ({
+    '@type': 'Question',
+    name: it.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: it.answer,
+    },
+  })),
+};
+---
+
+<section class={className}>
+  {
+    title && (
+      <h2 class="text-2xl text-noir-eau sm:text-3xl">{title}</h2>
+    )
+  }
+
+  <div class="mt-6 space-y-3">
+    {
+      items.map((it) => (
+        <details class="faq-item rounded-2xl border border-bleu-pale bg-white px-5 shadow-sm transition-colors open:border-bleu-ciel">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-medium text-noir-eau">
+            <span>{it.question}</span>
+            <svg
+              class="faq-chevron h-5 w-5 shrink-0 text-bleu-eau"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="faq-answer pb-4 text-sm leading-relaxed text-gris-onde">
+            {it.answer}
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<StructuredData schema={schema} />
+
+<style>
+  /* On masque le marqueur natif du <summary> */
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary::marker {
+    content: '';
+  }
+
+  /* Chevron qui pivote à l'ouverture */
+  .faq-chevron {
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Ouverture en douceur du contenu */
+  .faq-item[open] .faq-answer {
+    animation: faq-reveal 0.25s ease;
+  }
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

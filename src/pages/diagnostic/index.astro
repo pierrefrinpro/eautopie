@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const problemes = [
+  {
+    emoji: '🟢',
+    nom: 'Eau verte',
+    desc: 'Algues, sortie d’hivernage : on te sort un plan de traitement complet.',
+    href: '/diagnostic/eau-verte',
+  },
+  {
+    emoji: '🌫️',
+    nom: 'Eau trouble',
+    desc: 'Eau blanchâtre ou laiteuse : filtration, pH, floculant.',
+    href: null,
+  },
+  {
+    emoji: '😖',
+    nom: 'Ça pique aux yeux',
+    desc: 'Irritations : souvent un problème de pH ou de chloramines.',
+    href: null,
+  },
+  {
+    emoji: '👃',
+    nom: 'Odeur de chlore',
+    desc: 'L’odeur forte = trop de chloramines, pas trop de chlore.',
+    href: null,
+  },
+  {
+    emoji: '🩹',
+    nom: 'Taches sur le liner',
+    desc: 'Taches brunes, vertes ou noires : identifier et traiter.',
+    href: null,
+  },
+];
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Diagnostic', url: '/diagnostic' },
+];
+---
+
+<BaseLayout
+  title="Diagnostic piscine — eau verte, trouble, irritations | EauTopie"
+  description="Un problème d’eau ? Le diagnostic guidé EauTopie t’aide à identifier la cause et te donne un plan d’action : eau verte, eau trouble, irritations, odeurs…"
+>
+  <section class="mx-auto max-w-4xl px-6 py-10 sm:py-14">
+    <Breadcrumbs items={fil} class="mb-6" />
+
+    <h1 class="text-3xl text-noir-eau sm:text-4xl">Le diagnostic</h1>
+    <p class="mt-3 max-w-xl text-gris-onde">
+      Décris ton problème, on identifie la cause et on te guide étape par étape
+      pour retrouver une eau parfaite.
+    </p>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        problemes.map((p) =>
+          p.href ? (
+            <a
+              href={p.href}
+              class="group flex gap-4 rounded-2xl border border-bleu-pale bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <span class="text-3xl" aria-hidden="true">
+                {p.emoji}
+              </span>
+              <div class="flex-1">
+                <h2 class="font-semibold text-noir-eau">{p.nom}</h2>
+                <p class="mt-1 text-sm text-gris-onde">{p.desc}</p>
+                <span class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-eau">
+                  Diagnostiquer
+                  <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">
+                    →
+                  </span>
+                </span>
+              </div>
+            </a>
+          ) : (
+            <div class="flex gap-4 rounded-2xl border border-bleu-pale bg-creme/60 p-5">
+              <span class="text-3xl opacity-50" aria-hidden="true">
+                {p.emoji}
+              </span>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <h2 class="font-semibold text-gris-onde">{p.nom}</h2>
+                  <span class="rounded-full bg-bleu-pale px-2 py-0.5 text-[11px] font-semibold uppercase text-bleu-profond">
+                    Bientôt
+                  </span>
+                </div>
+                <p class="mt-1 text-sm text-gris-onde/80">{p.desc}</p>
+              </div>
+            </div>
+          )
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
