@@ -1,0 +1,86 @@
+---
+import Button from './ui/Button.astro';
+
+const links = [
+  { href: '/calculateur/chlore', label: 'Calculateurs' },
+  { href: '/diagnostic/eau-verte', label: 'Diagnostic' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-bleu-pale/80 bg-creme/80 backdrop-blur-md"
+>
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5"
+    aria-label="Navigation principale"
+  >
+    <a
+      href="/"
+      class="flex items-center gap-2 text-xl font-display font-semibold text-bleu-profond"
+    >
+      <span class="text-2xl" aria-hidden="true">💧</span>
+      EauTopie
+    </a>
+
+    <div class="hidden items-center gap-1 md:flex">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-lg px-3 py-2 text-sm font-medium text-gris-onde transition-colors hover:bg-bleu-pale hover:text-bleu-profond"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <span class="ml-2">
+        <Button href="/premium" variant="primary" size="md">Premium</Button>
+      </span>
+    </div>
+
+    <!-- Menu mobile -->
+    <details class="relative md:hidden">
+      <summary
+        class="flex cursor-pointer list-none items-center rounded-lg p-2 text-bleu-profond hover:bg-bleu-pale"
+        aria-label="Ouvrir le menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </summary>
+      <div
+        class="absolute right-0 mt-2 w-52 rounded-xl border border-bleu-pale bg-white p-2 shadow-lg"
+      >
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="block rounded-lg px-3 py-2.5 text-sm font-medium text-gris-onde hover:bg-bleu-pale hover:text-bleu-profond"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+        <a
+          href="/premium"
+          class="mt-1 block rounded-lg bg-bleu-eau px-3 py-2.5 text-center text-sm font-medium text-white hover:bg-bleu-profond"
+        >
+          Premium
+        </a>
+      </div>
+    </details>
+  </nav>
+</header>

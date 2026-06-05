@@ -1,0 +1,52 @@
+/* Polices variables (corps : Inter, titres : Fraunces) */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/fraunces';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bleu-eau: #0ea5e9;
+  --bleu-profond: #075985;
+  --bleu-pale: #dbeafe;
+  --bleu-ciel: #bae6fd;
+  --soleil: #f59e0b;
+  --creme: #faf9f6;
+  --noir-eau: #0f172a;
+  --gris-onde: #64748b;
+  --vert-ok: #10b981;
+  --orange-attention: #f59e0b;
+  --rouge-alerte: #dc2626;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-creme text-noir-eau font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-semibold tracking-tight;
+  }
+
+  /* On masque les flèches natives des champs nombre (elles se superposaient
+     aux suffixes « m³ » / « mg/L »). */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}

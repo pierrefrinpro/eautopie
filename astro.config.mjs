@@ -1,0 +1,14 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://eautopie.fr',
+  integrations: [
+    tailwind({
+      // On gère nos directives Tailwind nous-mêmes dans src/styles/global.css
+      applyBaseStyles: false,
+    }),
+  ],
+});

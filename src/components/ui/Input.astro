@@ -1,0 +1,59 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  step?: string;
+  min?: string;
+  max?: string;
+  inputmode?: string;
+  hint?: string;
+  suffix?: string;
+  class?: string;
+}
+
+const {
+  id,
+  label,
+  type = 'text',
+  placeholder,
+  step,
+  min,
+  max,
+  inputmode,
+  hint,
+  suffix,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={className}>
+  <label for={id} class="block text-sm font-medium text-noir-eau">
+    {label}
+  </label>
+  <div class="relative mt-1.5">
+    <input
+      id={id}
+      name={id}
+      type={type}
+      placeholder={placeholder}
+      step={step}
+      min={min}
+      max={max}
+      inputmode={inputmode}
+      class:list={[
+        'w-full rounded-xl border border-bleu-pale bg-white px-4 py-3 text-noir-eau shadow-sm outline-none transition-colors placeholder:text-gris-onde/60 focus:border-bleu-eau focus:ring-2 focus:ring-bleu-eau/30',
+        suffix && 'pr-14',
+      ]}
+    />
+    {
+      suffix && (
+        <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm font-medium text-gris-onde">
+          {suffix}
+        </span>
+      )
+    }
+  </div>
+  {hint && <p class="mt-1.5 text-xs text-gris-onde">{hint}</p>}
+</div>
