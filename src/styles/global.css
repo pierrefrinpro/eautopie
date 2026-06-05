@@ -92,3 +92,13 @@
 .blog-content hr {
   @apply my-8 border-bleu-pale;
 }
+.blog-content table {
+  @apply block w-full overflow-x-auto border-collapse text-sm;
+}
+.blog-content th,
+.blog-content td {
+  @apply border border-bleu-pale px-3 py-2 text-left;
+}
+.blog-content th {
+  @apply bg-bleu-pale/40 font-semibold text-noir-eau;
+}
