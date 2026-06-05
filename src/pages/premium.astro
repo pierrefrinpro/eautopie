@@ -1,21 +1,258 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/ui/Button.astro';
+
+const benefices = [
+  {
+    emoji: '📈',
+    titre: 'Historique illimité + graphiques',
+    texte: 'Toutes tes mesures conservées, avec des courbes de tendance.',
+  },
+  {
+    emoji: '🔔',
+    titre: 'Rappels intelligents',
+    texte: 'Adaptés à ta météo locale : on te prévient au bon moment.',
+  },
+  {
+    emoji: '💶',
+    titre: 'Calculateur de coûts annuels',
+    texte: 'Optimise tes produits et vois ce que ta piscine te coûte vraiment.',
+  },
+  {
+    emoji: '🏊',
+    titre: 'Multi-piscines',
+    texte: 'Idéal pour les résidences secondaires ou plusieurs bassins.',
+  },
+  {
+    emoji: '🧪',
+    titre: 'Mode « expert »',
+    texte: 'Alcalinité (TAC), dureté, stabilisant : le contrôle total.',
+  },
+];
 ---
 
 <BaseLayout
-  title="EauTopie Premium — l’entretien sans y penser"
-  description="Historique avancé, rappels intelligents, multi-piscines. EauTopie Premium arrive bientôt à 4,99 €/mois."
+  title="EauTopie Premium — rejoins la waitlist"
+  description="Premium arrive bientôt : historique illimité, rappels selon ta météo, multi-piscines, mode expert. Inscris-toi pour 30 % de réduction à vie."
 >
-  <section class="mx-auto max-w-2xl px-6 py-20 text-center">
-    <div class="text-6xl" aria-hidden="true">⭐</div>
-    <h1 class="mt-6 text-4xl text-noir-eau">Premium arrive bientôt</h1>
-    <p class="mt-4 text-lg text-gris-onde">
-      Historique avancé, rappels intelligents, gestion multi-piscines — pour
-      ~4,99 €/mois. On peaufine tout ça.
-    </p>
-    <div class="mt-8">
-      <Button href="/" variant="primary" size="lg">Retour à l’accueil</Button>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <a
+      href="/"
+      class="inline-flex items-center gap-1.5 text-sm font-medium text-gris-onde transition-colors hover:text-bleu-profond"
+    >
+      <span aria-hidden="true">←</span> Retour à l’accueil
+    </a>
+
+    <!-- Hero -->
+    <div class="mt-6 text-center">
+      <p
+        class="mb-4 inline-flex items-center gap-2 rounded-full bg-soleil px-4 py-1.5 text-sm font-bold uppercase tracking-wide text-noir-eau"
+      >
+        ⭐ Bientôt disponible
+      </p>
+      <h1 class="text-4xl text-noir-eau sm:text-5xl">
+        Premium arrive bientôt <span aria-hidden="true">🌊</span>
+      </h1>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-gris-onde">
+        Sois averti·e en avant-première et bénéficie de
+        <strong class="text-bleu-profond">30 % de réduction à vie</strong>.
+      </p>
+    </div>
+
+    <!-- Bénéfices -->
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {
+        benefices.map((b) => (
+          <div class="flex gap-3 rounded-2xl border border-bleu-pale bg-white p-4 shadow-sm">
+            <span class="text-2xl" aria-hidden="true">
+              {b.emoji}
+            </span>
+            <div>
+              <h2 class="font-semibold text-noir-eau">{b.titre}</h2>
+              <p class="mt-0.5 text-sm text-gris-onde">{b.texte}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Formulaire waitlist -->
+    <div
+      id="premium-form-card"
+      class="mt-10 rounded-3xl bg-gradient-to-br from-bleu-profond to-bleu-eau p-0.5 shadow-md"
+    >
+      <div class="rounded-[1.4rem] bg-white p-6 sm:p-8">
+        <h2 class="text-center font-display text-2xl font-semibold text-noir-eau">
+          Rejoins la waitlist
+        </h2>
+        <p class="mt-2 text-center text-sm text-gris-onde">
+          Laisse ton email, on te prévient au lancement (et tu gardes ta remise à
+          vie).
+        </p>
+
+        <form id="premium-form" class="mx-auto mt-5 max-w-md" novalidate>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <input
+              id="premium-email"
+              type="email"
+              name="email"
+              placeholder="ton@email.fr"
+              autocomplete="email"
+              class="w-full rounded-xl border border-bleu-pale bg-white px-4 py-3 text-noir-eau shadow-sm outline-none transition-colors placeholder:text-gris-onde/60 focus:border-bleu-eau focus:ring-2 focus:ring-bleu-eau/30"
+            />
+            <button
+              type="submit"
+              id="premium-submit"
+              class="shrink-0 rounded-xl bg-bleu-eau px-6 py-3 font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98] disabled:opacity-60"
+            >
+              Me prévenir
+            </button>
+          </div>
+          <p
+            id="premium-erreur"
+            style="display: none;"
+            class="mt-2 text-sm font-medium text-rouge-alerte"
+          >
+          </p>
+        </form>
+
+        <p class="mt-4 text-center text-xs text-gris-onde">
+          À partir de 4,99 €/mois · Sans engagement · On ne spamme pas.
+        </p>
+      </div>
+    </div>
+
+    <!-- État de remerciement (affiché après inscription) -->
+    <div
+      id="premium-merci"
+      style="display: none;"
+      class="mt-10 rounded-3xl border border-vert-ok/30 bg-vert-ok/10 p-8 text-center"
+    >
+      <div class="text-5xl" aria-hidden="true">☀️</div>
+      <h2 class="mt-4 font-display text-2xl font-semibold text-noir-eau">
+        Merci, on te tient au courant !
+      </h2>
+      <p class="mx-auto mt-2 max-w-md text-gris-onde">
+        Tu es bien sur la waitlist. On te préviendra en avant-première au
+        lancement, avec ta réduction de 30 % à vie. 🌊
+      </p>
+      <a
+        href="/"
+        class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+      >
+        Retour à l’accueil
+      </a>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // Endpoint Formspree de la waitlist Premium.
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzdqzljp';
+
+  const PREMIUM_KEY = 'eautopie_premium_signup';
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function dejaInscrit(): boolean {
+    try {
+      return !!window.localStorage.getItem(PREMIUM_KEY);
+    } catch {
+      return false;
+    }
+  }
+
+  function initPremium() {
+    const formCard = document.getElementById('premium-form-card');
+    const merci = document.getElementById('premium-merci');
+    const form = document.getElementById('premium-form') as HTMLFormElement | null;
+    const email = document.getElementById('premium-email') as HTMLInputElement | null;
+    const erreur = document.getElementById('premium-erreur');
+    const submit = document.getElementById('premium-submit') as HTMLButtonElement | null;
+    if (!formCard || !merci || !form || !email) return;
+
+    const montrerMerci = () => {
+      formCard.style.display = 'none';
+      merci.style.display = 'block';
+    };
+
+    // Déjà inscrit → on affiche directement le remerciement
+    if (dejaInscrit()) {
+      montrerMerci();
+      return;
+    }
+
+    const source =
+      new URLSearchParams(window.location.search).get('source') ||
+      'premium-page';
+
+    const afficherErreur = (msg: string) => {
+      if (erreur) {
+        erreur.textContent = msg;
+        erreur.style.display = 'block';
+      }
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (erreur) erreur.style.display = 'none';
+
+      const valeur = email.value.trim();
+      if (!EMAIL_RE.test(valeur)) {
+        afficherErreur('Oups, cette adresse email ne semble pas valide.');
+        return;
+      }
+
+      const donnees = {
+        email: valeur,
+        source,
+        date: new Date().toISOString(),
+      };
+
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Envoi…';
+      }
+
+      const enregistrerLocal = () => {
+        try {
+          window.localStorage.setItem(PREMIUM_KEY, donnees.date);
+        } catch {
+          /* silencieux */
+        }
+      };
+
+      try {
+        const configure = FORMSPREE_ENDPOINT.startsWith('http');
+        if (configure) {
+          const res = await fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(donnees),
+          });
+          if (!res.ok) throw new Error('Formspree a renvoyé une erreur');
+        } else {
+          // Endpoint pas encore configuré : on simule le succès pour tester l'UX.
+          console.warn(
+            '[EauTopie] FORMSPREE_ENDPOINT non configuré — soumission simulée :',
+            donnees
+          );
+        }
+        enregistrerLocal();
+        montrerMerci();
+      } catch (err) {
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = 'Me prévenir';
+        }
+        afficherErreur(
+          'Une erreur est survenue. Réessaie dans un instant, ou écris-nous.'
+        );
+      }
+    });
+  }
+
+  initPremium();
+  document.addEventListener('astro:page-load', initPremium);
+</script>

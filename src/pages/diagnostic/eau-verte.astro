@@ -1,25 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Button from '../../components/ui/Button.astro';
+import DiagnosticEauVerte from '../../components/diagnostic/DiagnosticEauVerte.astro';
 ---
 
 <BaseLayout
-  title="Eau verte : le diagnostic — EauTopie"
-  description="Ton eau de piscine est verte ? Le diagnostic guidé EauTopie arrive bientôt pour t’aider à la récupérer, étape par étape."
+  title="Eau verte : diagnostic et plan d’action — EauTopie"
+  description="Ton eau de piscine est verte ? Réponds à quelques questions, on te sort un plan de traitement personnalisé avec les doses exactes pour ton bassin."
 >
-  <section class="mx-auto max-w-2xl px-6 py-20 text-center">
-    <div class="text-6xl" aria-hidden="true">🟢</div>
-    <h1 class="mt-6 text-4xl text-noir-eau">Eau verte ? On arrive.</h1>
-    <p class="mt-4 text-lg text-gris-onde">
-      Le diagnostic guidé « eau verte » est en cours de préparation. En
-      attendant, le calculateur de chlore est déjà là pour t’aider à
-      désinfecter.
-    </p>
-    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-      <Button href="/calculateur/chlore" variant="primary" size="lg">
-        Calculer mon chlore
-      </Button>
-      <Button href="/" variant="ghost" size="lg">Retour à l’accueil</Button>
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <div class="mb-8 text-center">
+      <p
+        class="mb-3 inline-flex items-center gap-2 rounded-full bg-soleil/15 px-3 py-1 text-sm font-medium text-soleil"
+      >
+        🔬 Diagnostic guidé
+      </p>
+      <h1 class="text-3xl text-noir-eau sm:text-4xl">Mon eau est verte</h1>
+      <p class="mx-auto mt-3 max-w-xl text-gris-onde">
+        Pas de panique. Réponds à 5 questions et on te génère un <strong
+          class="text-noir-eau">plan de traitement personnalisé</strong
+        >, avec les quantités calculées pour <em>ta</em> piscine.
+      </p>
     </div>
+
+    <DiagnosticEauVerte />
+
+    <p class="mx-auto mt-6 max-w-2xl text-center text-xs text-gris-onde">
+      Diagnostic indicatif pour t’aider à agir vite. En cas de doute persistant
+      (eau qui reste verte, problème de matériel), demande conseil à un
+      pisciniste.
+    </p>
   </section>
 </BaseLayout>

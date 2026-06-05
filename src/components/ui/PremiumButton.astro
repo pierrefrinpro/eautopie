@@ -1,0 +1,46 @@
+---
+// Bouton « Passer à Premium » → mène vers /premium en transmettant la source.
+// Si l'utilisateur est déjà sur la waitlist, un script global (BaseLayout)
+// le transforme en « Tu es sur la waitlist ✓ » (désactivé, visuel).
+interface Props {
+  source: string;
+  variant?: 'primary' | 'secondary' | 'soleil';
+  size?: 'sm' | 'md' | 'lg';
+  label?: string;
+  class?: string;
+}
+
+const {
+  source,
+  variant = 'primary',
+  size = 'md',
+  label = 'Passer à Premium',
+  class: className = '',
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bleu-eau';
+
+const sizes: Record<string, string> = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-7 py-3.5 text-base',
+};
+
+const variants: Record<string, string> = {
+  primary:
+    'bg-bleu-eau text-white shadow-sm hover:bg-bleu-profond active:scale-[0.98]',
+  secondary:
+    'bg-white text-bleu-profond ring-1 ring-bleu-ciel hover:bg-bleu-pale active:scale-[0.98]',
+  soleil:
+    'bg-soleil text-noir-eau shadow-sm hover:brightness-105 active:scale-[0.98]',
+};
+---
+
+<a
+  href={`/premium?source=${source}`}
+  data-premium-btn
+  class={`${base} ${sizes[size]} ${variants[variant]} ${className}`}
+>
+  <span data-premium-label>{label}</span>
+</a>
