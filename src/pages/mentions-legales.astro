@@ -1,17 +1,186 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// ⚠️ À COMPLÉTER avec tes vraies informations avant la mise en ligne publique.
+const editeur = {
+  nom: 'Pierre Frin',
+  statut: 'Particulier',
+  email: 'contact@eautopie.fr',
+};
+const majDate = 'juin 2026';
 ---
 
 <BaseLayout
-  title="Mentions légales — EauTopie"
-  description="Mentions légales du site EauTopie."
-  noindex={true}
+  title="Mentions légales & confidentialité — EauTopie"
+  description="Mentions légales, éditeur, hébergeur et politique de confidentialité (RGPD) du site EauTopie."
 >
-  <section class="mx-auto max-w-2xl px-6 py-20">
-    <h1 class="text-4xl text-noir-eau">Mentions légales</h1>
-    <p class="mt-4 text-gris-onde">
-      Cette page sera complétée prochainement (éditeur, hébergeur, contact,
-      politique de confidentialité).
-    </p>
+  <section class="mx-auto max-w-2xl px-6 py-12 sm:py-16">
+    <h1 class="text-3xl text-noir-eau sm:text-4xl">
+      Mentions légales & confidentialité
+    </h1>
+    <p class="mt-2 text-sm text-gris-onde">Dernière mise à jour : {majDate}</p>
+
+    <div class="mt-8 space-y-10 text-noir-eau/90">
+      <!-- Éditeur -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          1. Éditeur du site
+        </h2>
+        <p class="mt-3 leading-relaxed">
+          Le site <strong>EauTopie</strong> (accessible à l’adresse <a
+            href="https://eautopie.fr"
+            class="text-bleu-eau hover:underline">eautopie.fr</a
+          >) est édité par :
+        </p>
+        <ul class="mt-3 space-y-1 text-sm leading-relaxed text-gris-onde">
+          <li><strong class="text-noir-eau">{editeur.nom}</strong></li>
+          <li>Statut : {editeur.statut}</li>
+          <li>Contact : {editeur.email}</li>
+          <li>
+            Adresse postale communiquée sur demande (l’hébergeur détient les
+            informations d’identification de l’éditeur).
+          </li>
+        </ul>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Directeur / Directrice de la publication : {editeur.nom}.
+        </p>
+      </div>
+
+      <!-- Hébergeur -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          2. Hébergement
+        </h2>
+        <p class="mt-3 leading-relaxed">Le site est hébergé par :</p>
+        <ul class="mt-3 space-y-1 text-sm leading-relaxed text-gris-onde">
+          <li><strong class="text-noir-eau">Cloudflare, Inc.</strong></li>
+          <li>101 Townsend Street, San Francisco, CA 94107, États-Unis</li>
+          <li>
+            <a
+              href="https://www.cloudflare.com"
+              class="text-bleu-eau hover:underline"
+              rel="noopener"
+              target="_blank">www.cloudflare.com</a
+            >
+          </li>
+        </ul>
+        <p class="mt-2 text-sm leading-relaxed text-gris-onde">
+          Le nom de domaine est géré via le registrar
+          <a
+            href="https://www.gandi.net"
+            class="text-bleu-eau hover:underline"
+            rel="noopener"
+            target="_blank">Gandi SAS</a
+          > (63-65 boulevard Masséna, 75013 Paris, France).
+        </p>
+      </div>
+
+      <!-- Propriété intellectuelle -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          3. Propriété intellectuelle
+        </h2>
+        <p class="mt-3 leading-relaxed">
+          L’ensemble des contenus présents sur EauTopie (textes, calculateurs,
+          visuels, charte graphique, logo) est la propriété de l’éditeur, sauf
+          mention contraire. Toute reproduction ou réutilisation sans
+          autorisation est interdite.
+        </p>
+      </div>
+
+      <!-- Données personnelles -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          4. Données personnelles (RGPD)
+        </h2>
+        <p class="mt-3 leading-relaxed">
+          EauTopie est conçu pour <strong>minimiser la collecte de données</strong>.
+          Voici ce qu’il faut savoir :
+        </p>
+
+        <h3 class="mt-4 font-semibold text-noir-eau">
+          a) Données enregistrées sur ton appareil
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-gris-onde">
+          Les informations que tu saisis dans les calculateurs et le suivi
+          (volume, mesures de chlore, etc.) sont stockées
+          <strong class="text-noir-eau">localement dans ton navigateur</strong>
+          (LocalStorage). Elles ne sont <strong>pas</strong> envoyées à un serveur
+          et restent sur ton appareil. Tu peux les supprimer à tout moment depuis
+          la page « Suis ton eau » ou en vidant les données de ton navigateur.
+        </p>
+
+        <h3 class="mt-4 font-semibold text-noir-eau">
+          b) Inscription à la liste d’attente Premium
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-gris-onde">
+          Si tu t’inscris à la waitlist Premium, nous collectons ton
+          <strong class="text-noir-eau">adresse email</strong> ainsi que la date
+          et la page d’origine de ta demande.
+        </p>
+        <ul class="mt-2 space-y-1 text-sm leading-relaxed text-gris-onde">
+          <li>
+            <strong class="text-noir-eau">Finalité :</strong> te prévenir du lancement
+            de l’offre Premium.
+          </li>
+          <li>
+            <strong class="text-noir-eau">Base légale :</strong> ton consentement.
+          </li>
+          <li>
+            <strong class="text-noir-eau">Sous-traitant :</strong> le formulaire est
+            traité via le service Formspree, qui héberge ces données pour notre compte.
+          </li>
+          <li>
+            <strong class="text-noir-eau">Durée :</strong> jusqu’au lancement de l’offre
+            ou jusqu’à ta demande de suppression.
+          </li>
+        </ul>
+
+        <h3 class="mt-4 font-semibold text-noir-eau">c) Tes droits</h3>
+        <p class="mt-2 text-sm leading-relaxed text-gris-onde">
+          Conformément au RGPD, tu disposes d’un droit d’accès, de rectification,
+          d’effacement, d’opposition et de portabilité de tes données. Pour
+          l’exercer, écris-nous à <strong class="text-noir-eau"
+            >{editeur.email}</strong
+          >. Tu peux aussi introduire une réclamation auprès de la
+          <a
+            href="https://www.cnil.fr"
+            class="text-bleu-eau hover:underline"
+            rel="noopener"
+            target="_blank">CNIL</a
+          >.
+        </p>
+      </div>
+
+      <!-- Cookies -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          5. Cookies & traceurs
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          EauTopie n’utilise <strong class="text-noir-eau"
+            >pas de cookies publicitaires ni de traceurs</strong
+          >. Seul le stockage local (LocalStorage) est utilisé, pour mémoriser
+          tes saisies et le bon fonctionnement du site — il ne sert pas à te
+          pister.
+        </p>
+      </div>
+
+      <!-- Responsabilité -->
+      <div>
+        <h2 class="font-display text-xl font-semibold text-noir-eau">
+          6. Responsabilité
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Les calculateurs et diagnostics d’EauTopie fournissent des
+          <strong class="text-noir-eau">estimations indicatives</strong> pour
+          t’aider dans l’entretien de ta piscine. Ils ne remplacent pas l’avis
+          d’un professionnel. Vérifie toujours les indications des produits que
+          tu utilises. L’éditeur ne saurait être tenu responsable d’un mauvais
+          dosage ou d’une mauvaise manipulation.
+        </p>
+      </div>
+
+    </div>
   </section>
 </BaseLayout>

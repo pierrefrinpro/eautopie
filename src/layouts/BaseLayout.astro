@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { GTM_ID, GA_ID } from '../consts';
 
 interface Props {
   title?: string;
@@ -28,6 +29,32 @@ const ogImage = new URL(image, Astro.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
+    {/* Google Tag Manager */}
+    {
+      GTM_ID && (
+        <script
+          is:inline
+          set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+        />
+      )
+    }
+    {/* Google Analytics 4 (direct) */}
+    {
+      GA_ID && (
+        <Fragment>
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          />
+          <script
+            is:inline
+            set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+          />
+        </Fragment>
+      )
+    }
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -52,10 +79,52 @@ const ogImage = new URL(image, Astro.site).href;
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="flex min-h-screen flex-col">
+    {/* Google Tag Manager (noscript) */}
+    {
+      GTM_ID && (
+        <noscript
+          set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`}
+        />
+      )
+    }
     <Header />
     <main class="flex-1">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Si l'utilisateur est déjà sur la waitlist Premium, on transforme tous
+      // les boutons « Passer à Premium » en état « inscrit » (désactivé, visuel).
+      const PREMIUM_KEY = 'eautopie_premium_signup';
+
+      function majBoutonsPremium() {
+        let inscrit = false;
+        try {
+          inscrit = !!window.localStorage.getItem(PREMIUM_KEY);
+        } catch {
+          inscrit = false;
+        }
+        if (!inscrit) return;
+
+        document
+          .querySelectorAll<HTMLAnchorElement>('[data-premium-btn]')
+          .forEach((el) => {
+            const label =
+              el.querySelector<HTMLElement>('[data-premium-label]') ?? el;
+            label.textContent = 'Tu es sur la waitlist ✓';
+            el.removeAttribute('href');
+            el.setAttribute('aria-disabled', 'true');
+            el.classList.add(
+              'cursor-default',
+              'opacity-70',
+              'pointer-events-none'
+            );
+          });
+      }
+
+      majBoutonsPremium();
+      document.addEventListener('astro:page-load', majBoutonsPremium);
+    </script>
   </body>
 </html>

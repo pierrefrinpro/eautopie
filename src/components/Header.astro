@@ -1,5 +1,5 @@
 ---
-import Button from './ui/Button.astro';
+import PremiumButton from './ui/PremiumButton.astro';
 
 const links = [
   { href: '/calculateur/chlore', label: 'Calculateurs' },
@@ -35,7 +35,7 @@ const links = [
         ))
       }
       <span class="ml-2">
-        <Button href="/premium" variant="primary" size="md">Premium</Button>
+        <PremiumButton source="header" variant="primary" size="md" />
       </span>
     </div>
 
@@ -74,12 +74,14 @@ const links = [
             </a>
           ))
         }
-        <a
-          href="/premium"
-          class="mt-1 block rounded-lg bg-bleu-eau px-3 py-2.5 text-center text-sm font-medium text-white hover:bg-bleu-profond"
-        >
-          Premium
-        </a>
+        <div class="mt-1">
+          <PremiumButton
+            source="header-mobile"
+            variant="primary"
+            size="md"
+            class="w-full"
+          />
+        </div>
       </div>
     </details>
   </nav>

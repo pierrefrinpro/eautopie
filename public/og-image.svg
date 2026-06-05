@@ -1,0 +1,39 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#DBEAFE" />
+      <stop offset="1" stop-color="#FAF9F6" />
+    </linearGradient>
+    <linearGradient id="drop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0EA5E9" />
+      <stop offset="1" stop-color="#075985" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Grande goutte décorative à droite -->
+  <g transform="translate(815 95) scale(14)" opacity="0.16">
+    <path fill="#0EA5E9" d="M16 2C16 2 5 14.5 5 21a11 11 0 0 0 22 0C27 14.5 16 2 16 2z" />
+  </g>
+  <g transform="translate(905 250) scale(6)" opacity="0.22">
+    <path fill="#075985" d="M16 2C16 2 5 14.5 5 21a11 11 0 0 0 22 0C27 14.5 16 2 16 2z" />
+  </g>
+
+  <!-- Logo : goutte + nom -->
+  <g transform="translate(88 150) scale(2.1)">
+    <path fill="url(#drop)" d="M16 2C16 2 5 14.5 5 21a11 11 0 0 0 22 0C27 14.5 16 2 16 2z" />
+  </g>
+  <text x="168" y="208" font-family="Fraunces, Georgia, serif" font-size="62" font-weight="700" fill="#075985">EauTopie</text>
+
+  <!-- Accroche -->
+  <text x="90" y="322" font-family="Fraunces, Georgia, serif" font-size="58" font-weight="600" fill="#0F172A">L&#8217;eau parfaite de ta piscine,</text>
+  <text x="90" y="392" font-family="Fraunces, Georgia, serif" font-size="58" font-weight="600" fill="#0EA5E9">sans casse-t&#234;te.</text>
+
+  <!-- Sous-titre -->
+  <text x="92" y="462" font-family="Inter, Arial, sans-serif" font-size="29" fill="#64748B">Calculs pr&#233;cis &#183; Diagnostic en 30 s &#183; Suivi de ton eau</text>
+
+  <!-- Pastille domaine -->
+  <rect x="90" y="508" width="244" height="58" rx="29" fill="#0EA5E9" />
+  <text x="212" y="546" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="600" fill="#FFFFFF" text-anchor="middle">eautopie.fr</text>
+</svg>

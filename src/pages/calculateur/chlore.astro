@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ChloreCalculator from '../../components/calculators/ChloreCalculator.astro';
+import PremiumButton from '../../components/ui/PremiumButton.astro';
 ---
 
 <BaseLayout
@@ -29,5 +30,20 @@ import ChloreCalculator from '../../components/calculators/ChloreCalculator.astr
       Estimation pour du chlore granulé stabilisé (~65 %). Vérifie toujours les
       indications de ton produit et re-teste ton eau après quelques heures.
     </p>
+
+    <div
+      class="mx-auto mt-10 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center"
+    >
+      <p class="font-display text-lg font-semibold text-noir-eau">
+        Garde un œil sur ton eau, automatiquement 🌊
+      </p>
+      <p class="mx-auto mt-1.5 max-w-md text-sm text-gris-onde">
+        Avec Premium : historique illimité, graphiques de tendance et rappels
+        selon ta météo locale.
+      </p>
+      <div class="mt-4">
+        <PremiumButton source="calculateur-chlore" variant="primary" size="md" />
+      </div>
+    </div>
   </section>
 </BaseLayout>

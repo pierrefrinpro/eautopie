@@ -6,6 +6,7 @@
 
 const VOLUME_KEY = 'eautopie:volume';
 const MESURES_CHLORE_KEY = 'eautopie:mesures:chlore';
+const PLANNING_KEY = 'eautopie:planning';
 
 export interface MesureChlore {
   /** Date ISO de la mesure */
@@ -67,12 +68,68 @@ export function getMesuresChlore(): MesureChlore[] {
 /** Ajoute une mesure en tête d'historique (on conserve les 50 dernières). */
 export function ajouterMesureChlore(mesure: MesureChlore): MesureChlore[] {
   const mesures = [mesure, ...getMesuresChlore()].slice(0, 50);
-  if (disponible()) {
-    try {
-      window.localStorage.setItem(MESURES_CHLORE_KEY, JSON.stringify(mesures));
-    } catch {
-      /* silencieux */
-    }
-  }
+  enregistrerMesures(mesures);
   return mesures;
+}
+
+/** Supprime une mesure (identifiée par sa date ISO) et renvoie le reste. */
+export function supprimerMesureChlore(date: string): MesureChlore[] {
+  const mesures = getMesuresChlore().filter((m) => m.date !== date);
+  enregistrerMesures(mesures);
+  return mesures;
+}
+
+function enregistrerMesures(mesures: MesureChlore[]): void {
+  if (!disponible()) return;
+  try {
+    window.localStorage.setItem(MESURES_CHLORE_KEY, JSON.stringify(mesures));
+  } catch {
+    /* silencieux */
+  }
+}
+
+// --- Planning sauvegardé (1 seul emplacement en version gratuite) ---------
+
+export interface PlanningSauvegarde {
+  /** Type de diagnostic à l'origine du planning. */
+  type: 'eau-verte';
+  /** Réponses du diagnostic (typées dans lib/diagnostic). */
+  reponses: unknown;
+  /** Volume du bassin utilisé pour les calculs. */
+  volume: number;
+  /** Date ISO de sauvegarde. */
+  date: string;
+}
+
+/** Récupère le planning sauvegardé (ou null). */
+export function getPlanning(): PlanningSauvegarde | null {
+  if (!disponible()) return null;
+  try {
+    const raw = window.localStorage.getItem(PLANNING_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw) as PlanningSauvegarde;
+    return data && data.type ? data : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Sauvegarde le planning (écrase le précédent : 1 seul emplacement gratuit). */
+export function setPlanning(planning: PlanningSauvegarde): void {
+  if (!disponible()) return;
+  try {
+    window.localStorage.setItem(PLANNING_KEY, JSON.stringify(planning));
+  } catch {
+    /* silencieux */
+  }
+}
+
+/** Supprime le planning sauvegardé. */
+export function supprimerPlanning(): void {
+  if (!disponible()) return;
+  try {
+    window.localStorage.removeItem(PLANNING_KEY);
+  } catch {
+    /* silencieux */
+  }
 }

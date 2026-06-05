@@ -213,10 +213,16 @@ import Button from '../ui/Button.astro';
     </div>
     <p
       id="sauver-confirmation"
-      hidden
-      class="mt-3 rounded-xl bg-vert-ok/10 px-4 py-3 text-center text-sm font-medium text-vert-ok"
+      style="display: none;"
+      class="mt-3 flex flex-wrap items-center justify-center gap-x-2 rounded-xl bg-vert-ok/10 px-4 py-3 text-center text-sm font-medium text-vert-ok"
     >
-      Mesure sauvegardée ✓
+      <span>Mesure sauvegardée ✓</span>
+      <a href="/suivi" class="font-semibold text-bleu-eau hover:text-bleu-profond">
+        Voir mes mesures →
+      </a>
+    </p>
+    <p class="mt-2 text-center text-xs text-gris-onde">
+      🔒 Enregistré uniquement sur cet appareil — aucun compte requis.
     </p>
   </div>
 </div>
@@ -413,7 +419,7 @@ import Button from '../ui/Button.astro';
       };
 
       resultat.hidden = false;
-      if (sauverConfirmation) sauverConfirmation.hidden = true;
+      if (sauverConfirmation) sauverConfirmation.style.display = 'none';
       resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
@@ -421,7 +427,7 @@ import Button from '../ui/Button.astro';
     btnSauverLabel?.closest('button')?.addEventListener('click', () => {
       if (!derniereMesure) return;
       ajouterMesureChlore(derniereMesure);
-      if (sauverConfirmation) sauverConfirmation.hidden = false;
+      if (sauverConfirmation) sauverConfirmation.style.display = 'flex';
     });
   }
 

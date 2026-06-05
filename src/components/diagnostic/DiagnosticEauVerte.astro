@@ -1,0 +1,424 @@
+---
+// Diagnostic guidé « eau verte » : questionnaire → plan d'action personnalisé.
+---
+
+<div
+  class="mx-auto max-w-2xl rounded-3xl border border-bleu-pale bg-white p-6 shadow-sm sm:p-8"
+  data-diagnostic-eau-verte
+>
+  <div data-diag-app>
+    <!-- Rendu dynamique côté client -->
+    <p class="text-center text-gris-onde">Chargement du diagnostic…</p>
+  </div>
+</div>
+
+<script>
+  import {
+    QUESTIONS_EAU_VERTE,
+    genererPlanEauVerte,
+    genererPlanning5Jours,
+    resumeDiagnostic,
+  } from '../../lib/diagnostic';
+  import type { ReponsesEauVerte } from '../../lib/diagnostic';
+  import {
+    getVolume,
+    setVolume,
+    getPlanning,
+    setPlanning,
+    supprimerPlanning,
+  } from '../../lib/storage';
+
+  const COCHES_KEY = 'eautopie:diagnostic:eau-verte:coches';
+
+  function getCoches(): string[] {
+    try {
+      const raw = window.localStorage.getItem(COCHES_KEY);
+      return raw ? (JSON.parse(raw) as string[]) : [];
+    } catch {
+      return [];
+    }
+  }
+  function setCoches(ids: string[]): void {
+    try {
+      window.localStorage.setItem(COCHES_KEY, JSON.stringify(ids));
+    } catch {
+      /* silencieux */
+    }
+  }
+
+  function escape(s: string): string {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function initDiagnostic() {
+    const root = document.querySelector<HTMLElement>(
+      '[data-diagnostic-eau-verte]'
+    );
+    if (!root) return;
+    const app = root.querySelector<HTMLElement>('[data-diag-app]');
+    if (!app) return;
+
+    const reponses: Partial<ReponsesEauVerte> = {};
+    const N = QUESTIONS_EAU_VERTE.length;
+    let etape = 0; // 0..N-1 = questions, N = volume, N+1 = plan
+
+    const progress = (courant: number, total: number) => `
+      <div class="mb-6">
+        <div class="mb-2 flex items-center justify-between text-xs font-medium text-gris-onde">
+          <span>Étape ${courant} / ${total}</span>
+          <span>${Math.round((courant / total) * 100)} %</span>
+        </div>
+        <div class="h-2 w-full overflow-hidden rounded-full bg-bleu-pale">
+          <div class="h-full rounded-full bg-bleu-eau transition-all duration-300" style="width:${(courant / total) * 100}%"></div>
+        </div>
+      </div>`;
+
+    const boutonRetour =
+      '<button type="button" data-back class="mt-5 text-sm font-medium text-gris-onde hover:text-bleu-profond">← Retour</button>';
+
+    function render() {
+      if (etape < N) renderQuestion(etape);
+      else if (etape === N) renderVolume();
+      else renderPlan();
+      app!.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function renderQuestion(i: number) {
+      const q = QUESTIONS_EAU_VERTE[i];
+      app!.innerHTML = `
+        ${progress(i + 1, N + 1)}
+        <h2 class="font-display text-2xl font-semibold text-noir-eau">${escape(q.question)}</h2>
+        ${q.aide ? `<p class="mt-2 text-sm text-gris-onde">${escape(q.aide)}</p>` : ''}
+        <div class="mt-5 grid gap-3">
+          ${q.options
+            .map(
+              (o) => `
+            <button type="button" data-val="${o.valeur}"
+              class="group flex items-center gap-4 rounded-2xl border border-bleu-pale bg-white px-4 py-4 text-left transition hover:border-bleu-eau hover:bg-bleu-pale/30">
+              ${o.emoji ? `<span class="text-2xl" aria-hidden="true">${o.emoji}</span>` : ''}
+              <span class="flex-1">
+                <span class="block font-medium text-noir-eau">${escape(o.label)}</span>
+                ${o.detail ? `<span class="mt-0.5 block text-sm text-gris-onde">${escape(o.detail)}</span>` : ''}
+              </span>
+              <span class="text-bleu-eau opacity-0 transition group-hover:opacity-100" aria-hidden="true">→</span>
+            </button>`
+            )
+            .join('')}
+        </div>
+        ${i > 0 ? boutonRetour : ''}
+      `;
+
+      app!.querySelectorAll<HTMLButtonElement>('[data-val]').forEach((b) => {
+        b.addEventListener('click', () => {
+          (reponses as any)[q.id] = b.getAttribute('data-val');
+          etape++;
+          render();
+        });
+      });
+      wireRetour();
+    }
+
+    function renderVolume() {
+      const vol = getVolume();
+      app!.innerHTML = `
+        ${progress(N + 1, N + 1)}
+        <h2 class="font-display text-2xl font-semibold text-noir-eau">Quel est le volume de ta piscine ?</h2>
+        <p class="mt-2 text-sm text-gris-onde">On s'en sert pour calculer tes doses exactes (chlore choc, anti-algues…).</p>
+        <div class="relative mt-5">
+          <input id="diag-volume" type="number" inputmode="decimal" step="0.1" min="0"
+            value="${vol ?? ''}" placeholder="Ex: 25"
+            class="w-full rounded-xl border border-bleu-pale bg-white px-4 py-3 pr-12 text-noir-eau shadow-sm outline-none focus:border-bleu-eau focus:ring-2 focus:ring-bleu-eau/30" />
+          <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm font-medium text-gris-onde">m³</span>
+        </div>
+        <p data-diag-erreur hidden class="mt-3 rounded-xl bg-rouge-alerte/10 px-4 py-3 text-sm font-medium text-rouge-alerte"></p>
+        <button type="button" data-voir
+          class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bleu-eau px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98]">
+          Voir mon plan d'action 💧
+        </button>
+        ${boutonRetour}
+      `;
+
+      const input = app!.querySelector<HTMLInputElement>('#diag-volume');
+      const erreur = app!.querySelector<HTMLElement>('[data-diag-erreur]');
+      app!
+        .querySelector<HTMLButtonElement>('[data-voir]')
+        ?.addEventListener('click', () => {
+          const v = input ? parseFloat(input.value) : NaN;
+          if (!Number.isFinite(v) || v <= 0) {
+            if (erreur) {
+              erreur.textContent =
+                'Indique le volume de ta piscine pour calculer tes doses.';
+              erreur.hidden = false;
+            }
+            return;
+          }
+          setVolume(v);
+          etape++;
+          render();
+        });
+      wireRetour();
+    }
+
+    function renderPlan() {
+      const volume = getVolume() ?? 0;
+      const plan = genererPlanEauVerte(reponses as ReponsesEauVerte, volume);
+      const r = resumeDiagnostic(reponses as ReponsesEauVerte);
+      const coches = getCoches();
+      const faites = plan.filter((e) => coches.includes(e.id)).length;
+      const dejaSauve = getPlanning() !== null;
+
+      // --- Preview gratuite : planning des 5 prochains jours ---
+      const planning = genererPlanning5Jours(reponses as ReponsesEauVerte, volume);
+      const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+      const aujourdhui = new Date();
+      const planningHtml = `
+        <div class="mt-8">
+          <h3 class="font-display text-xl font-semibold text-noir-eau">📅 Ton planning des 5 prochains jours</h3>
+          <p class="mt-1 text-sm text-gris-onde">Calculé à partir de ton diagnostic. Suis le rythme, l’eau fait le reste.</p>
+          <ol class="mt-4 space-y-3">
+            ${planning
+              .map((j) => {
+                const d = new Date(aujourdhui);
+                d.setDate(d.getDate() + j.offset);
+                const label =
+                  j.offset === 0
+                    ? "Aujourd'hui"
+                    : j.offset === 1
+                      ? 'Demain'
+                      : cap(d.toLocaleDateString('fr-FR', { weekday: 'long' }));
+                const dateStr = d.toLocaleDateString('fr-FR', {
+                  day: 'numeric',
+                  month: 'long',
+                });
+                const wk = d
+                  .toLocaleDateString('fr-FR', { weekday: 'short' })
+                  .replace('.', '');
+                return `
+                <li class="rounded-2xl border border-bleu-pale bg-white p-4">
+                  <div class="flex items-center gap-3">
+                    <div class="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-bleu-pale leading-none">
+                      <span class="text-[10px] font-medium uppercase text-bleu-profond">${wk}</span>
+                      <span class="text-lg font-bold text-bleu-profond">${d.getDate()}</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-medium uppercase tracking-wide text-bleu-eau">${label} · ${dateStr}</p>
+                      <p class="font-semibold text-noir-eau">${escape(j.phase)}</p>
+                    </div>
+                  </div>
+                  <ul class="mt-3 space-y-1.5">
+                    ${j.taches
+                      .map(
+                        (t) =>
+                          `<li class="flex gap-2 text-sm text-noir-eau/80"><span class="text-bleu-eau" aria-hidden="true">•</span><span>${escape(t)}</span></li>`
+                      )
+                      .join('')}
+                  </ul>
+                </li>`;
+              })
+              .join('')}
+          </ol>
+        </div>`;
+
+      // --- Teaser Premium : planning quotidien & hebdo verrouillé ---
+      const teaserRows = [
+        'Lun · Tester le chlore et le pH',
+        'Mer · Nettoyer le panier du skimmer',
+        'Ven · Brosser les parois + vérifier le niveau',
+        'Dim · Contrôler le stabilisant et le TAC',
+        '🔔 Rappels automatiques activés',
+      ];
+      const teaserHtml = `
+        <div class="mt-8 rounded-3xl bg-gradient-to-br from-bleu-profond to-bleu-eau p-0.5 shadow-md">
+          <div class="rounded-[1.4rem] bg-bleu-profond p-6 text-white">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-soleil px-3 py-1 text-xs font-bold uppercase text-noir-eau">⭐ Premium</span>
+            <h3 class="mt-3 font-display text-2xl font-semibold">Ton planning d'entretien sur-mesure est prêt</h3>
+            <p class="mt-2 text-sm text-bleu-ciel">
+              À partir de ton diagnostic, on a préparé ta routine <strong class="text-white">quotidienne et hebdomadaire</strong> — avec des rappels pour ne plus jamais oublier un geste.
+            </p>
+            <div class="relative mt-5">
+              <div class="space-y-2 blur-[3px]" aria-hidden="true">
+                ${teaserRows
+                  .map(
+                    (t) =>
+                      `<div class="flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm">${escape(t)}</div>`
+                  )
+                  .join('')}
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white text-2xl shadow-lg" aria-hidden="true">🔒</span>
+              </div>
+            </div>
+            <a href="/premium?source=diagnostic-eau-verte" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-soleil px-7 py-3.5 text-base font-semibold text-noir-eau shadow-sm transition hover:brightness-105 active:scale-[0.98]">
+              Débloquer mon planning — 4,99 €/mois
+            </a>
+            <p class="mt-3 text-center text-xs text-bleu-ciel">Sans engagement · Annulable à tout moment</p>
+          </div>
+        </div>`;
+
+      app!.innerHTML = `
+        <div class="rounded-2xl bg-bleu-profond p-5 text-white">
+          <p class="text-xs font-medium uppercase tracking-wide text-bleu-ciel">Ton diagnostic</p>
+          <h2 class="mt-1 font-display text-2xl font-semibold">${escape(r.titre)}</h2>
+          <p class="mt-2 text-sm text-bleu-ciel">${escape(r.sousTitre)}</p>
+        </div>
+
+        <div class="mt-5 mb-4 flex items-center justify-between text-sm">
+          <span class="font-medium text-noir-eau">Ta progression</span>
+          <span data-diag-compteur class="font-semibold text-bleu-eau">${faites} / ${plan.length} étapes</span>
+        </div>
+
+        <ol class="space-y-3">
+          ${plan
+            .map(
+              (e, idx) => `
+            <li>
+              <label class="flex cursor-pointer gap-3 rounded-2xl border p-4 transition ${
+                e.cle
+                  ? 'border-bleu-ciel bg-bleu-pale/30'
+                  : 'border-bleu-pale bg-white'
+              }" data-step="${e.id}">
+                <input type="checkbox" data-check="${e.id}" ${coches.includes(e.id) ? 'checked' : ''}
+                  class="mt-1 h-5 w-5 shrink-0 accent-vert-ok" />
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                    <span class="font-semibold text-noir-eau" data-titre>${escape(e.titre)}</span>
+                    ${e.cle ? '<span class="rounded-full bg-bleu-eau px-2 py-0.5 text-[11px] font-semibold uppercase text-white">clé</span>' : ''}
+                    ${e.duree ? `<span class="text-xs text-gris-onde">⏱ ${escape(e.duree)}</span>` : ''}
+                  </div>
+                  <p class="mt-1.5 text-sm text-noir-eau/80">${escape(e.comment)}</p>
+                  <details class="mt-2">
+                    <summary class="cursor-pointer text-xs font-medium text-bleu-eau">Pourquoi cette étape ?</summary>
+                    <p class="mt-1.5 text-sm text-gris-onde">${escape(e.pourquoi)}</p>
+                  </details>
+                  ${
+                    e.lien
+                      ? `<a href="${e.lien.href}" class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-eau hover:text-bleu-profond">${escape(e.lien.label)} <span aria-hidden="true">→</span></a>`
+                      : ''
+                  }
+                </div>
+              </label>
+            </li>`
+            )
+            .join('')}
+        </ol>
+
+        <div class="mt-6 space-y-3">
+          <button type="button" data-sauver-planning
+            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bleu-eau px-5 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98]">
+            ${dejaSauve ? 'Planning sauvegardé ✓' : '💾 Sauvegarder ce planning'}
+          </button>
+          <p data-planning-note class="text-center text-sm font-medium text-vert-ok" style="display:${dejaSauve ? 'block' : 'none'}">
+            Sauvegardé ✓ — retrouve-le dans «&nbsp;<a href="/suivi" class="text-bleu-eau underline">Suis ton eau</a>&nbsp;».
+            <button type="button" data-retirer-planning class="ml-1 font-normal text-gris-onde underline hover:text-rouge-alerte">Retirer</button>
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <a href="/calculateur/chlore"
+              class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-medium text-bleu-profond ring-1 ring-bleu-ciel transition hover:bg-bleu-pale">
+              Calculer mon chlore d'entretien
+            </a>
+            <button type="button" data-restart
+              class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium text-gris-onde transition hover:bg-bleu-pale">
+              Refaire un diagnostic
+            </button>
+          </div>
+          <p class="text-center text-xs text-gris-onde">
+            Tu peux garder 1 planning en version gratuite · multi-plannings avec Premium.
+          </p>
+        </div>
+
+        <p class="mt-4 rounded-xl bg-bleu-pale/40 px-4 py-3 text-xs text-bleu-profond">
+          💡 Les quantités sont des ordres de grandeur calculés pour ${volume.toLocaleString('fr-FR')} m³. Vérifie toujours les indications de tes produits.
+        </p>
+
+        ${planningHtml}
+        ${teaserHtml}
+      `;
+
+      const compteur = app!.querySelector<HTMLElement>('[data-diag-compteur]');
+      const total = plan.length;
+
+      const majTitres = () => {
+        const ids = getCoches();
+        app!.querySelectorAll<HTMLElement>('[data-step]').forEach((li) => {
+          const id = li.getAttribute('data-step')!;
+          const titre = li.querySelector<HTMLElement>('[data-titre]');
+          if (titre)
+            titre.classList.toggle('line-through', ids.includes(id));
+          if (titre)
+            titre.classList.toggle('text-gris-onde', ids.includes(id));
+        });
+        if (compteur) {
+          const n = plan.filter((e) => ids.includes(e.id)).length;
+          compteur.textContent = `${n} / ${total} étapes`;
+        }
+      };
+      majTitres();
+
+      app!
+        .querySelectorAll<HTMLInputElement>('[data-check]')
+        .forEach((cb) => {
+          cb.addEventListener('change', () => {
+            const id = cb.getAttribute('data-check')!;
+            const ids = new Set(getCoches());
+            if (cb.checked) ids.add(id);
+            else ids.delete(id);
+            setCoches([...ids]);
+            majTitres();
+          });
+        });
+
+      app!
+        .querySelector<HTMLButtonElement>('[data-restart]')
+        ?.addEventListener('click', () => {
+          for (const k of Object.keys(reponses))
+            delete (reponses as any)[k];
+          etape = 0;
+          render();
+        });
+
+      app!
+        .querySelector<HTMLButtonElement>('[data-sauver-planning]')
+        ?.addEventListener('click', (e) => {
+          const btn = e.currentTarget as HTMLButtonElement;
+          setPlanning({
+            type: 'eau-verte',
+            reponses: { ...reponses },
+            volume,
+            date: new Date().toISOString(),
+          });
+          btn.textContent = 'Planning sauvegardé ✓';
+          const note = app!.querySelector<HTMLElement>('[data-planning-note]');
+          if (note) note.style.display = 'block';
+        });
+
+      app!
+        .querySelector<HTMLButtonElement>('[data-retirer-planning]')
+        ?.addEventListener('click', () => {
+          supprimerPlanning();
+          render();
+        });
+    }
+
+    function wireRetour() {
+      app!
+        .querySelector<HTMLButtonElement>('[data-back]')
+        ?.addEventListener('click', () => {
+          if (etape > 0) etape--;
+          render();
+        });
+    }
+
+    // Au chargement : si un planning a été sauvegardé, on le restaure d'emblée.
+    const sauvegarde = getPlanning();
+    if (sauvegarde && sauvegarde.type === 'eau-verte') {
+      Object.assign(reponses, sauvegarde.reponses as object);
+      setVolume(sauvegarde.volume);
+      etape = N + 1;
+    }
+
+    render();
+  }
+
+  initDiagnostic();
+  document.addEventListener('astro:page-load', initDiagnostic);
+</script>
