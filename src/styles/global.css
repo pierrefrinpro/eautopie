@@ -50,3 +50,45 @@
     appearance: textfield;
   }
 }
+
+/* Typographie du contenu d'article de blog (markdown rendu) */
+.blog-content {
+  @apply leading-relaxed text-noir-eau/90;
+}
+.blog-content > * + * {
+  margin-top: 1.25rem;
+}
+.blog-content h2 {
+  @apply mt-10 font-display text-2xl font-semibold text-noir-eau sm:text-3xl;
+}
+.blog-content h3 {
+  @apply mt-8 font-display text-xl font-semibold text-noir-eau;
+}
+.blog-content h2 + p,
+.blog-content h3 + p {
+  margin-top: 0.75rem;
+}
+.blog-content a {
+  @apply font-medium text-bleu-eau underline underline-offset-2 hover:text-bleu-profond;
+}
+.blog-content strong {
+  @apply font-semibold text-noir-eau;
+}
+.blog-content ul {
+  @apply list-disc space-y-1.5 pl-6;
+}
+.blog-content ol {
+  @apply list-decimal space-y-1.5 pl-6;
+}
+.blog-content blockquote {
+  @apply border-l-4 border-bleu-ciel bg-bleu-pale/30 py-2 pl-4 italic text-gris-onde;
+}
+.blog-content img {
+  @apply rounded-2xl;
+}
+.blog-content code {
+  @apply rounded bg-bleu-pale px-1.5 py-0.5 text-sm text-bleu-profond;
+}
+.blog-content hr {
+  @apply my-8 border-bleu-pale;
+}

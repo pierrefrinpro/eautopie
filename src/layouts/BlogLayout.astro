@@ -1,0 +1,171 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { data, slug } = entry;
+const { title, description, pubDate, updatedDate, cover, category, readTime } =
+  data;
+
+const CATEGORY_LABELS: Record<string, string> = {
+  entretien: 'Entretien',
+  problemes: 'Problèmes d’eau',
+  debutants: 'Débutants',
+  equipement: 'Équipement',
+};
+const categorieLabel = CATEGORY_LABELS[category] ?? category;
+
+const SITE = (Astro.site?.href ?? 'https://eautopie.fr/').replace(/\/$/, '');
+const urlArticle = `${SITE}/blog/${slug}`;
+const imageAbs = cover
+  ? cover.startsWith('http')
+    ? cover
+    : `${SITE}${cover.startsWith('/') ? '' : '/'}${cover}`
+  : `${SITE}/og-image.png`;
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+// Fil d'Ariane
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Blog', url: '/blog' },
+  { name: categorieLabel, url: `/blog#${category}` },
+  { name: title, url: `/blog/${slug}` },
+];
+
+// Articles liés (même catégorie, hors brouillons, hors article courant)
+const tous = await getCollection('blog', (e) => !e.data.draft);
+const lies = tous
+  .filter((e) => e.data.category === category && e.slug !== slug)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+// CTA calculateur (chlore par défaut — un seul pour l'instant)
+const ctaCalculateur = '/calculateur/chlore';
+
+// Schema.org Article
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    datePublished: pubDate.toISOString(),
+    dateModified: (updatedDate ?? pubDate).toISOString(),
+    image: imageAbs,
+    author: { '@type': 'Organization', name: 'EauTopie', url: SITE },
+    publisher: {
+      '@type': 'Organization',
+      name: 'EauTopie',
+      logo: { '@type': 'ImageObject', url: `${SITE}/og-image.png` },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': urlArticle },
+  },
+];
+---
+
+<BaseLayout
+  title={`${title} — EauTopie`}
+  description={description}
+  image={cover ?? '/og-image.png'}
+  schemas={schemas}
+>
+  <article class="mx-auto max-w-3xl px-6 py-10 sm:py-14">
+    <Breadcrumbs items={fil} class="mb-6" />
+
+    <p
+      class="inline-flex items-center gap-2 rounded-full bg-bleu-pale px-3 py-1 text-sm font-medium text-bleu-profond"
+    >
+      {categorieLabel}
+    </p>
+
+    <h1 class="mt-4 text-3xl text-noir-eau sm:text-4xl">{title}</h1>
+
+    <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gris-onde">
+      <time datetime={pubDate.toISOString()}>{fmtDate(pubDate)}</time>
+      <span aria-hidden="true">·</span>
+      <span>{readTime} min de lecture</span>
+      {
+        updatedDate && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>Mis à jour le {fmtDate(updatedDate)}</span>
+          </>
+        )
+      }
+    </div>
+
+    {
+      cover && (
+        <img
+          src={cover}
+          alt={title}
+          class="mt-6 aspect-[16/9] w-full rounded-2xl object-cover"
+          loading="eager"
+        />
+      )
+    }
+
+    <div class="blog-content mt-8">
+      <slot />
+    </div>
+
+    <!-- CTA fin d'article -->
+    <div
+      class="mt-12 rounded-2xl bg-bleu-profond p-6 text-center text-white sm:p-8"
+    >
+      <p class="font-display text-xl font-semibold">
+        Passe à l’action sur ta piscine
+      </p>
+      <p class="mx-auto mt-2 max-w-md text-sm text-bleu-ciel">
+        Obtiens la dose exacte pour ton bassin en 30 secondes.
+      </p>
+      <a
+        href={ctaCalculateur}
+        class="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-eau px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-white hover:text-bleu-profond"
+      >
+        Calcule tes doses maintenant
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- Articles liés -->
+    {
+      lies.length > 0 && (
+        <div class="mt-14">
+          <h2 class="font-display text-2xl font-semibold text-noir-eau">
+            À lire aussi
+          </h2>
+          <div class="mt-6 grid gap-4 sm:grid-cols-3">
+            {lies.map((a) => (
+              <a
+                href={`/blog/${a.slug}`}
+                class="group flex flex-col rounded-2xl border border-bleu-pale bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <span class="text-xs font-medium uppercase tracking-wide text-bleu-eau">
+                  {CATEGORY_LABELS[a.data.category] ?? a.data.category}
+                </span>
+                <span class="mt-1.5 flex-1 font-semibold text-noir-eau group-hover:text-bleu-profond">
+                  {a.data.title}
+                </span>
+                <span class="mt-3 text-xs text-gris-onde">
+                  {a.data.readTime} min de lecture
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </article>
+</BaseLayout>
