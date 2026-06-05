@@ -1,0 +1,16 @@
+---
+// Génère un (ou plusieurs) <script type="application/ld+json"> à injecter
+// dans le <head>. Accepte un objet schema unique ou un tableau de schemas.
+interface Props {
+  schema: Record<string, any> | Record<string, any>[];
+}
+
+const { schema } = Astro.props;
+const items = Array.isArray(schema) ? schema : [schema];
+---
+
+{
+  items.map((item) => (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(item)} />
+  ))
+}

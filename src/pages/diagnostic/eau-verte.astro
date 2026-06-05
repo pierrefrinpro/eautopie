@@ -1,13 +1,75 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DiagnosticEauVerte from '../../components/diagnostic/DiagnosticEauVerte.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const fil = [
+  { name: 'Accueil', url: '/' },
+  { name: 'Diagnostic', url: '/diagnostic' },
+  { name: 'Eau verte', url: '/diagnostic/eau-verte' },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Comment rattraper une eau de piscine verte',
+    description:
+      'Les étapes pour retrouver une eau claire quand ta piscine a viré au vert.',
+    totalTime: 'P2D',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Mettre la filtration en route',
+        text: 'Vérifie la pompe et lance la filtration : elle devra tourner en continu pendant tout le traitement.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Retirer les saletés et brosser',
+        text: 'Passe l’épuisette puis brosse énergiquement parois et fond pour décoller les algues.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Régler le pH entre 7,0 et 7,2',
+        text: 'Le chlore est bien plus efficace à pH légèrement bas : ajuste-le avant de chlorer.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Réaliser un chlore choc',
+        text: 'Verse une dose de chlore choc (environ 20 g/m³) diluée dans un seau, filtration en marche, de préférence le soir.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Ajouter un anti-algues',
+        text: 'Quelques heures après le choc, ajoute un anti-algues pour empêcher les algues de repartir.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Filtrer en continu 24 à 48 h',
+        text: 'Laisse filtrer sans interruption pour capturer les algues mortes et clarifier l’eau.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Nettoyer le filtre',
+        text: 'Fais un contre-lavage (filtre à sable) ou rince la cartouche, encrassés par les algues.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Re-tester et revenir à l’entretien normal',
+        text: 'Quand l’eau est claire, ramène le chlore à 0,5–1,5 mg/L et vérifie le pH avant de te baigner.',
+      },
+    ],
+  },
+];
 ---
 
 <BaseLayout
   title="Eau verte : diagnostic et plan d’action — EauTopie"
   description="Ton eau de piscine est verte ? Réponds à quelques questions, on te sort un plan de traitement personnalisé avec les doses exactes pour ton bassin."
+  schemas={schemas}
 >
   <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <Breadcrumbs items={fil} class="mb-6" />
     <div class="mb-8 text-center">
       <p
         class="mb-3 inline-flex items-center gap-2 rounded-full bg-soleil/15 px-3 py-1 text-sm font-medium text-soleil"

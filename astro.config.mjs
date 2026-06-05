@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,6 +10,11 @@ export default defineConfig({
     tailwind({
       // On gère nos directives Tailwind nous-mêmes dans src/styles/global.css
       applyBaseStyles: false,
+    }),
+    sitemap({
+      // On exclut les pages non indexables du sitemap.
+      filter: (page) =>
+        !page.includes('/mentions-legales') && !page.includes('/404'),
     }),
   ],
 });

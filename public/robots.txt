@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eautopie.fr/sitemap-index.xml

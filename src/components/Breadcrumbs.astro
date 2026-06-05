@@ -1,0 +1,62 @@
+---
+import StructuredData from './StructuredData.astro';
+
+interface Crumb {
+  name: string;
+  url: string;
+}
+interface Props {
+  items: Crumb[];
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+
+const SITE = (Astro.site?.href ?? 'https://eautopie.fr/').replace(/\/$/, '');
+const abs = (url: string) =>
+  url.startsWith('http') ? url : `${SITE}${url.startsWith('/') ? '' : '/'}${url}`;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.name,
+    item: abs(c.url),
+  })),
+};
+---
+
+<nav aria-label="Fil d’Ariane" class={className}>
+  <ol class="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-gris-onde">
+    {
+      items.map((c, i) => {
+        const last = i === items.length - 1;
+        return (
+          <li class="flex min-w-0 items-center gap-1.5">
+            {i > 0 && (
+              <span class="text-gris-onde/40" aria-hidden="true">
+                ›
+              </span>
+            )}
+            {last ? (
+              <span
+                class="max-w-[60vw] truncate font-medium text-noir-eau sm:max-w-none"
+                aria-current="page"
+              >
+                {c.name}
+              </span>
+            ) : (
+              <a href={c.url} class="hover:text-bleu-profond hover:underline">
+                {c.name}
+              </a>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+
+<StructuredData schema={schema} />

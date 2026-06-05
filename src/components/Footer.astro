@@ -1,21 +1,97 @@
 ---
 const annee = new Date().getFullYear();
+
+const colonnes = [
+  {
+    titre: 'Calculateurs',
+    href: '/calculateur',
+    liens: [
+      { nom: 'Chlore d’entretien', href: '/calculateur/chlore' },
+      { nom: 'Chlore choc', href: null },
+      { nom: 'pH+ / pH−', href: null },
+      { nom: 'Stabilisant', href: null },
+      { nom: 'Sel pour électrolyseur', href: null },
+    ],
+  },
+  {
+    titre: 'Diagnostic',
+    href: '/diagnostic',
+    liens: [
+      { nom: 'Eau verte', href: '/diagnostic/eau-verte' },
+      { nom: 'Eau trouble', href: null },
+      { nom: 'Eau qui pique aux yeux', href: null },
+      { nom: 'Odeur de chlore', href: null },
+      { nom: 'Taches sur le liner', href: null },
+    ],
+  },
+  {
+    titre: 'Ressources',
+    href: null,
+    liens: [
+      { nom: 'Le blog', href: '/blog' },
+      { nom: 'Premium (bientôt)', href: '/premium' },
+      { nom: 'Mentions légales', href: '/mentions-legales' },
+      { nom: 'Contact', href: 'mailto:contact@eautopie.fr' },
+    ],
+  },
+];
 ---
 
 <footer class="mt-20 border-t border-bleu-pale bg-white">
-  <div
-    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-gris-onde sm:flex-row"
-  >
-    <p class="flex items-center gap-2">
-      <span aria-hidden="true">💧</span>
-      <span class="font-display font-semibold text-bleu-profond">EauTopie</span>
-      <span>© {annee}</span>
-    </p>
-    <nav class="flex items-center gap-5" aria-label="Liens de pied de page">
-      <a href="/mentions-legales" class="hover:text-bleu-profond">
+  <div class="mx-auto max-w-6xl px-6 py-12">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+      {
+        colonnes.map((col) => (
+          <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-noir-eau">
+              {col.href ? (
+                <a href={col.href} class="hover:text-bleu-profond">
+                  {col.titre}
+                </a>
+              ) : (
+                col.titre
+              )}
+            </h3>
+            <ul class="mt-4 space-y-2.5 text-sm">
+              {col.liens.map((lien) => (
+                <li>
+                  {lien.href ? (
+                    <a
+                      href={lien.href}
+                      class="text-gris-onde transition-colors hover:text-bleu-profond"
+                    >
+                      {lien.nom}
+                    </a>
+                  ) : (
+                    <span class="inline-flex items-center gap-1.5 text-gris-onde/50">
+                      {lien.nom}
+                      <span class="rounded-full bg-bleu-pale/70 px-1.5 py-0.5 text-[10px] font-medium uppercase text-bleu-profond/70">
+                        bientôt
+                      </span>
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-10 flex flex-col gap-2 border-t border-bleu-pale pt-6 text-sm text-gris-onde sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="flex items-center gap-2">
+        <span aria-hidden="true">💧</span>
+        <span class="font-display font-semibold text-bleu-profond">EauTopie</span>
+        <span>© {annee}</span>
+      </p>
+      <a
+        href="/mentions-legales"
+        class="text-gris-onde transition-colors hover:text-bleu-profond"
+      >
         Mentions légales
       </a>
-      <a href="/blog" class="hover:text-bleu-profond">Blog</a>
-    </nav>
+    </div>
   </div>
 </footer>
