@@ -3,9 +3,12 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://eautopie.fr',
+
   integrations: [
     tailwind({
       // On gère nos directives Tailwind nous-mêmes dans src/styles/global.css
@@ -19,4 +22,7 @@ export default defineConfig({
         !page.includes('/404'),
     }),
   ],
+
+  output: "hybrid",
+  adapter: cloudflare()
 });
