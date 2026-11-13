@@ -9,18 +9,18 @@ const piliers = [
     emoji: '🧮',
     titre: 'Calcule',
     texte:
-      'Le bon dosage, à la goutte près, selon ton volume et ton produit.',
-    href: '/calculateur',
+      'La dose en grammes selon le volume de ta piscine.',
+    href: '/calculateur/',
     cta: 'Calculer mes doses',
     iconBg: 'bg-bleu-pale',
-    accent: 'text-bleu-eau',
+    accent: 'text-bleu-texte',
   },
   {
     emoji: '🔬',
     titre: 'Diagnostique',
     texte:
-      'Ton eau a un problème ? Décris-le, on te guide étape par étape.',
-    href: '/diagnostic',
+      'Décris le problème de ton eau, on te guide étape par étape.',
+    href: '/diagnostic/',
     cta: 'Diagnostiquer mon eau',
     iconBg: 'bg-soleil/15',
     accent: 'text-soleil',
@@ -29,8 +29,8 @@ const piliers = [
     emoji: '📊',
     titre: 'Suis ton eau',
     texte:
-      'Note tes paramètres, vois les tendances, anticipe les soucis.',
-    href: '/suivi',
+      'Garde l’historique de tes mesures : chlore, volume, dose ajoutée.',
+    href: '/suivi/',
     cta: 'Suivre mes mesures',
     iconBg: 'bg-vert-ok/15',
     accent: 'text-vert-ok',
@@ -48,28 +48,19 @@ const schemas = [
     description:
       'Calculateurs de doses, diagnostic des problèmes d’eau et conseils d’entretien de piscine.',
     inLanguage: 'fr-FR',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE}/recherche?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   },
   {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'EauTopie',
     url: SITE,
-    logo: `${SITE}/og-image.png`,
-    sameAs: [],
+    logo: `${SITE}/logo.png`,
   },
 ];
 ---
 
 <BaseLayout
-  description="Calculateurs de doses chlore et pH, diagnostic d’eau verte, conseils d’entretien — EauTopie t’aide à garder une eau de piscine parfaite, gratuitement et sans inscription."
+  description="Calcule tes doses de chlore et de pH en grammes selon le volume de ta piscine, diagnostique une eau verte et suis tes mesures. Gratuit, sans inscription."
   schemas={schemas}
 >
   <!-- HERO -->
@@ -112,25 +103,24 @@ const schemas = [
       <h1
         class="text-balance text-4xl leading-tight text-noir-eau sm:text-5xl md:text-6xl"
       >
-        L’eau parfaite de ta piscine,
-        <span class="text-bleu-eau"> sans casse-tête.</span>
+        Calcule les doses de ta piscine,
+        <span class="text-bleu-texte"> en grammes, selon son volume.</span>
       </h1>
 
       <p
         class="mx-auto mt-6 max-w-2xl text-pretty text-lg text-gris-onde sm:text-xl"
       >
-        EauTopie te guide pas à pas. Calculs précis, diagnostic en 30 secondes,
-        rappels intelligents — pour que tu profites de ta piscine au lieu de la
-        subir.
+        Indique le volume de ta piscine et ta mesure : EauTopie te donne la dose
+        à verser. Si l’eau tourne mal, le diagnostic prend 30 secondes.
       </p>
 
       <div
         class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
       >
-        <Button href="/diagnostic/eau-verte" variant="alerte" size="lg">
+        <Button href="/diagnostic/eau-verte/" variant="alerte" size="lg">
           🆘 Mon eau est verte, vite !
         </Button>
-        <Button href="/calculateur" variant="secondary" size="lg">
+        <Button href="/calculateur/" variant="secondary" size="lg">
           Je veux juste calculer mes doses
         </Button>
       </div>
@@ -156,8 +146,8 @@ const schemas = [
   <section class="border-y border-bleu-pale/60 bg-white/60">
     <div class="mx-auto max-w-4xl px-6 py-6 text-center">
       <h2 class="text-lg font-medium text-bleu-profond sm:text-xl">
-        Calcule tes doses de chlore, sauve une eau verte, équilibre ton pH —
-        <span class="text-bleu-eau">tous nos outils gratuits</span>
+        Calcule tes doses de chlore, sauve une eau verte, équilibre ton pH :
+        <span class="text-bleu-texte">tous nos outils gratuits</span>
       </h2>
     </div>
   </section>
@@ -166,7 +156,7 @@ const schemas = [
   <section class="mx-auto max-w-6xl px-6 py-16">
     <div class="mb-12 text-center">
       <h2 class="text-3xl text-noir-eau sm:text-4xl">
-        Trois gestes pour une eau au top
+        Trois outils : calcul, diagnostic, suivi
       </h2>
       <p class="mx-auto mt-3 max-w-xl text-gris-onde">
         Tout ce qu’il te faut pour garder une eau saine, sans y passer tes
@@ -215,11 +205,11 @@ const schemas = [
             ⭐ Premium · Bientôt
           </span>
           <h2 class="mt-4 text-3xl text-noir-eau">
-            Passe en mode tranquillité totale
+            Premium : ce qui est prévu
           </h2>
           <p class="mt-3 text-gris-onde">
             Historique illimité, rappels selon ta météo, multi-piscines, mode
-            expert… Rejoins la waitlist et garde
+            expert… Inscris-toi sur la liste d’attente et garde
             <strong class="text-bleu-profond">30 % de réduction à vie</strong>.
           </p>
           <div class="mt-6">
@@ -259,14 +249,14 @@ const schemas = [
       </div>
       <div class="relative">
         <h2 class="text-3xl text-white sm:text-4xl">
-          Et si ta piscine n’avait plus de secrets ?
+          Comprendre l’entretien de ta piscine
         </h2>
         <p class="mx-auto mt-4 max-w-2xl text-pretty text-bleu-ciel">
-          Nos guides t’expliquent tout, simplement — du premier plongeon à
-          l’eau toujours cristalline.
+          Nos guides expliquent l’entretien simplement, des bases pour débuter
+          aux problèmes d’eau.
         </p>
         <div class="mt-8">
-          <Button href="/blog" variant="primary" size="lg">
+          <Button href="/blog/" variant="primary" size="lg">
             Lire le blog
           </Button>
         </div>

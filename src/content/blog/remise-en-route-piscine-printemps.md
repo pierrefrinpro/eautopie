@@ -1,6 +1,6 @@
 ---
-title: 'Remise en route de la piscine au printemps : la checklist 2026'
-description: 'Ouvrir sa piscine au printemps sans galère : la checklist complète étape par étape, du retrait de la bâche à la première baignade. Spécial sortie d’hivernage.'
+title: 'Remise en route piscine au printemps : la checklist 2026'
+description: 'Ouvrir sa piscine au printemps après l’hivernage : la checklist étape par étape, du retrait de la bâche à la première baignade, et les erreurs à éviter.'
 pubDate: 2026-06-05
 category: 'entretien'
 tags: ['remise en route', 'printemps', 'hivernage', 'ouverture']
@@ -8,7 +8,7 @@ readTime: 7
 draft: false
 ---
 
-Les beaux jours reviennent, et avec eux la grande question : comment **remettre la piscine en route** sans y passer le week-end (ni virer à l'eau verte) ? Suis cette checklist dans l'ordre, et ta piscine sera prête pour la première baignade en quelques jours.
+Pour **remettre la piscine en route** sans y passer le week-end ni virer à l'eau verte, suis cette checklist dans l'ordre : ta piscine sera prête pour la première baignade en quelques jours.
 
 ## Quand remettre sa piscine en route ?
 
@@ -30,11 +30,11 @@ Remets la pompe en route et **nettoie le filtre** : contre-lavage pour le sable,
 
 ### 4. Équilibre le pH et le TAC
 
-Avant tout traitement, règle le **TAC** (alcalinité) puis le **pH** entre 7,2 et 7,4 — c'est la base d'un chlore efficace (voir notre [guide du pH](/blog/ph-piscine-comment-equilibrer)).
+Avant tout traitement, règle le **TAC** (alcalinité) puis le **pH** entre 7,2 et 7,4 : c'est la base d'un chlore efficace (voir notre [guide du pH](/blog/ph-piscine-comment-equilibrer/)).
 
 ### 5. Fais un traitement choc
 
-Réalise un **chlore choc** pour repartir sur une eau saine (voir notre [guide du traitement choc](/blog/traitement-choc-piscine-quand-comment)). Le soir, filtration en marche.
+Réalise un **chlore choc** pour repartir sur une eau saine (voir notre [guide du traitement choc](/blog/traitement-choc-piscine-quand-comment/)). Le soir, filtration en marche.
 
 ### 6. Ajoute un anti-algues (préventif)
 
@@ -42,20 +42,20 @@ Pour empêcher les algues de s'installer pendant la montée en température.
 
 ### 7. Filtre en continu et re-teste
 
-Laisse filtrer **24 à 48 h**, puis re-teste chlore et pH. Ajuste le chlore d'entretien à 0,5–1,5 mg/L avec notre [calculateur](/calculateur/chlore).
+Laisse filtrer **24 à 48 h**, puis re-teste chlore et pH. Ajuste le chlore d'entretien à 0,5 à 1,5 mg/L avec notre [calculateur](/calculateur/chlore/).
 
 ## Cas particulier : l'eau est déjà verte
 
-Si tu as ouvert un peu tard et que l'eau a viré, pas de panique : notre [diagnostic eau verte](/diagnostic/eau-verte) te construit un **plan de remise en route complet** avec les doses exactes pour ton volume.
+Si tu as ouvert un peu tard et que l'eau a viré, notre [diagnostic eau verte](/diagnostic/eau-verte/) te construit un **plan de remise en route** avec les doses calculées pour ton volume.
 
 ## Les erreurs fréquentes à l'ouverture
 
 - **Ouvrir trop tard** (eau > 15 °C) : l'eau verdit avant que tu n'aies fini.
 - **Chlorer sans régler le pH** : traitement en partie gaspillé.
-- **Oublier de nettoyer le filtre** : il tourne à vide d'efficacité.
+- **Oublier de nettoyer le filtre** : il tourne mais filtre mal.
 - **Vouloir tout faire en une heure** : laisse le temps à la filtration de travailler.
 
-## FAQ — remise en route
+## FAQ : remise en route
 
 **À quelle température ouvrir sa piscine ?**
 Dès que l'eau atteint 12-15 °C de façon stable. Plus tôt = moins de risque d'eau verte.
@@ -71,4 +71,4 @@ Compte 2 à 4 jours en général : le temps d'équilibrer, choquer, filtrer et l
 
 ---
 
-Une remise en route réussie tient en deux mots : **tôt** et **dans l'ordre**. Suis la checklist, et profite de ta saison dès les premiers beaux jours. Pense à [noter tes mesures](/suivi) pour bien suivre la montée en température. ☀️
+Les deux points qui comptent : ouvrir **tôt** et suivre les étapes **dans l'ordre**. Pense à [noter tes mesures](/suivi/) pour suivre la montée en température. ☀️

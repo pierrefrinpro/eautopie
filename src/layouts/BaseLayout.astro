@@ -14,8 +14,8 @@ interface Props {
 }
 
 const {
-  title = 'EauTopie — l’eau parfaite de ta piscine, sans casse-tête',
-  description = 'EauTopie t’aide à entretenir ta piscine : calculateurs de doses précis, diagnostic des problèmes d’eau, et suivi de tes paramètres. Pas besoin d’être pisciniste.',
+  title = 'Piscine : calcul des doses et diagnostic de l’eau | EauTopie',
+  description = 'EauTopie t’aide à entretenir ta piscine : doses en grammes selon ton volume, diagnostic des problèmes d’eau et suivi de tes mesures. Gratuit, sans inscription.',
   image = '/og-image.png',
   noindex = false,
   schemas = [],
@@ -67,8 +67,8 @@ const ogImage = new URL(image, Astro.site).href;
     <CookieConsent />
 
     <script>
-      // Si l'utilisateur est déjà sur la waitlist Premium, on transforme tous
-      // les boutons « Passer à Premium » en état « inscrit » (désactivé, visuel).
+      // Si l'utilisateur est déjà sur la liste d'attente Premium, on transforme tous
+      // les boutons « Premium : liste d’attente » en état « inscrit » (désactivé, visuel).
       const PREMIUM_KEY = 'eautopie_premium_signup';
 
       function majBoutonsPremium() {
@@ -85,7 +85,7 @@ const ogImage = new URL(image, Astro.site).href;
           .forEach((el) => {
             const label =
               el.querySelector<HTMLElement>('[data-premium-label]') ?? el;
-            label.textContent = 'Tu es sur la waitlist ✓';
+            label.textContent = 'Tu es sur la liste d’attente ✓';
             el.removeAttribute('href');
             el.setAttribute('aria-disabled', 'true');
             el.classList.add(

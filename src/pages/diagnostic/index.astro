@@ -7,36 +7,36 @@ const problemes = [
     emoji: '🟢',
     nom: 'Eau verte',
     desc: 'Algues, sortie d’hivernage : on te sort un plan de traitement complet.',
-    href: '/diagnostic/eau-verte',
+    href: '/diagnostic/eau-verte/',
   },
   {
     emoji: '🌫️',
     nom: 'Eau trouble',
     desc: 'Eau blanchâtre ou laiteuse : filtration, pH, floculant.',
-    href: '/diagnostic/eau-trouble',
+    href: '/diagnostic/eau-trouble/',
   },
   {
     emoji: '😖',
     nom: 'Ça pique aux yeux',
     desc: 'Irritations : souvent un problème de pH ou de chloramines.',
-    href: '/diagnostic/pique-aux-yeux',
+    href: '/diagnostic/pique-aux-yeux/',
   },
   {
     emoji: '🩹',
     nom: 'Taches sur le liner',
     desc: 'Taches blanches, vertes, noires ou rouille : identifier et traiter.',
-    href: '/diagnostic/taches-liner',
+    href: '/diagnostic/taches-liner/',
   },
 ];
 
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Diagnostic', url: '/diagnostic' },
+  { name: 'Diagnostic', url: '/diagnostic/' },
 ];
 ---
 
 <BaseLayout
-  title="Diagnostic piscine — eau verte, trouble, irritations | EauTopie"
+  title="Diagnostic piscine : eau verte, trouble, irritations"
   description="Un problème d’eau ? Le diagnostic guidé EauTopie t’aide à identifier la cause et te donne un plan d’action : eau verte, eau trouble, irritations, odeurs…"
 >
   <section class="mx-auto max-w-4xl px-6 py-10 sm:py-14">
@@ -45,7 +45,7 @@ const fil = [
     <h1 class="text-3xl text-noir-eau sm:text-4xl">Le diagnostic</h1>
     <p class="mt-3 max-w-xl text-gris-onde">
       Décris ton problème, on identifie la cause et on te guide étape par étape
-      pour retrouver une eau parfaite.
+      pour retrouver une eau claire.
     </p>
 
     <div class="mt-8 grid gap-4 sm:grid-cols-2">
@@ -62,7 +62,7 @@ const fil = [
               <div class="flex-1">
                 <h2 class="font-semibold text-noir-eau">{p.nom}</h2>
                 <p class="mt-1 text-sm text-gris-onde">{p.desc}</p>
-                <span class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-eau">
+                <span class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-texte">
                   Diagnostiquer
                   <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">
                     →

@@ -103,6 +103,7 @@ const { kind, champs, note } = Astro.props;
 </div>
 
 <script>
+  import { mesurer } from '../../lib/mesure';
   import {
     calculerStabilisant,
     calculerSel,
@@ -173,7 +174,7 @@ const { kind, champs, note } = Astro.props;
         };
       }
       default:
-        return { titre: '—', sous: '' };
+        return { titre: '-', sous: '' };
     }
   }
 
@@ -224,6 +225,7 @@ const { kind, champs, note } = Astro.props;
         if (titre) titre.innerHTML = res.titre;
         if (sous) sous.textContent = res.sous;
         resultat.hidden = false;
+        mesurer('calcul_effectue', { calculateur: kind });
         resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
     });

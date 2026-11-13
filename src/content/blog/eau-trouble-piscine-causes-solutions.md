@@ -8,13 +8,13 @@ readTime: 6
 draft: false
 ---
 
-Ton eau n'est pas verte, mais elle a perdu sa transparence : elle est **trouble**, **laiteuse**, parfois carrément **blanche**. Pas de panique, ce n'est généralement pas grave — mais il faut identifier la bonne cause pour appliquer la bonne solution. Voici les 6 coupables possibles et comment t'en débarrasser.
+Ton eau n'est pas verte, mais elle a perdu sa transparence : elle est **trouble**, **laiteuse**, parfois carrément **blanche**. C'est rarement grave, mais le traitement dépend de la cause, et il y en a 6 possibles. Les voici, avec la solution pour chacune.
 
 ## Eau trouble ou eau verte : quelle différence ?
 
-C'est important de bien distinguer les deux, car le traitement n'est pas le même :
+Les deux ne se traitent pas de la même façon :
 
-- **Eau verte** = des **algues** se sont développées. Direction notre [diagnostic eau verte](/diagnostic/eau-verte).
+- **Eau verte** = des **algues** se sont développées. Direction notre [diagnostic eau verte](/diagnostic/eau-verte/).
 - **Eau trouble / laiteuse / blanche** = des **fines particules en suspension** que la filtration n'arrive pas à capturer. C'est ce qu'on traite ici.
 
 Une eau trouble peut être le **signe avant-coureur** d'une eau verte : mieux vaut agir vite.
@@ -43,13 +43,13 @@ Poussières, pollens, résidus de crème solaire… Trop fins, ils traversent le
 
 Avant de virer franchement au vert, l'eau peut d'abord devenir trouble et terne.
 
-**Solution :** mesure ton chlore. S'il est bas, remonte-le (voir notre [guide du dosage de chlore](/blog/dosage-chlore-piscine-tableau-complet)) ; si l'eau commence à verdir, passe au [diagnostic eau verte](/diagnostic/eau-verte).
+**Solution :** mesure ton chlore. S'il est bas, remonte-le (voir notre [guide du dosage de chlore](/blog/dosage-chlore-piscine-tableau-complet/)) ; si l'eau commence à verdir, passe au [diagnostic eau verte](/diagnostic/eau-verte/).
 
 ### 5. Un pH déséquilibré
 
 Un pH trop élevé favorise le dépôt de calcaire et rend l'eau trouble, tout en réduisant l'efficacité du chlore.
 
-**Solution :** ramène le pH entre 7,2 et 7,4 (notre [guide pour équilibrer le pH](/blog/ph-piscine-comment-equilibrer)).
+**Solution :** ramène le pH entre 7,2 et 7,4 (notre [guide pour équilibrer le pH](/blog/ph-piscine-comment-equilibrer/)).
 
 ### 6. Un traitement choc trop récent
 
@@ -73,9 +73,9 @@ Pour trouver ta cause rapidement, pose-toi ces questions :
 - **Garde un pH stable** entre 7,2 et 7,4.
 - **Maintiens ton chlore** entre 0,5 et 1,5 mg/L.
 - **Nettoie régulièrement** ton filtre et le panier de skimmer.
-- **Note tes paramètres** pour repérer les dérives tôt — c'est le rôle de notre page [Suis ton eau](/suivi).
+- **Note tes paramètres** pour repérer les dérives tôt : c'est le rôle de notre page [Suis ton eau](/suivi/).
 
-## FAQ — eau trouble
+## FAQ : eau trouble
 
 **Mon eau est trouble mais le chlore est bon, pourquoi ?**
 Le plus souvent c'est la filtration (trop courte ou filtre encrassé) ou un pH trop haut. Vérifie ces deux points en premier.
@@ -94,4 +94,4 @@ Oui, si la cause est un manque de chlore. Agis vite pour ne pas en arriver là.
 
 ---
 
-Une eau trouble, c'est presque toujours une histoire de **filtration** et de **pH**. Règle ces deux-là, laisse tourner, et ta transparence revient. Et pour garder une longueur d'avance, [suis tes mesures](/suivi) au fil de la saison. 💧
+Une eau trouble vient presque toujours de la **filtration** ou du **pH** : règle ces deux points et laisse tourner. Pour repérer les dérives avant qu'elles se voient, [suis tes mesures](/suivi/) au fil de la saison. 💧

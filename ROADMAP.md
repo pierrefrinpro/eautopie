@@ -2,7 +2,7 @@
 
 > Vision : EauTopie n'est pas « un calculateur de chlore ». C'est l'assistant
 > complet qui accompagne un particulier sur **tous les cas réels** d'entretien
-> de sa piscine — du dosage quotidien à la remise en route après l'hiver.
+> de sa piscine, du dosage quotidien à la remise en route après l'hiver.
 
 ## ✅ Fait
 
@@ -54,7 +54,7 @@
       (mini-parcours guidés, composant `DiagnosticGuide`).
 - [ ] À venir si besoin : dépôts/tartre, niveau d'eau, etc.
 
-## ✍️ Blog — lot 2 (à valider/écrire)
+## ✍️ Blog, lot 2 (à valider/écrire)
 
 Idées proposées : hivernage, piscine au sel, TAC/alcalinité, anti-algues,
 floculant, eau dure/calcaire, tester son eau, après l'orage, nettoyer le filtre à
@@ -64,7 +64,7 @@ sable, taches sur le liner.
 
 - [ ] Créer la **balise GA4** dans GTM (ID `G-XXXXXXXXXX`) et publier le conteneur.
 
-## ⭐ Premium (~4,99 €/mois) — à construire
+## ⭐ Premium (~4,99 €/mois), à construire
 
 - [ ] **Comptes + backend** (sauvegarde au-delà du LocalStorage, synchro multi-appareils).
 - [ ] **Paiement Stripe**.

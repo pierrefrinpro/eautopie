@@ -1,0 +1,30 @@
+---
+// Consignes de manipulation affichées sous chaque calculateur.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<aside
+  class={`rounded-2xl border border-orange-attention/40 bg-orange-attention/10 p-5 text-sm leading-relaxed text-noir-eau ${className}`}
+  aria-labelledby="securite-titre"
+>
+  <h2 id="securite-titre" class="font-display text-lg font-semibold">
+    Avant de verser un produit
+  </h2>
+  <ul class="mt-2 list-disc space-y-1 pl-5">
+    <li>
+      Ne mélange jamais deux produits entre eux, surtout du chlore et du pH−
+      (acide) : le mélange dégage un gaz toxique.
+    </li>
+    <li>
+      Verse le produit dans l’eau, jamais l’eau sur le produit, filtration en
+      marche et personne dans le bassin.
+    </li>
+    <li>Porte des gants et des lunettes, et range les produits séparément, au sec.</li>
+    <li>
+      La dose affichée est indicative : la notice de ton produit fait foi.
+    </li>
+  </ul>
+</aside>

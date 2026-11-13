@@ -19,8 +19,8 @@
           >mesure d'audience</strong
         > (Google Analytics) pour améliorer le site. Tu peux accepter ou refuser.
         <a
-          href="/politique-confidentialite"
-          class="font-medium text-bleu-eau underline">En savoir plus</a
+          href="/politique-confidentialite/"
+          class="font-medium text-bleu-texte underline">En savoir plus</a
         >.
       </p>
       <div class="flex shrink-0 gap-2">
@@ -34,7 +34,7 @@
         <button
           type="button"
           data-cookie-accept
-          class="rounded-xl bg-bleu-eau px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+          class="rounded-xl bg-bleu-texte px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
         >
           Accepter
         </button>
@@ -45,8 +45,10 @@
 
 <script>
   import { GTM_ID } from '../consts';
-
-  const KEY = 'eautopie_cookie_consent';
+  import {
+    enregistrerConsentement,
+    lireConsentement,
+  } from '../lib/consentement';
 
   function loadGTM() {
     if (!GTM_ID || (window as any).__gtmLoaded) return;
@@ -63,21 +65,6 @@
     })(window, document, 'script', 'dataLayer', GTM_ID);
   }
 
-  function getConsent(): string | null {
-    try {
-      return window.localStorage.getItem(KEY);
-    } catch {
-      return null;
-    }
-  }
-  function setConsent(v: string) {
-    try {
-      window.localStorage.setItem(KEY, v);
-    } catch {
-      /* silencieux */
-    }
-  }
-
   function initCookies() {
     const banner = document.getElementById('cookie-banner');
     const show = () => {
@@ -87,21 +74,22 @@
       if (banner) banner.style.display = 'none';
     };
 
-    const consent = getConsent();
+    // Choix valable 6 mois ; au-delà (ou sans choix), le bandeau revient.
+    const consent = lireConsentement();
     if (consent === 'granted') loadGTM();
     else if (consent !== 'denied') show();
 
     banner
       ?.querySelector('[data-cookie-accept]')
       ?.addEventListener('click', () => {
-        setConsent('granted');
+        enregistrerConsentement('granted');
         loadGTM();
         hide();
       });
     banner
       ?.querySelector('[data-cookie-refuse]')
       ?.addEventListener('click', () => {
-        setConsent('denied');
+        enregistrerConsentement('denied');
         hide();
       });
 

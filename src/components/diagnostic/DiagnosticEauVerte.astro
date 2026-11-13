@@ -18,8 +18,8 @@
     genererPlanEauVerte,
     genererPlanning5Jours,
     resumeDiagnostic,
-  } from '../../lib/diagnostic';
-  import type { ReponsesEauVerte } from '../../lib/diagnostic';
+  } from '../../lib/diagnostic/';
+  import type { ReponsesEauVerte } from '../../lib/diagnostic/';
   import {
     getVolume,
     setVolume,
@@ -100,7 +100,7 @@
                 <span class="block font-medium text-noir-eau">${escape(o.label)}</span>
                 ${o.detail ? `<span class="mt-0.5 block text-sm text-gris-onde">${escape(o.detail)}</span>` : ''}
               </span>
-              <span class="text-bleu-eau opacity-0 transition group-hover:opacity-100" aria-hidden="true">→</span>
+              <span class="text-bleu-texte opacity-0 transition group-hover:opacity-100" aria-hidden="true">→</span>
             </button>`
             )
             .join('')}
@@ -123,7 +123,7 @@
       app!.innerHTML = `
         ${progress(N + 1, N + 1)}
         <h2 class="font-display text-2xl font-semibold text-noir-eau">Quel est le volume de ta piscine ?</h2>
-        <p class="mt-2 text-sm text-gris-onde">On s'en sert pour calculer tes doses exactes (chlore choc, anti-algues…).</p>
+        <p class="mt-2 text-sm text-gris-onde">On s'en sert pour calculer tes doses (chlore choc, anti-algues…).</p>
         <div class="relative mt-5">
           <input id="diag-volume" type="number" inputmode="decimal" step="0.1" min="0"
             value="${vol ?? ''}" placeholder="Ex: 25"
@@ -132,7 +132,7 @@
         </div>
         <p data-diag-erreur hidden class="mt-3 rounded-xl bg-rouge-alerte/10 px-4 py-3 text-sm font-medium text-rouge-alerte"></p>
         <button type="button" data-voir
-          class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bleu-eau px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98]">
+          class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bleu-texte px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98]">
           Voir mon plan d'action 💧
         </button>
         ${boutonRetour}
@@ -174,7 +174,7 @@
       const planningHtml = `
         <div class="mt-8">
           <h3 class="font-display text-xl font-semibold text-noir-eau">📅 Ton planning des 5 prochains jours</h3>
-          <p class="mt-1 text-sm text-gris-onde">Calculé à partir de ton diagnostic. Suis le rythme, l’eau fait le reste.</p>
+          <p class="mt-1 text-sm text-gris-onde">Calculé à partir de ton diagnostic, avec les gestes de chaque jour.</p>
           <ol class="mt-4 space-y-3">
             ${planning
               .map((j) => {
@@ -201,7 +201,7 @@
                       <span class="text-lg font-bold text-bleu-profond">${d.getDate()}</span>
                     </div>
                     <div>
-                      <p class="text-xs font-medium uppercase tracking-wide text-bleu-eau">${label} · ${dateStr}</p>
+                      <p class="text-xs font-medium uppercase tracking-wide text-bleu-texte">${label} · ${dateStr}</p>
                       <p class="font-semibold text-noir-eau">${escape(j.phase)}</p>
                     </div>
                   </div>
@@ -209,7 +209,7 @@
                     ${j.taches
                       .map(
                         (t) =>
-                          `<li class="flex gap-2 text-sm text-noir-eau/80"><span class="text-bleu-eau" aria-hidden="true">•</span><span>${escape(t)}</span></li>`
+                          `<li class="flex gap-2 text-sm text-noir-eau/80"><span class="text-bleu-texte" aria-hidden="true">•</span><span>${escape(t)}</span></li>`
                       )
                       .join('')}
                   </ul>
@@ -233,7 +233,7 @@
             <span class="inline-flex items-center gap-1.5 rounded-full bg-soleil px-3 py-1 text-xs font-bold uppercase text-noir-eau">⭐ Premium</span>
             <h3 class="mt-3 font-display text-2xl font-semibold">Ton planning d'entretien sur-mesure est prêt</h3>
             <p class="mt-2 text-sm text-bleu-ciel">
-              À partir de ton diagnostic, on a préparé ta routine <strong class="text-white">quotidienne et hebdomadaire</strong> — avec des rappels pour ne plus jamais oublier un geste.
+              À partir de ton diagnostic, on a préparé ta routine <strong class="text-white">quotidienne et hebdomadaire</strong>, avec des rappels pour ne pas oublier un geste.
             </p>
             <div class="relative mt-5">
               <div class="space-y-2 blur-[3px]" aria-hidden="true">
@@ -248,8 +248,8 @@
                 <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white text-2xl shadow-lg" aria-hidden="true">🔒</span>
               </div>
             </div>
-            <a href="/premium?source=diagnostic-eau-verte" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-soleil px-7 py-3.5 text-base font-semibold text-noir-eau shadow-sm transition hover:brightness-105 active:scale-[0.98]">
-              Débloquer mon planning — 4,99 €/mois
+            <a href="/premium/?source=diagnostic-eau-verte" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-soleil px-7 py-3.5 text-base font-semibold text-noir-eau shadow-sm transition hover:brightness-105 active:scale-[0.98]">
+              Débloquer mon planning (4,99 €/mois)
             </a>
             <p class="mt-3 text-center text-xs text-bleu-ciel">Sans engagement · Annulable à tout moment</p>
           </div>
@@ -264,7 +264,7 @@
 
         <div class="mt-5 mb-4 flex items-center justify-between text-sm">
           <span class="font-medium text-noir-eau">Ta progression</span>
-          <span data-diag-compteur class="font-semibold text-bleu-eau">${faites} / ${plan.length} étapes</span>
+          <span data-diag-compteur class="font-semibold text-bleu-texte">${faites} / ${plan.length} étapes</span>
         </div>
 
         <ol class="space-y-3">
@@ -282,17 +282,17 @@
                 <div class="flex-1">
                   <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                     <span class="font-semibold text-noir-eau" data-titre>${escape(e.titre)}</span>
-                    ${e.cle ? '<span class="rounded-full bg-bleu-eau px-2 py-0.5 text-[11px] font-semibold uppercase text-white">clé</span>' : ''}
+                    ${e.cle ? '<span class="rounded-full bg-bleu-texte px-2 py-0.5 text-[11px] font-semibold uppercase text-white">clé</span>' : ''}
                     ${e.duree ? `<span class="text-xs text-gris-onde">⏱ ${escape(e.duree)}</span>` : ''}
                   </div>
                   <p class="mt-1.5 text-sm text-noir-eau/80">${escape(e.comment)}</p>
                   <details class="mt-2">
-                    <summary class="cursor-pointer text-xs font-medium text-bleu-eau">Pourquoi cette étape ?</summary>
+                    <summary class="cursor-pointer text-xs font-medium text-bleu-texte">Pourquoi cette étape ?</summary>
                     <p class="mt-1.5 text-sm text-gris-onde">${escape(e.pourquoi)}</p>
                   </details>
                   ${
                     e.lien
-                      ? `<a href="${e.lien.href}" class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-eau hover:text-bleu-profond">${escape(e.lien.label)} <span aria-hidden="true">→</span></a>`
+                      ? `<a href="${e.lien.href}" class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-texte hover:text-bleu-profond">${escape(e.lien.label)} <span aria-hidden="true">→</span></a>`
                       : ''
                   }
                 </div>
@@ -304,15 +304,15 @@
 
         <div class="mt-6 space-y-3">
           <button type="button" data-sauver-planning
-            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bleu-eau px-5 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98]">
+            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bleu-texte px-5 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98]">
             ${dejaSauve ? 'Planning sauvegardé ✓' : '💾 Sauvegarder ce planning'}
           </button>
           <p data-planning-note class="text-center text-sm font-medium text-vert-ok" style="display:${dejaSauve ? 'block' : 'none'}">
-            Sauvegardé ✓ — retrouve-le dans «&nbsp;<a href="/suivi" class="text-bleu-eau underline">Suis ton eau</a>&nbsp;».
+            Sauvegardé ✓. Retrouve-le dans «&nbsp;<a href="/suivi/" class="text-bleu-texte underline">Suis ton eau</a>&nbsp;».
             <button type="button" data-retirer-planning class="ml-1 font-normal text-gris-onde underline hover:text-rouge-alerte">Retirer</button>
           </p>
           <div class="flex flex-col gap-3 sm:flex-row">
-            <a href="/calculateur/chlore"
+            <a href="/calculateur/chlore/"
               class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-medium text-bleu-profond ring-1 ring-bleu-ciel transition hover:bg-bleu-pale">
               Calculer mon chlore d'entretien
             </a>

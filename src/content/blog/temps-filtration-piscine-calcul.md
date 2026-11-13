@@ -1,6 +1,6 @@
 ---
-title: 'Combien d’heures filtrer sa piscine par jour ? Le guide complet'
-description: 'Quelle durée de filtration pour ta piscine ? La règle simple température ÷ 2, un tableau par température, et comment adapter selon la chaleur et la fréquentation.'
+title: 'Combien d’heures filtrer sa piscine par jour ?'
+description: 'Quelle durée de filtration pour ta piscine ? La règle température ÷ 2, un tableau par température, et comment adapter selon la chaleur et la fréquentation.'
 pubDate: 2026-06-05
 category: 'equipement'
 tags: ['filtration', 'pompe', 'entretien']
@@ -8,11 +8,11 @@ readTime: 5
 draft: false
 ---
 
-La filtration, c'est **80 % de la propreté** de ton eau. Pourtant, on se demande tous : faut-il la faire tourner 4 h ? 12 h ? toute la journée ? La réponse tient dans une règle toute simple, qu'on t'explique ici.
+La filtration fait **80 % de la propreté** de ton eau. Reste à savoir s'il faut la faire tourner 4 h, 12 h ou toute la journée. Une règle simple, basée sur la température de l'eau, donne la réponse.
 
 ## La règle de base : température ÷ 2
 
-Le repère le plus connu et le plus fiable : **filtre chaque jour un nombre d'heures égal à la moitié de la température de l'eau** (en °C).
+Le repère le plus connu : **filtre chaque jour un nombre d'heures égal à la moitié de la température de l'eau** (en °C).
 
 - Eau à 20 °C → **10 heures** de filtration
 - Eau à 26 °C → **13 heures**
@@ -56,7 +56,7 @@ Tu peux la réduire un peu par temps frais et sans baignade.
 - **Filtrer seulement la nuit** (heures creuses) : l'eau n'est pas nettoyée quand elle en a le plus besoin.
 - **Oublier de nettoyer le filtre** : un filtre encrassé filtre mal, même branché 15 h.
 
-## FAQ — temps de filtration
+## FAQ : temps de filtration
 
 **Combien d'heures filtrer une piscine en été ?**
 Applique température ÷ 2. À 28 °C, compte environ 14 h par jour.
@@ -68,8 +68,8 @@ C'est conseillé au-delà de 30 °C, ou pendant un traitement (eau verte, choc).
 Non : l'eau a surtout besoin d'être filtrée le jour. La nuit, c'est un bonus.
 
 **Une eau trouble malgré la filtration ?**
-Vérifie la **durée** et l'**état du filtre**. Souvent c'est l'une des deux — voir notre article sur l'[eau trouble](/blog/eau-trouble-piscine-causes-solutions).
+Vérifie la **durée** et l'**état du filtre**. Souvent c'est l'une des deux. Voir notre article sur l'[eau trouble](/blog/eau-trouble-piscine-causes-solutions/).
 
 ---
 
-Retiens la règle d'or : **température ÷ 2**, en journée, et plus longtemps quand il fait chaud. Une bonne filtration, c'est moins de produits et une eau toujours claire. 💧
+À retenir : **température ÷ 2**, en journée, et plus longtemps quand il fait chaud. Une eau bien filtrée consomme moins de produits. 💧

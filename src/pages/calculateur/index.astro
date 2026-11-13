@@ -7,60 +7,60 @@ const outils = [
     emoji: '🧮',
     nom: 'Chlore d’entretien',
     desc: 'La dose exacte de chlore granulé selon ton volume et ta mesure.',
-    href: '/calculateur/chlore',
+    href: '/calculateur/chlore/',
   },
   {
     emoji: '💥',
     nom: 'Chlore choc',
     desc: 'Le traitement concentré pour rattraper une eau verte ou troublée.',
-    href: '/calculateur/chlore-choc',
+    href: '/calculateur/chlore-choc/',
   },
   {
     emoji: '⚗️',
     nom: 'pH+ / pH−',
-    desc: 'Rééquilibrer le pH de ton eau vers la zone idéale (7,2–7,4).',
-    href: '/calculateur/ph',
+    desc: 'Rééquilibrer le pH de ton eau vers la zone idéale (7,2 à 7,4).',
+    href: '/calculateur/ph/',
   },
   {
     emoji: '🧪',
     nom: 'Stabilisant',
     desc: 'Le bon taux d’acide cyanurique pour protéger ton chlore du soleil.',
-    href: '/calculateur/stabilisant',
+    href: '/calculateur/stabilisant/',
   },
   {
     emoji: '🧂',
     nom: 'Sel pour électrolyseur',
     desc: 'La quantité de sel à ajouter pour ta piscine au sel.',
-    href: '/calculateur/sel',
+    href: '/calculateur/sel/',
   },
   {
     emoji: '🦠',
     nom: 'Anti-algues',
     desc: 'La dose d’anti-algues en préventif ou en curatif.',
-    href: '/calculateur/anti-algues',
+    href: '/calculateur/anti-algues/',
   },
   {
     emoji: '💧',
     nom: 'Floculant',
     desc: 'Pour clarifier une eau qui reste laiteuse (filtres à sable).',
-    href: '/calculateur/floculant',
+    href: '/calculateur/floculant/',
   },
   {
     emoji: '⚗️',
     nom: 'TAC (alcalinité)',
     desc: 'Le bicarbonate à ajouter pour stabiliser ton pH.',
-    href: '/calculateur/tac',
+    href: '/calculateur/tac/',
   },
 ];
 
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Calculateurs', url: '/calculateur' },
+  { name: 'Calculateurs', url: '/calculateur/' },
 ];
 ---
 
 <BaseLayout
-  title="Calculateurs piscine — doses chlore, pH, sel | EauTopie"
+  title="Calculateurs piscine : doses chlore, pH, sel | EauTopie"
   description="Tous les calculateurs EauTopie pour doser ta piscine au plus juste : chlore d’entretien, chlore choc, pH, stabilisant, sel. Gratuits et sans inscription."
 >
   <section class="mx-auto max-w-4xl px-6 py-10 sm:py-14">
@@ -68,8 +68,8 @@ const fil = [
 
     <h1 class="text-3xl text-noir-eau sm:text-4xl">Les calculateurs</h1>
     <p class="mt-3 max-w-xl text-gris-onde">
-      Choisis ton calcul : on te donne la dose précise pour <em>ta</em> piscine,
-      à la goutte près.
+      Choisis ton calcul : on te donne la dose pour <em>ta</em> piscine,
+      d’après son volume et ta mesure.
     </p>
 
     <div class="mt-8 grid gap-4 sm:grid-cols-2">
@@ -86,7 +86,7 @@ const fil = [
               <div class="flex-1">
                 <h2 class="font-semibold text-noir-eau">{o.nom}</h2>
                 <p class="mt-1 text-sm text-gris-onde">{o.desc}</p>
-                <span class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-eau">
+                <span class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-bleu-texte">
                   Calculer
                   <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">
                     →

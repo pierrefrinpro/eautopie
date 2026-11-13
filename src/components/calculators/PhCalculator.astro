@@ -103,6 +103,7 @@ import Button from '../ui/Button.astro';
 </div>
 
 <script>
+  import { mesurer } from '../../lib/mesure';
   import { calculerCorrectionPh } from '../../lib/calculations';
   import { getVolume, setVolume } from '../../lib/storage';
 
@@ -175,6 +176,7 @@ import Button from '../ui/Button.astro';
       }
 
       resultat.hidden = false;
+      mesurer('calcul_effectue', { calculateur: 'ph' });
       resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   }

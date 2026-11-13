@@ -4,7 +4,7 @@ import Button from '../components/ui/Button.astro';
 ---
 
 <BaseLayout
-  title="Suis ton eau — historique de tes mesures | EauTopie"
+  title="Suis ton eau : historique de tes mesures | EauTopie"
   description="Retrouve toutes les mesures que tu as enregistrées : chlore, volume, doses. Suis l’évolution de ton eau dans le temps."
 >
   <section class="mx-auto max-w-2xl px-6 py-12 sm:py-16">
@@ -24,8 +24,8 @@ import Button from '../components/ui/Button.astro';
       >
         <span class="shrink-0 text-sm" aria-hidden="true">🔒</span>
         <p>
-          Tes mesures sont enregistrées <strong>sur cet appareil uniquement</strong>
-          — pas de compte, pas de cloud. La sauvegarde sécurisée sur tous tes
+          Tes mesures sont enregistrées <strong>sur cet appareil uniquement</strong>,
+          sans compte ni cloud. La sauvegarde sécurisée sur tous tes
           appareils arrive avec le Premium.
         </p>
       </div>
@@ -66,7 +66,7 @@ import Button from '../components/ui/Button.astro';
     <div class="mt-8 rounded-3xl bg-gradient-to-br from-bleu-profond to-bleu-eau p-0.5 shadow-md">
       <div class="rounded-[1.4rem] bg-bleu-profond p-6 text-white">
         <span class="inline-flex items-center gap-1.5 rounded-full bg-soleil px-3 py-1 text-xs font-bold uppercase text-noir-eau">⭐ Premium</span>
-        <h3 class="mt-3 font-display text-2xl font-semibold">Va plus loin avec le suivi avancé</h3>
+        <h2 class="mt-3 font-display text-2xl font-semibold">Le suivi avancé arrive avec Premium</h2>
         <p class="mt-2 text-sm text-bleu-ciel">
           Graphiques de tes tendances (chlore, pH…), multi-piscines, rappels intelligents et sauvegarde sécurisée sur tous tes appareils.
         </p>
@@ -83,8 +83,8 @@ import Button from '../components/ui/Button.astro';
             <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white text-2xl shadow-lg" aria-hidden="true">🔒</span>
           </div>
         </div>
-        <a href="/premium?source=suivi" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-soleil px-7 py-3.5 text-base font-semibold text-noir-eau shadow-sm transition hover:brightness-105 active:scale-[0.98]">
-          Découvrir Premium — 4,99 €/mois
+        <a href="/premium/?source=suivi" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-soleil px-7 py-3.5 text-base font-semibold text-noir-eau shadow-sm transition hover:brightness-105 active:scale-[0.98]">
+          Découvrir Premium (4,99 €/mois)
         </a>
       </div>
     </div>`;
@@ -104,14 +104,14 @@ import Button from '../components/ui/Button.astro';
           ? 'Traitement eau verte'
           : 'Plan d’entretien';
       return `
-        <a href="/diagnostic/eau-verte" class="mb-6 flex items-center gap-4 rounded-2xl border border-bleu-ciel bg-bleu-pale/30 p-4 transition hover:bg-bleu-pale/60">
+        <a href="/diagnostic/eau-verte/" class="mb-6 flex items-center gap-4 rounded-2xl border border-bleu-ciel bg-bleu-pale/30 p-4 transition hover:bg-bleu-pale/60">
           <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-2xl" aria-hidden="true">📋</div>
           <div class="flex-1">
-            <p class="text-xs font-medium uppercase tracking-wide text-bleu-eau">Ton planning en cours</p>
+            <p class="text-xs font-medium uppercase tracking-wide text-bleu-texte">Ton planning en cours</p>
             <p class="font-semibold text-noir-eau">${libelle}</p>
             ${dateStr ? `<p class="text-sm text-gris-onde">Sauvegardé le ${dateStr}</p>` : ''}
           </div>
-          <span class="text-bleu-eau" aria-hidden="true">→</span>
+          <span class="text-bleu-texte" aria-hidden="true">→</span>
         </a>`;
     }
 
@@ -129,7 +129,7 @@ import Button from '../components/ui/Button.astro';
             <p class="mx-auto mt-2 max-w-sm text-gris-onde">
               Tu n'as pas encore sauvegardé de mesure. Lance un calcul et clique sur « Sauver cette mesure ».
             </p>
-            <a href="/calculateur/chlore" class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-eau px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-bleu-profond">
+            <a href="/calculateur/chlore/" class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-texte px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-bleu-profond">
               Faire ma première mesure
             </a>
           </div>
@@ -141,7 +141,7 @@ import Button from '../components/ui/Button.astro';
         ${planningCard}
         <div class="mb-4 flex items-center justify-between">
           <p class="text-sm text-gris-onde">${mesures.length} mesure${mesures.length > 1 ? 's' : ''} enregistrée${mesures.length > 1 ? 's' : ''}</p>
-          <a href="/calculateur/chlore" class="text-sm font-semibold text-bleu-eau hover:text-bleu-profond">+ Nouvelle mesure</a>
+          <a href="/calculateur/chlore/" class="text-sm font-semibold text-bleu-texte hover:text-bleu-profond">+ Nouvelle mesure</a>
         </div>
         <ul class="space-y-3">
           ${mesures

@@ -1,6 +1,6 @@
 ---
-title: 'Stabilisant piscine trop élevé : reconnaître et résoudre le problème'
-description: 'Ton chlore semble inefficace malgré tes ajouts ? Le stabilisant (acide cyanurique) est peut-être trop élevé. Symptômes, taux à viser et la seule vraie solution.'
+title: 'Stabilisant piscine trop élevé : symptômes et solution'
+description: 'Ton chlore semble inefficace malgré tes ajouts ? Le stabilisant (acide cyanurique) est peut-être trop élevé. Symptômes, taux à viser et la solution fiable.'
 pubDate: 2026-06-05
 category: 'entretien'
 tags: ['stabilisant', 'acide cyanurique', 'chlore bloqué']
@@ -8,11 +8,11 @@ readTime: 6
 draft: false
 ---
 
-Tu ajoutes du chlore, ta bandelette en affiche un taux correct… et pourtant l'eau verdit ou reste fragile ? Il y a un suspect que peu de gens surveillent : le **stabilisant**. Quand il monte trop, il « bloque » ton chlore. Voici comment reconnaître le problème et le résoudre.
+Tu ajoutes du chlore, ta bandelette affiche un taux correct, et pourtant l'eau verdit ou reste fragile. Le suspect que peu de gens surveillent : le **stabilisant**. Quand il monte trop, il « bloque » ton chlore.
 
 ## C'est quoi le stabilisant (acide cyanurique) ?
 
-Le stabilisant, ou **acide cyanurique**, protège le chlore des **UV du soleil**. Sans lui, ton chlore se dégraderait en quelques heures par grand beau temps. Il est donc utile… mais il a un défaut majeur : **il ne s'évapore pas**. À chaque galet ou granulé de chlore *stabilisé* que tu ajoutes, tu en remets un peu — et il s'accumule, saison après saison.
+Le stabilisant, ou **acide cyanurique**, protège le chlore des **UV du soleil**. Sans lui, ton chlore se dégraderait en quelques heures par grand beau temps. Il est donc utile… mais il a un défaut majeur : **il ne s'évapore pas**. À chaque galet ou granulé de chlore *stabilisé* que tu ajoutes, tu en remets un peu, et il s'accumule, saison après saison.
 
 ## Quel taux de stabilisant viser ?
 
@@ -30,11 +30,11 @@ C'est ce qu'on appelle le **« chlore lock »** (chlore bloqué) : il est là, m
 
 ## Pourquoi un excès de stabilisant bloque le chlore
 
-Trop de stabilisant « emprisonne » les molécules de chlore et les empêche de désinfecter efficacement. Résultat : tu peux avoir 1 mg/L de chlore affiché et une eau quand même vulnérable aux algues. C'est l'une des causes les plus sournoises d'une [eau qui verdit](/diagnostic/eau-verte) malgré un entretien apparemment correct.
+Trop de stabilisant « emprisonne » les molécules de chlore et les empêche de désinfecter efficacement. Résultat : tu peux avoir 1 mg/L de chlore affiché et une eau quand même vulnérable aux algues. C'est l'une des causes les plus sournoises d'une [eau qui verdit](/diagnostic/eau-verte/) malgré un entretien apparemment correct.
 
 ## Comment faire baisser le stabilisant ?
 
-Soyons clairs : **il n'existe pas de produit miracle** pour faire baisser le stabilisant. La seule méthode fiable est de **renouveler une partie de l'eau** :
+**Aucun produit ne fait baisser le stabilisant de façon fiable.** La seule méthode qui marche est de **renouveler une partie de l'eau** :
 
 1. Mesure ton taux de stabilisant.
 2. **Vidange partiellement** ton bassin (par exemple 1/3 de l'eau) et **complète avec de l'eau neuve**.
@@ -49,7 +49,7 @@ Sur une petite piscine hors-sol, c'est rapide ; sur un grand bassin, on étale.
 - **Surveille** ton stabilisant quelques fois par saison.
 - Ne fais pas du « tout galet stabilisé » toute l'année sans contrôle.
 
-## FAQ — stabilisant piscine
+## FAQ : stabilisant piscine
 
 **Quel est le bon taux de stabilisant ?**
 Entre 30 et 50 mg/L. On évite de dépasser 75 mg/L.
@@ -68,4 +68,4 @@ Beaucoup moins : sans soleil direct, le chlore est peu dégradé par les UV.
 
 ---
 
-Si ton chlore semble « ne servir à rien », pense au stabilisant **avant** de surdoser. Mesure, renouvelle un peu d'eau si besoin, et garde un œil sur tes paramètres avec notre page [Suis ton eau](/suivi). Pour le dosage du chlore, le [calculateur](/calculateur/chlore) reste ton allié. 💧
+Si ton chlore semble « ne servir à rien », pense au stabilisant **avant** de surdoser. Mesure, renouvelle un peu d'eau si besoin, et garde un œil sur tes paramètres avec notre page [Suis ton eau](/suivi/). Pour doser le chlore, utilise le [calculateur](/calculateur/chlore/). 💧

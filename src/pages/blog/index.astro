@@ -30,21 +30,21 @@ const fmtDate = (d: Date) =>
 
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Blog', url: '/blog' },
+  { name: 'Blog', url: '/blog/' },
 ];
 ---
 
 <BaseLayout
-  title="Le blog EauTopie — guides et conseils d’entretien de piscine"
-  description="Guides, astuces et conseils pour entretenir ta piscine sans prise de tête : eau verte, chlore, pH, équipement… du débutant total à l’eau cristalline."
+  title="Blog : conseils d’entretien de piscine | EauTopie"
+  description="Guides et conseils pour entretenir ta piscine : eau verte, chlore, pH, équipement, des bases pour débuter jusqu’aux problèmes d’eau courants."
 >
   <section class="mx-auto max-w-3xl px-6 py-10 sm:py-14">
     <Breadcrumbs items={fil} class="mb-6" />
 
     <h1 class="text-3xl text-noir-eau sm:text-4xl">Le blog</h1>
     <p class="mt-3 max-w-xl text-gris-onde">
-      Guides, astuces et conseils pour entretenir ta piscine comme un pro — du
-      débutant total à l’eau cristalline.
+      Guides et conseils pour entretenir ta piscine, classés par thème :
+      entretien, problèmes d’eau, débutants, équipement.
     </p>
 
     {
@@ -61,13 +61,13 @@ const fil = [
           </p>
           <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href="/calculateur"
-              class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+              href="/calculateur/"
+              class="inline-flex items-center justify-center rounded-xl bg-bleu-texte px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
             >
               Les calculateurs
             </a>
             <a
-              href="/diagnostic"
+              href="/diagnostic/"
               class="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-medium text-bleu-profond ring-1 ring-bleu-ciel transition hover:bg-bleu-pale"
             >
               Voir les diagnostics
@@ -84,7 +84,7 @@ const fil = [
               <div class="mt-5 space-y-4">
                 {groupe.items.map((a) => (
                   <a
-                    href={`/blog/${a.slug}`}
+                    href={`/blog/${a.slug}/`}
                     class="group block rounded-2xl border border-bleu-pale bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                   >
                     <h3 class="text-lg font-semibold text-noir-eau group-hover:text-bleu-profond">

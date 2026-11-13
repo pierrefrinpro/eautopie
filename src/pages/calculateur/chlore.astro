@@ -4,12 +4,13 @@ import ChloreCalculator from '../../components/calculators/ChloreCalculator.astr
 import PremiumButton from '../../components/ui/PremiumButton.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Faq from '../../components/Faq.astro';
+import SecuriteProduits from '../../components/SecuriteProduits.astro';
 
 const faqItems = [
   {
     question: 'Combien de chlore mettre dans une piscine ?',
     answer:
-      'Pour un entretien normal, vise un taux de chlore libre entre 0,5 et 1,5 mg/L dans l’eau. La quantité exacte de chlore granulé à ajouter dépend de ton volume et de ta mesure actuelle — utilise le calculateur ci-dessus pour obtenir la dose précise.',
+      'Pour un entretien normal, vise un taux de chlore libre entre 0,5 et 1,5 mg/L dans l’eau. La quantité exacte de chlore granulé à ajouter dépend de ton volume et de ta mesure actuelle. Le calculateur ci-dessus te donne la dose précise.',
   },
   {
     question: 'Quelle est la différence entre chlore d’entretien et chlore choc ?',
@@ -40,8 +41,8 @@ const faqItems = [
 
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Calculateurs', url: '/calculateur' },
-  { name: 'Chlore d’entretien', url: '/calculateur/chlore' },
+  { name: 'Calculateurs', url: '/calculateur/' },
+  { name: 'Chlore d’entretien', url: '/calculateur/chlore/' },
 ];
 
 const SITE = 'https://eautopie.fr';
@@ -55,7 +56,7 @@ const schemas = [
       'Calcule la dose exacte de chlore granulé à ajouter dans ta piscine selon son volume et ta mesure actuelle.',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
-    url: `${SITE}/calculateur/chlore`,
+    url: `${SITE}/calculateur/chlore/`,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -73,7 +74,7 @@ const schemas = [
 ---
 
 <BaseLayout
-  title="Calculateur de chlore d’entretien — EauTopie"
+  title="Calculateur de chlore d’entretien | EauTopie"
   description="Calcule la dose exacte de chlore granulé pour ta piscine selon ton volume et ta mesure. Gratuit, précis, en 30 secondes."
   schemas={schemas}
 >
@@ -101,6 +102,7 @@ const schemas = [
       indications de ton produit et re-teste ton eau après quelques heures.
     </p>
 
+    <SecuriteProduits class="mx-auto mt-10 max-w-2xl" />
     <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
 
     <div

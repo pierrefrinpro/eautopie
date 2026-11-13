@@ -3,14 +3,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PhCalculator from '../../components/calculators/PhCalculator.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Faq from '../../components/Faq.astro';
+import SecuriteProduits from '../../components/SecuriteProduits.astro';
 import PremiumButton from '../../components/ui/PremiumButton.astro';
 
 const SITE = 'https://eautopie.fr';
 
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Calculateurs', url: '/calculateur' },
-  { name: 'pH+ / pH−', url: '/calculateur/ph' },
+  { name: 'Calculateurs', url: '/calculateur/' },
+  { name: 'pH+ / pH−', url: '/calculateur/ph/' },
 ];
 
 const schemas = [
@@ -19,10 +20,10 @@ const schemas = [
     '@type': 'SoftwareApplication',
     name: 'Calculateur de pH (pH+ / pH−)',
     description:
-      'Calcule la dose de pH+ ou pH− pour ramener le pH de ta piscine dans la zone idéale (7,2–7,4), selon ton volume et ta mesure.',
+      'Calcule la dose de pH+ ou pH− pour ramener le pH de ta piscine dans la zone idéale (7,2 à 7,4), selon ton volume et ta mesure.',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
-    url: `${SITE}/calculateur/ph`,
+    url: `${SITE}/calculateur/ph/`,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -78,6 +79,7 @@ const faqItems = [
       progressivement et re-teste.
     </p>
 
+    <SecuriteProduits class="mx-auto mt-10 max-w-2xl" />
     <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
 
     <div
@@ -91,8 +93,8 @@ const faqItems = [
       </p>
       <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a
-          href="/blog/ph-piscine-comment-equilibrer"
-          class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+          href="/blog/ph-piscine-comment-equilibrer/"
+          class="inline-flex items-center justify-center rounded-xl bg-bleu-texte px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
         >
           Lire le guide du pH
         </a>

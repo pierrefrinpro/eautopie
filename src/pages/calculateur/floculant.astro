@@ -3,13 +3,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import MiniCalc from '../../components/calculators/MiniCalc.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Faq from '../../components/Faq.astro';
+import SecuriteProduits from '../../components/SecuriteProduits.astro';
 import PremiumButton from '../../components/ui/PremiumButton.astro';
 
 const SITE = 'https://eautopie.fr';
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Calculateurs', url: '/calculateur' },
-  { name: 'Floculant', url: '/calculateur/floculant' },
+  { name: 'Calculateurs', url: '/calculateur/' },
+  { name: 'Floculant', url: '/calculateur/floculant/' },
 ];
 const schemas = [
   {
@@ -20,7 +21,7 @@ const schemas = [
       'Calcule la dose de floculant liquide à ajouter selon ton volume (filtres à sable).',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
-    url: `${SITE}/calculateur/floculant`,
+    url: `${SITE}/calculateur/floculant/`,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -50,7 +51,7 @@ const faqItems = [
 
 <BaseLayout
   title="Calculateur de floculant piscine (dose par m³) | EauTopie"
-  description="Quelle dose de floculant pour clarifier ta piscine ? Calcule la quantité selon ton volume (filtres à sable). Gratuit."
+  description="Quelle dose de floculant pour clarifier ta piscine ? Calcule la quantité selon ton volume (filtres à sable). Gratuit et sans inscription."
   schemas={schemas}
 >
   <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
@@ -69,9 +70,10 @@ const faqItems = [
     <MiniCalc kind="floculant" champs={champs} note={note} />
 
     <p class="mx-auto mt-6 max-w-xl text-center text-xs text-gris-onde">
-      Estimation indicative. Filtres à sable uniquement — vérifie ton produit.
+      Estimation indicative. Filtres à sable uniquement. Vérifie ton produit.
     </p>
 
+    <SecuriteProduits class="mx-auto mt-10 max-w-2xl" />
     <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
 
     <div class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center">
@@ -79,7 +81,7 @@ const faqItems = [
         Eau trouble : trouve la cause
       </p>
       <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a href="/blog/eau-trouble-piscine-causes-solutions" class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond">
+        <a href="/blog/eau-trouble-piscine-causes-solutions/" class="inline-flex items-center justify-center rounded-xl bg-bleu-texte px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond">
           Lire le guide eau trouble
         </a>
         <PremiumButton source="calculateur-floculant" variant="secondary" size="md" />

@@ -1,6 +1,6 @@
 ---
 title: 'Traitement choc piscine : quand le faire et comment doser'
-description: 'Chlore choc : dans quels cas le faire, quelle dose par m³, et la méthode étape par étape pour rattraper ton eau sans te tromper. Guide complet.'
+description: 'Chlore choc : dans quels cas le faire, quelle dose par m³, et la méthode étape par étape pour rattraper ton eau sans abîmer ton matériel.'
 pubDate: 2026-06-05
 category: 'entretien'
 tags: ['chlore choc', 'traitement choc', 'dosage']
@@ -8,7 +8,7 @@ readTime: 6
 draft: false
 ---
 
-Le traitement choc, c'est l'artillerie lourde de l'entretien : une grosse dose de chlore qui remet ton eau d'aplomb d'un coup. Mais encore faut-il savoir **quand** le faire et **comment doser** pour que ce soit efficace (et sans danger pour ton matériel). On t'explique tout.
+Le traitement choc est une grosse dose de chlore qui remet ton eau d'aplomb d'un coup. Pour qu'il soit efficace sans danger pour ton matériel, il faut savoir **quand** le faire et **comment doser**.
 
 ## Qu'est-ce qu'un traitement choc ?
 
@@ -16,9 +16,9 @@ Un traitement choc consiste à porter le taux de chlore **bien au-dessus de la n
 
 ## Quand faire un chlore choc ?
 
-Les bonnes occasions :
+Les cas où il se justifie :
 
-- **Eau verte** ou qui commence à virer (algues) — voir notre [diagnostic eau verte](/diagnostic/eau-verte) ;
+- **Eau verte** ou qui commence à virer (algues), voir notre [diagnostic eau verte](/diagnostic/eau-verte/) ;
 - **après un orage** ou de fortes pluies ;
 - **forte fréquentation** (fête, beaucoup de baigneurs) ;
 - **eau qui pique / odeur de chlore** (excès de chloramines) ;
@@ -39,11 +39,11 @@ La dose dépend de la gravité, mais un bon repère est **~20 g/m³** de chlore 
 | 40 m³ | ~800 g |
 | 50 m³ | ~1 000 g |
 
-> 💡 Vérifie toujours la dose conseillée sur **ton produit** (les concentrations varient). Pour le total selon ton volume, utilise notre [calculateur de chlore choc](/calculateur/chlore-choc).
+> 💡 Vérifie toujours la dose conseillée sur **ton produit** (les concentrations varient). Pour le total selon ton volume, utilise notre [calculateur de chlore choc](/calculateur/chlore-choc/).
 
 ## Comment procéder, étape par étape
 
-1. **Règle d'abord le pH** entre 7,0 et 7,2 : le chlore choc est bien plus efficace à pH bas (voir notre [guide du pH](/blog/ph-piscine-comment-equilibrer)).
+1. **Règle d'abord le pH** entre 7,0 et 7,2 : le chlore choc est bien plus efficace à pH bas (voir notre [guide du pH](/blog/ph-piscine-comment-equilibrer/)).
 2. **Dilue** le chlore choc dans un seau d'eau (jamais l'inverse).
 3. **Verse** devant les refoulements, **le soir**, **filtration en marche**.
 4. **Laisse filtrer en continu** plusieurs heures (24 à 48 h pour une eau verte).
@@ -51,7 +51,7 @@ La dose dépend de la gravité, mais un bon repère est **~20 g/m³** de chlore 
 
 ## Chlore choc stabilisé ou non stabilisé ?
 
-Privilégie un **chlore choc non stabilisé** (hypochlorite) : il agit vite et **n'ajoute pas de stabilisant**. Si tu choques souvent avec du stabilisé, ton [taux de stabilisant grimpe](/blog/stabilisant-piscine-trop-eleve-que-faire) et finit par bloquer ton chlore.
+Privilégie un **chlore choc non stabilisé** (hypochlorite) : il agit vite et **n'ajoute pas de stabilisant**. Si tu choques souvent avec du stabilisé, ton [taux de stabilisant grimpe](/blog/stabilisant-piscine-trop-eleve-que-faire/) et finit par bloquer ton chlore.
 
 ## Les erreurs à éviter
 
@@ -60,13 +60,13 @@ Privilégie un **chlore choc non stabilisé** (hypochlorite) : il agit vite et *
 - **Choquer sans régler le pH** : tu gaspilles le produit.
 - **Mettre le produit pur sur le liner** : risque de décoloration.
 
-## FAQ — traitement choc
+## FAQ : traitement choc
 
 **Tous les combien faire un chlore choc ?**
 Seulement quand c'est nécessaire (eau verte, orage, forte fréquentation…), pas en routine.
 
 **Combien de temps après un choc peut-on se baigner ?**
-Quand le chlore est redescendu sous 3 mg/L — souvent 24 à 48 h selon la dose.
+Quand le chlore est redescendu sous 3 mg/L, souvent 24 à 48 h selon la dose.
 
 **Le choc fait-il baisser le pH ?**
 Le chlore choc non stabilisé a tendance à le faire **monter** ; vérifie le pH après le traitement.
@@ -76,4 +76,4 @@ Le choc d'abord, puis l'anti-algues quelques heures après.
 
 ---
 
-Le traitement choc, c'est puissant mais ponctuel : règle le pH, dose correctement, filtre, patiente. Et si ton eau a déjà viré, laisse-toi guider par notre [diagnostic eau verte](/diagnostic/eau-verte) qui calcule tout pour ton bassin. 💧
+Si ton eau a déjà viré, laisse-toi guider par notre [diagnostic eau verte](/diagnostic/eau-verte/) qui calcule tout pour ton bassin. 💧

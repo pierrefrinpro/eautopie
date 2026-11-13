@@ -6,6 +6,9 @@ export default {
       colors: {
         'bleu-eau': '#0EA5E9',
         'bleu-profond': '#075985',
+        // Bleu lisible pour le texte et les boutons (contraste 5,9:1 sur blanc).
+        // bleu-eau reste réservé aux décors : il ne passe pas sous du texte.
+        'bleu-texte': '#0369A1',
         'bleu-pale': '#DBEAFE',
         'bleu-ciel': '#BAE6FD',
         soleil: '#F59E0B',

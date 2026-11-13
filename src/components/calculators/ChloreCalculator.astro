@@ -22,7 +22,7 @@ import Button from '../ui/Button.astro';
     <button
       type="button"
       id="toggle-volume-helper"
-      class="mt-2 text-sm font-medium text-bleu-eau underline-offset-2 hover:underline"
+      class="mt-2 text-sm font-medium text-bleu-texte underline-offset-2 hover:underline"
       aria-expanded="false"
       aria-controls="volume-helper"
     >
@@ -147,7 +147,7 @@ import Button from '../ui/Button.astro';
       <p class="mt-1.5 text-xs text-gris-onde">
         C’est le taux de chlore que tu veux atteindre dans l’eau. Pour la
         plupart des piscines, <strong class="text-noir-eau">1 mg/L</strong> est
-        le réglage parfait — laisse-le par défaut si tu débutes.
+        le réglage conseillé : laisse-le par défaut si tu débutes.
       </p>
       <input
         id="chlore-cible"
@@ -205,6 +205,10 @@ import Button from '../ui/Button.astro';
         marche, idéalement le soir.
       </p>
     </div>
+    <p class="mt-3 text-xs text-gris-onde">
+      Dose calculée pour un chlore en granulés à 65 % de chlore actif. Si
+      l’étiquette de ton produit indique un autre pourcentage, suis sa notice.
+    </p>
 
     <div class="mt-4">
       <Button type="button" variant="secondary" size="md" class="w-full">
@@ -217,17 +221,18 @@ import Button from '../ui/Button.astro';
       class="mt-3 flex flex-wrap items-center justify-center gap-x-2 rounded-xl bg-vert-ok/10 px-4 py-3 text-center text-sm font-medium text-vert-ok"
     >
       <span>Mesure sauvegardée ✓</span>
-      <a href="/suivi" class="font-semibold text-bleu-eau hover:text-bleu-profond">
+      <a href="/suivi/" class="font-semibold text-bleu-texte hover:text-bleu-profond">
         Voir mes mesures →
       </a>
     </p>
     <p class="mt-2 text-center text-xs text-gris-onde">
-      🔒 Enregistré uniquement sur cet appareil — aucun compte requis.
+      🔒 Enregistré uniquement sur cet appareil, sans compte.
     </p>
   </div>
 </div>
 
 <script>
+  import { mesurer } from '../../lib/mesure';
   import {
     calculerChloreEntretien,
     volumeRectangulaire,
@@ -419,6 +424,7 @@ import Button from '../ui/Button.astro';
       };
 
       resultat.hidden = false;
+      mesurer('calcul_effectue', { calculateur: 'chlore' });
       if (sauverConfirmation) sauverConfirmation.style.display = 'none';
       resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });

@@ -6,6 +6,10 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://eautopie.fr',
+  // Les pages sont servies avec une barre oblique finale (/blog/).
+  // Les liens internes la portent aussi, sinon Cloudflare répond par
+  // une redirection 307 à chaque clic.
+  trailingSlash: 'always',
   integrations: [
     tailwind({
       // On gère nos directives Tailwind nous-mêmes dans src/styles/global.css

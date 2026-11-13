@@ -3,13 +3,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import MiniCalc from '../../components/calculators/MiniCalc.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Faq from '../../components/Faq.astro';
+import SecuriteProduits from '../../components/SecuriteProduits.astro';
 import PremiumButton from '../../components/ui/PremiumButton.astro';
 
 const SITE = 'https://eautopie.fr';
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Calculateurs', url: '/calculateur' },
-  { name: 'Sel pour électrolyseur', url: '/calculateur/sel' },
+  { name: 'Calculateurs', url: '/calculateur/' },
+  { name: 'Sel pour électrolyseur', url: '/calculateur/sel/' },
 ];
 const schemas = [
   {
@@ -20,7 +21,7 @@ const schemas = [
       'Calcule la quantité de sel à ajouter à ta piscine au sel selon ton volume et ton taux actuel.',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
-    url: `${SITE}/calculateur/sel`,
+    url: `${SITE}/calculateur/sel/`,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -35,7 +36,7 @@ const champs = [
   { id: 'cible', label: 'Sel visé', suffix: 'g/L', value: '4' },
 ];
 const note =
-  'Vérifie la cible recommandée par <strong>ton électrolyseur</strong> (souvent 3 à 5 g/L). Ajoute le sel pompe en marche (électrolyse coupée) et laisse dissoudre 24–48 h avant de relancer.';
+  'Vérifie la cible recommandée par <strong>ton électrolyseur</strong> (souvent 3 à 5 g/L). Ajoute le sel pompe en marche (électrolyse coupée) et laisse dissoudre 24 à 48 h avant de relancer.';
 const faqItems = [
   {
     question: 'Combien de sel pour une piscine au sel ?',
@@ -74,11 +75,12 @@ const faqItems = [
       Estimation indicative. Reporte-toi à la notice de ton électrolyseur.
     </p>
 
+    <SecuriteProduits class="mx-auto mt-10 max-w-2xl" />
     <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
 
     <div class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center">
       <p class="font-display text-lg font-semibold text-noir-eau">
-        Garde une eau au top toute la saison 🌊
+        Suis ton eau toute la saison 🌊
       </p>
       <div class="mt-4">
         <PremiumButton source="calculateur-sel" variant="primary" size="md" />

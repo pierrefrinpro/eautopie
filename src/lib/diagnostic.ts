@@ -1,5 +1,5 @@
 /**
- * Moteur de diagnostic guidé — cas « eau verte ».
+ * Moteur de diagnostic guidé, cas « eau verte ».
  *
  * Le but : à partir de quelques réponses + le volume du bassin, produire un
  * PLAN D'ACTION ordonné avec des quantités RÉELLES (calculées), des durées et
@@ -55,7 +55,7 @@ export const QUESTIONS_EAU_VERTE: QuestionDiagnostic[] = [
   {
     id: 'contexte',
     question: 'Dans quelle situation es-tu ?',
-    aide: 'Ça change tout : une remise en route après l’hiver demande un traitement bien plus costaud.',
+    aide: 'Une remise en route après l’hiver demande un traitement bien plus costaud.',
     options: [
       {
         valeur: 'hivernage',
@@ -108,7 +108,7 @@ export const QUESTIONS_EAU_VERTE: QuestionDiagnostic[] = [
   {
     id: 'filtration',
     question: 'Ta filtration fonctionne-t-elle ?',
-    aide: 'La filtration est ton meilleur allié : sans elle, aucun traitement ne tiendra.',
+    aide: 'Sans filtration, aucun traitement ne tiendra.',
     options: [
       { valeur: 'oui', emoji: '✅', label: 'Oui, elle tourne' },
       { valeur: 'non', emoji: '⚠️', label: 'Non / je ne l’ai pas lancée' },
@@ -173,13 +173,13 @@ export function genererPlanEauVerte(
   const fortOuPire = rep.intensite !== 'legere';
   const algues = rep.parois === 'oui' || fortOuPire;
 
-  // 0. Filtration d'abord si elle ne tourne pas — bloquant
+  // 0. Filtration d'abord si elle ne tourne pas (bloquant)
   if (rep.filtration !== 'oui') {
     etapes.push({
       id: 'filtration',
       titre: 'Mets la filtration en route',
       pourquoi:
-        'Sans filtration, le traitement ne circule pas et l’eau ne s’éclaircira jamais. C’est la base.',
+        'Sans filtration, le traitement ne circule pas et l’eau ne s’éclaircira jamais.',
       comment:
         'Vérifie la pompe, amorce-la si besoin, et lance la filtration. Elle devra tourner en continu pendant tout le traitement.',
       cle: true,
@@ -196,7 +196,7 @@ export function genererPlanEauVerte(
       rep.contexte === 'hivernage'
         ? 'Passe l’épuisette (feuilles, gros débris), puis brosse énergiquement parois et fond pour décoller le voile vert.'
         : 'Passe l’épuisette et brosse les parois et le fond.',
-    duree: '15–30 min',
+    duree: '15 à 30 min',
   });
 
   // 2. Équilibrer le pH avant le choc
@@ -206,25 +206,25 @@ export function genererPlanEauVerte(
     pourquoi:
       'Le chlore est beaucoup plus efficace quand le pH est légèrement bas. À pH trop haut, tu gaspilles ton chlore choc.',
     comment:
-      'Teste le pH. S’il est au-dessus de 7,2, ajoute du pH− (réducteur) avant de chlorer. Re-teste après 1–2 h de filtration.',
+      'Teste le pH. S’il est au-dessus de 7,2, ajoute du pH− (réducteur) avant de chlorer. Re-teste après 1 à 2 h de filtration.',
     duree: '~2 h (avec circulation)',
-    lien: { href: '/calculateur/ph', label: 'Calculateur de pH' },
+    lien: { href: '/calculateur/ph/', label: 'Calculateur de pH' },
   });
 
-  // 3. Chlore choc — l'étape clé
+  // 3. Chlore choc : l'étape clé
   const gChoc = doseChloreChoc(volume, rep.intensite);
   etapes.push({
     id: 'chlore-choc',
     titre: `Chlore choc : ${fmtG(gChoc)}`,
     pourquoi:
-      'C’est le cœur du traitement : une grosse dose de chlore qui détruit les algues d’un coup.',
+      'Une grosse dose de chlore détruit les algues d’un coup : c’est l’étape principale du traitement.',
     comment:
       `Pour tes ${volume.toLocaleString('fr-FR')} m³, dilue environ ${fmtG(gChoc)} de chlore choc dans un seau d’eau, ` +
       'puis verse-le devant les refoulements, filtration en marche, de préférence le soir (le soleil détruit le chlore).',
-    duree: 'Agit en 12–24 h',
+    duree: 'Agit en 12 à 24 h',
     cle: true,
     lien: {
-      href: '/calculateur/chlore-choc',
+      href: '/calculateur/chlore-choc/',
       label: 'Calculateur de chlore choc',
     },
   });
@@ -284,7 +284,7 @@ export function genererPlanEauVerte(
         : rep.typeFiltre === 'sable'
           ? 'Fais un contre-lavage (backwash) puis un rinçage de ton filtre à sable.'
           : 'Nettoie ton filtre (contre-lavage pour le sable, rinçage pour la cartouche).',
-    duree: '5–10 min',
+    duree: '5 à 10 min',
   });
 
   // 8. Re-test et retour à la normale
@@ -295,8 +295,8 @@ export function genererPlanEauVerte(
       'Une fois l’eau claire, il faut stabiliser : ramener le chlore à un niveau d’entretien et vérifier l’équilibre.',
     comment:
       'Quand l’eau est redevenue claire, attends que le chlore redescende sous 3 mg/L avant de te baigner. ' +
-      'Ajuste ensuite ton chlore d’entretien (0,5–1,5 mg/L) et surveille le pH.',
-    lien: { href: '/calculateur/chlore', label: 'Calculer mon chlore d’entretien' },
+      'Ajuste ensuite ton chlore d’entretien (0,5 à 1,5 mg/L) et surveille le pH.',
+    lien: { href: '/calculateur/chlore/', label: 'Calculer mon chlore d’entretien' },
   });
 
   return etapes;
@@ -353,7 +353,7 @@ export function genererPlanning5Jours(
 
   const j4: string[] = [
     'Normalement, l’eau est claire 🎉',
-    'Ramène le chlore à un niveau d’entretien (0,5–1,5 mg/L)',
+    'Ramène le chlore à un niveau d’entretien (0,5 à 1,5 mg/L)',
     'Baignade OK dès que le chlore repasse sous 3 mg/L',
   ];
 
@@ -379,13 +379,13 @@ export function resumeDiagnostic(rep: ReponsesEauVerte): {
     };
   }
   const map: Record<Intensite, string> = {
-    legere: 'Eau légèrement verte — rattrapage rapide',
-    forte: 'Eau verte — traitement choc',
-    extreme: 'Eau très verte — traitement choc renforcé',
+    legere: 'Eau légèrement verte : rattrapage rapide',
+    forte: 'Eau verte : traitement choc',
+    extreme: 'Eau très verte : traitement choc renforcé',
   };
   return {
     titre: map[rep.intensite],
     sousTitre:
-      'Voici ton plan d’action personnalisé, calculé pour ta piscine. Suis-le dans l’ordre.',
+      'Ton plan d’action, calculé pour le volume de ta piscine. Suis-le dans l’ordre.',
   };
 }

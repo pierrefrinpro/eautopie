@@ -79,6 +79,7 @@ import Button from '../ui/Button.astro';
 </div>
 
 <script>
+  import { mesurer } from '../../lib/mesure';
   import { calculerChloreChoc } from '../../lib/calculations';
   import { getVolume, setVolume } from '../../lib/storage';
 
@@ -123,6 +124,7 @@ import Button from '../ui/Button.astro';
         sous.textContent = `Soit ${gParM3} g/m³ pour tes ${volume.toLocaleString('fr-FR')} m³.`;
 
       resultat.hidden = false;
+      mesurer('calcul_effectue', { calculateur: 'chlore-choc' });
       resultat.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   }

@@ -3,13 +3,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import MiniCalc from '../../components/calculators/MiniCalc.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Faq from '../../components/Faq.astro';
+import SecuriteProduits from '../../components/SecuriteProduits.astro';
 import PremiumButton from '../../components/ui/PremiumButton.astro';
 
 const SITE = 'https://eautopie.fr';
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Calculateurs', url: '/calculateur' },
-  { name: 'Anti-algues', url: '/calculateur/anti-algues' },
+  { name: 'Calculateurs', url: '/calculateur/' },
+  { name: 'Anti-algues', url: '/calculateur/anti-algues/' },
 ];
 const schemas = [
   {
@@ -20,7 +21,7 @@ const schemas = [
       'Calcule la dose d’anti-algues à ajouter selon ton volume, en préventif ou en curatif.',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
-    url: `${SITE}/calculateur/anti-algues`,
+    url: `${SITE}/calculateur/anti-algues/`,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -36,13 +37,13 @@ const champs = [
     label: 'Type de traitement',
     type: 'select' as const,
     options: [
-      { value: 'preventif', label: 'Préventif (entretien) — 5 ml/m³' },
-      { value: 'curatif', label: 'Curatif (eau qui vire) — 15 ml/m³' },
+      { value: 'preventif', label: 'Préventif (entretien) : 5 ml/m³' },
+      { value: 'curatif', label: 'Curatif (eau qui vire) : 15 ml/m³' },
     ],
   },
 ];
 const note =
-  'Dose indicative — vérifie ton produit. En <strong>curatif</strong>, ajoute l’anti-algues quelques heures après un chlore choc, filtration en marche.';
+  'Dose indicative, vérifie ton produit. En <strong>curatif</strong>, ajoute l’anti-algues quelques heures après un chlore choc, filtration en marche.';
 const faqItems = [
   {
     question: 'Quand mettre de l’anti-algues ?',
@@ -81,6 +82,7 @@ const faqItems = [
       Estimation indicative. Vérifie la dose conseillée sur ton bidon.
     </p>
 
+    <SecuriteProduits class="mx-auto mt-10 max-w-2xl" />
     <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
 
     <div class="mx-auto mt-12 max-w-xl rounded-2xl border border-bleu-pale bg-bleu-pale/30 p-6 text-center">
@@ -88,7 +90,7 @@ const faqItems = [
         Ton eau a viré au vert ? 🟢
       </p>
       <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a href="/diagnostic/eau-verte" class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond">
+        <a href="/diagnostic/eau-verte/" class="inline-flex items-center justify-center rounded-xl bg-bleu-texte px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond">
           Diagnostic eau verte
         </a>
         <PremiumButton source="calculateur-anti-algues" variant="secondary" size="md" />

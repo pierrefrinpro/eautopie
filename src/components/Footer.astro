@@ -4,33 +4,36 @@ const annee = new Date().getFullYear();
 const colonnes = [
   {
     titre: 'Calculateurs',
-    href: '/calculateur',
+    href: '/calculateur/',
     liens: [
-      { nom: 'Chlore d’entretien', href: '/calculateur/chlore' },
-      { nom: 'Chlore choc', href: '/calculateur/chlore-choc' },
-      { nom: 'pH+ / pH−', href: '/calculateur/ph' },
-      { nom: 'Stabilisant', href: '/calculateur/stabilisant' },
-      { nom: 'Sel pour électrolyseur', href: '/calculateur/sel' },
+      { nom: 'Chlore d’entretien', href: '/calculateur/chlore/' },
+      { nom: 'Chlore choc', href: '/calculateur/chlore-choc/' },
+      { nom: 'pH+ / pH−', href: '/calculateur/ph/' },
+      { nom: 'Stabilisant', href: '/calculateur/stabilisant/' },
+      { nom: 'Sel pour électrolyseur', href: '/calculateur/sel/' },
+      { nom: 'TAC (alcalinité)', href: '/calculateur/tac/' },
+      { nom: 'Anti-algues', href: '/calculateur/anti-algues/' },
+      { nom: 'Floculant', href: '/calculateur/floculant/' },
     ],
   },
   {
     titre: 'Diagnostic',
-    href: '/diagnostic',
+    href: '/diagnostic/',
     liens: [
-      { nom: 'Eau verte', href: '/diagnostic/eau-verte' },
-      { nom: 'Eau trouble', href: '/diagnostic/eau-trouble' },
-      { nom: 'Eau qui pique aux yeux', href: '/diagnostic/pique-aux-yeux' },
-      { nom: 'Taches sur le liner', href: '/diagnostic/taches-liner' },
+      { nom: 'Eau verte', href: '/diagnostic/eau-verte/' },
+      { nom: 'Eau trouble', href: '/diagnostic/eau-trouble/' },
+      { nom: 'Eau qui pique aux yeux', href: '/diagnostic/pique-aux-yeux/' },
+      { nom: 'Taches sur le liner', href: '/diagnostic/taches-liner/' },
     ],
   },
   {
     titre: 'Ressources',
     href: null,
     liens: [
-      { nom: 'Le blog', href: '/blog' },
-      { nom: 'Premium (bientôt)', href: '/premium' },
-      { nom: 'Mentions légales', href: '/mentions-legales' },
-      { nom: 'Confidentialité', href: '/politique-confidentialite' },
+      { nom: 'Le blog', href: '/blog/' },
+      { nom: 'Premium (bientôt)', href: '/premium/' },
+      { nom: 'Mentions légales', href: '/mentions-legales/' },
+      { nom: 'Confidentialité', href: '/politique-confidentialite/' },
       { nom: 'Contact', href: 'mailto:contact@eautopie.fr' },
     ],
   },
@@ -43,7 +46,7 @@ const colonnes = [
       {
         colonnes.map((col) => (
           <div>
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-noir-eau">
+            <h2 class="text-sm font-semibold uppercase tracking-wide text-noir-eau">
               {col.href ? (
                 <a href={col.href} class="hover:text-bleu-profond">
                   {col.titre}
@@ -51,7 +54,7 @@ const colonnes = [
               ) : (
                 col.titre
               )}
-            </h3>
+            </h2>
             <ul class="mt-4 space-y-2.5 text-sm">
               {col.liens.map((lien) => (
                 <li>
@@ -88,7 +91,7 @@ const colonnes = [
       </p>
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
         <a
-          href="/mentions-legales"
+          href="/mentions-legales/"
           class="text-gris-onde transition-colors hover:text-bleu-profond"
         >
           Mentions légales

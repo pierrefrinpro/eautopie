@@ -21,7 +21,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 const categorieLabel = CATEGORY_LABELS[category] ?? category;
 
 const SITE = (Astro.site?.href ?? 'https://eautopie.fr/').replace(/\/$/, '');
-const urlArticle = `${SITE}/blog/${slug}`;
+const urlArticle = `${SITE}/blog/${slug}/`;
 const imageAbs = cover
   ? cover.startsWith('http')
     ? cover
@@ -38,9 +38,9 @@ const fmtDate = (d: Date) =>
 // Fil d'Ariane
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Blog', url: '/blog' },
-  { name: categorieLabel, url: `/blog#${category}` },
-  { name: title, url: `/blog/${slug}` },
+  { name: 'Blog', url: '/blog/' },
+  { name: categorieLabel, url: `/blog/#${category}` },
+  { name: title, url: `/blog/${slug}/` },
 ];
 
 // Articles liés (même catégorie, hors brouillons, hors article courant)
@@ -50,8 +50,14 @@ const lies = tous
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 3);
 
-// CTA calculateur (chlore par défaut — un seul pour l'instant)
-const ctaCalculateur = '/calculateur/chlore';
+// CTA calculateur (chlore par défaut, un seul pour l'instant)
+const ctaCalculateur = '/calculateur/chlore/';
+
+// Balise <title> : la marque n'est ajoutée que si le tout tient en
+// 60 caractères, au-delà Google coupe le titre dans ses résultats.
+const SUFFIXE = ' | EauTopie';
+const titrePage =
+  title.length + SUFFIXE.length <= 60 ? `${title}${SUFFIXE}` : title;
 
 // Schema.org Article
 const schemas = [
@@ -67,7 +73,7 @@ const schemas = [
     publisher: {
       '@type': 'Organization',
       name: 'EauTopie',
-      logo: { '@type': 'ImageObject', url: `${SITE}/og-image.png` },
+      logo: { '@type': 'ImageObject', url: `${SITE}/logo.png` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': urlArticle },
   },
@@ -75,7 +81,7 @@ const schemas = [
 ---
 
 <BaseLayout
-  title={`${title} — EauTopie`}
+  title={titrePage}
   description={description}
   image={cover ?? '/og-image.png'}
   schemas={schemas}
@@ -125,14 +131,14 @@ const schemas = [
       class="mt-12 rounded-2xl bg-bleu-profond p-6 text-center text-white sm:p-8"
     >
       <p class="font-display text-xl font-semibold">
-        Passe à l’action sur ta piscine
+        Le calculateur de chlore
       </p>
       <p class="mx-auto mt-2 max-w-md text-sm text-bleu-ciel">
         Obtiens la dose exacte pour ton bassin en 30 secondes.
       </p>
       <a
         href={ctaCalculateur}
-        class="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-eau px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-white hover:text-bleu-profond"
+        class="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-texte px-7 py-3.5 text-base font-medium text-white shadow-sm transition hover:bg-white hover:text-bleu-profond"
       >
         Calcule tes doses maintenant
         <span aria-hidden="true">→</span>
@@ -149,10 +155,10 @@ const schemas = [
           <div class="mt-6 grid gap-4 sm:grid-cols-3">
             {lies.map((a) => (
               <a
-                href={`/blog/${a.slug}`}
+                href={`/blog/${a.slug}/`}
                 class="group flex flex-col rounded-2xl border border-bleu-pale bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <span class="text-xs font-medium uppercase tracking-wide text-bleu-eau">
+                <span class="text-xs font-medium uppercase tracking-wide text-bleu-texte">
                   {CATEGORY_LABELS[a.data.category] ?? a.data.category}
                 </span>
                 <span class="mt-1.5 flex-1 font-semibold text-noir-eau group-hover:text-bleu-profond">

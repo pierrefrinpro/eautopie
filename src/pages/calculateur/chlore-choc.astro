@@ -3,14 +3,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ChloreChocCalculator from '../../components/calculators/ChloreChocCalculator.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Faq from '../../components/Faq.astro';
+import SecuriteProduits from '../../components/SecuriteProduits.astro';
 import PremiumButton from '../../components/ui/PremiumButton.astro';
 
 const SITE = 'https://eautopie.fr';
 
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Calculateurs', url: '/calculateur' },
-  { name: 'Chlore choc', url: '/calculateur/chlore-choc' },
+  { name: 'Calculateurs', url: '/calculateur/' },
+  { name: 'Chlore choc', url: '/calculateur/chlore-choc/' },
 ];
 
 const schemas = [
@@ -22,7 +23,7 @@ const schemas = [
       'Calcule la dose de chlore choc à ajouter dans ta piscine selon son volume et l’intensité du problème (eau verte, remise en route).',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
-    url: `${SITE}/calculateur/chlore-choc`,
+    url: `${SITE}/calculateur/chlore-choc/`,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -46,13 +47,13 @@ const faqItems = [
   {
     question: 'Faut-il régler le pH avant le chlore choc ?',
     answer:
-      'Oui. Le chlore choc est bien plus efficace à pH bas (7,0–7,2). Règle ton pH d’abord, sinon une partie du traitement est gaspillée.',
+      'Oui. Le chlore choc est bien plus efficace à pH bas (7,0 à 7,2). Règle ton pH d’abord, sinon une partie du traitement est gaspillée.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Calculateur de chlore choc — dose par m³ | EauTopie"
+  title="Calculateur de chlore choc : dose par m³ | EauTopie"
   description="Calcule la dose de chlore choc pour ta piscine selon ton volume et la gravité (eau verte, remise en route). Gratuit, en 30 secondes."
   schemas={schemas}
 >
@@ -78,6 +79,7 @@ const faqItems = [
       et re-teste ton eau après le traitement.
     </p>
 
+    <SecuriteProduits class="mx-auto mt-10 max-w-2xl" />
     <Faq items={faqItems} class="mx-auto mt-12 max-w-2xl" />
 
     <div
@@ -91,8 +93,8 @@ const faqItems = [
       </p>
       <div class="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a
-          href="/diagnostic/eau-verte"
-          class="inline-flex items-center justify-center rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+          href="/diagnostic/eau-verte/"
+          class="inline-flex items-center justify-center rounded-xl bg-bleu-texte px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
         >
           Diagnostic eau verte
         </a>

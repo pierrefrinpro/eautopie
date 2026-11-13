@@ -5,8 +5,8 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 const fil = [
   { name: 'Accueil', url: '/' },
-  { name: 'Diagnostic', url: '/diagnostic' },
-  { name: 'Eau verte', url: '/diagnostic/eau-verte' },
+  { name: 'Diagnostic', url: '/diagnostic/' },
+  { name: 'Eau verte', url: '/diagnostic/eau-verte/' },
 ];
 
 const schemas = [
@@ -56,7 +56,7 @@ const schemas = [
       {
         '@type': 'HowToStep',
         name: 'Re-tester et revenir à l’entretien normal',
-        text: 'Quand l’eau est claire, ramène le chlore à 0,5–1,5 mg/L et vérifie le pH avant de te baigner.',
+        text: 'Quand l’eau est claire, ramène le chlore à 0,5 à 1,5 mg/L et vérifie le pH avant de te baigner.',
       },
     ],
   },
@@ -64,8 +64,8 @@ const schemas = [
 ---
 
 <BaseLayout
-  title="Eau verte : diagnostic et plan d’action — EauTopie"
-  description="Ton eau de piscine est verte ? Réponds à quelques questions, on te sort un plan de traitement personnalisé avec les doses exactes pour ton bassin."
+  title="Eau verte piscine : diagnostic et plan d’action | EauTopie"
+  description="Ton eau de piscine est verte ? Réponds à quelques questions, on te sort un plan de traitement personnalisé avec les doses calculées pour ton bassin."
   schemas={schemas}
 >
   <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
@@ -78,7 +78,7 @@ const schemas = [
       </p>
       <h1 class="text-3xl text-noir-eau sm:text-4xl">Mon eau est verte</h1>
       <p class="mx-auto mt-3 max-w-xl text-gris-onde">
-        Pas de panique. Réponds à 5 questions et on te génère un <strong
+        Réponds à 5 questions et on te génère un <strong
           class="text-noir-eau">plan de traitement personnalisé</strong
         >, avec les quantités calculées pour <em>ta</em> piscine.
       </p>

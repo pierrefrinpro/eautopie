@@ -93,7 +93,7 @@ function enregistrerMesures(mesures: MesureChlore[]): void {
 export interface PlanningSauvegarde {
   /** Type de diagnostic à l'origine du planning. */
   type: 'eau-verte';
-  /** Réponses du diagnostic (typées dans lib/diagnostic). */
+  /** Réponses du diagnostic (typées dans lib/diagnostic/). */
   reponses: unknown;
   /** Volume du bassin utilisé pour les calculs. */
   volume: number;

@@ -85,7 +85,7 @@ export const GUIDES: Record<string, GuideDiag> = {
         conseil:
           'C’est la cause n°1. Augmente la durée de filtration (en continu le temps de récupérer) et vérifie que ton filtre n’est pas encrassé.',
         liens: [
-          { href: '/blog/temps-filtration-piscine-calcul', label: 'Guide du temps de filtration' },
+          { href: '/blog/temps-filtration-piscine-calcul/', label: 'Guide du temps de filtration' },
         ],
       },
       {
@@ -93,20 +93,20 @@ export const GUIDES: Record<string, GuideDiag> = {
         titre: 'Un pH déséquilibré',
         conseil:
           'Un pH trop haut rend l’eau trouble et fait précipiter le calcaire. Ramène-le entre 7,2 et 7,4.',
-        liens: [{ href: '/calculateur/ph', label: 'Calculateur de pH' }],
+        liens: [{ href: '/calculateur/ph/', label: 'Calculateur de pH' }],
       },
       {
         id: 'choc',
         titre: 'Un chlore choc récent',
         conseil:
-          'Normal ! Ce sont souvent les algues mortes ou le calcaire remué. Laisse filtrer en continu 24 à 48 h, l’eau s’éclaircit toute seule.',
+          'C’est normal : ce sont souvent les algues mortes ou le calcaire remué. Laisse filtrer en continu 24 à 48 h, l’eau s’éclaircit toute seule.',
       },
       {
         id: 'calcaire',
         titre: 'Un excès de calcaire',
         conseil:
           'Vérifie ton pH et ton TAC, et utilise un séquestrant de calcaire si ton eau est dure.',
-        liens: [{ href: '/calculateur/tac', label: 'Calculateur de TAC' }],
+        liens: [{ href: '/calculateur/tac/', label: 'Calculateur de TAC' }],
       },
       {
         id: 'algues',
@@ -114,8 +114,8 @@ export const GUIDES: Record<string, GuideDiag> = {
         conseil:
           'Ton eau risque de virer au vert. Remonte le chlore sans tarder, et si ça verdit, passe au diagnostic eau verte.',
         liens: [
-          { href: '/calculateur/chlore', label: 'Calculateur de chlore' },
-          { href: '/diagnostic/eau-verte', label: 'Diagnostic eau verte' },
+          { href: '/calculateur/chlore/', label: 'Calculateur de chlore' },
+          { href: '/diagnostic/eau-verte/', label: 'Diagnostic eau verte' },
         ],
       },
       {
@@ -123,7 +123,7 @@ export const GUIDES: Record<string, GuideDiag> = {
         titre: 'De fines particules en suspension',
         conseil:
           'Trop fines pour le filtre. Un floculant (filtre à sable) ou un clarifiant (cartouche) les agglomère pour les capturer.',
-        liens: [{ href: '/calculateur/floculant', label: 'Calculateur de floculant' }],
+        liens: [{ href: '/calculateur/floculant/', label: 'Calculateur de floculant' }],
       },
     ],
   },
@@ -133,7 +133,7 @@ export const GUIDES: Record<string, GuideDiag> = {
     questions: [
       {
         id: 'ph',
-        question: 'As-tu testé ton pH ? Est-il hors de la zone 7,2–7,4 ?',
+        question: 'As-tu testé ton pH ? Est-il hors de la zone 7,2 à 7,4 ?',
         options: [
           { value: 'oui', emoji: '⬆️', label: 'Oui, hors zone', causes: { ph: 3 } },
           { value: 'non', emoji: '✅', label: 'Non, il est bon' },
@@ -172,25 +172,25 @@ export const GUIDES: Record<string, GuideDiag> = {
         id: 'chloramines',
         titre: 'Des chloramines (chlore combiné)',
         conseil:
-          'C’est ce qui pique et sent fort — un signe de manque de chlore, pas d’excès. Fais un chlore choc pour les détruire.',
+          'C’est ce qui pique et sent fort : un signe de manque de chlore, pas d’excès. Fais un chlore choc pour les détruire.',
         liens: [
-          { href: '/calculateur/chlore-choc', label: 'Calculateur de chlore choc' },
-          { href: '/blog/eau-piscine-pique-aux-yeux', label: 'Comprendre les irritations' },
+          { href: '/calculateur/chlore-choc/', label: 'Calculateur de chlore choc' },
+          { href: '/blog/eau-piscine-pique-aux-yeux/', label: 'Comprendre les irritations' },
         ],
       },
       {
         id: 'ph',
         titre: 'Un pH déséquilibré',
         conseil:
-          'Un pH hors de 7,2–7,4 irrite les yeux et la peau, même avec un chlore parfait. Rééquilibre-le.',
-        liens: [{ href: '/calculateur/ph', label: 'Calculateur de pH' }],
+          'Un pH hors de 7,2 à 7,4 irrite les yeux et la peau, même avec un taux de chlore correct. Rééquilibre-le.',
+        liens: [{ href: '/calculateur/ph/', label: 'Calculateur de pH' }],
       },
       {
         id: 'chloreBas',
         titre: 'Un manque de chlore libre',
         conseil:
           'Sans assez de chlore actif, les polluants s’accumulent et l’eau devient irritante. Remonte ton chlore.',
-        liens: [{ href: '/calculateur/chlore', label: 'Calculateur de chlore' }],
+        liens: [{ href: '/calculateur/chlore/', label: 'Calculateur de chlore' }],
       },
     ],
   },
@@ -234,8 +234,8 @@ export const GUIDES: Record<string, GuideDiag> = {
         conseil:
           'Brosse énergiquement la zone, applique un chlore choc (au plus près des taches, filtration coupée quelques minutes), puis un anti-algues.',
         liens: [
-          { href: '/calculateur/chlore-choc', label: 'Calculateur de chlore choc' },
-          { href: '/calculateur/anti-algues', label: 'Calculateur d’anti-algues' },
+          { href: '/calculateur/chlore-choc/', label: 'Calculateur de chlore choc' },
+          { href: '/calculateur/anti-algues/', label: 'Calculateur d’anti-algues' },
         ],
       },
       {
@@ -244,8 +244,8 @@ export const GUIDES: Record<string, GuideDiag> = {
         conseil:
           'Baisse le pH et le TAC vers le bas de la fourchette, et utilise un séquestrant de calcaire. Brosse les dépôts.',
         liens: [
-          { href: '/calculateur/ph', label: 'Calculateur de pH' },
-          { href: '/calculateur/tac', label: 'Calculateur de TAC' },
+          { href: '/calculateur/ph/', label: 'Calculateur de pH' },
+          { href: '/calculateur/tac/', label: 'Calculateur de TAC' },
         ],
       },
       {
@@ -253,7 +253,7 @@ export const GUIDES: Record<string, GuideDiag> = {
         titre: 'Des taches organiques (feuilles, tanins)',
         conseil:
           'Retire les débris, brosse, et fais un chlore choc. Évite de laisser des feuilles stagner au fond.',
-        liens: [{ href: '/calculateur/chlore-choc', label: 'Calculateur de chlore choc' }],
+        liens: [{ href: '/calculateur/chlore-choc/', label: 'Calculateur de chlore choc' }],
       },
       {
         id: 'metaux',

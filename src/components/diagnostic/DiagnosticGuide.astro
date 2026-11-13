@@ -69,7 +69,7 @@ const { slug } = Astro.props;
                   class="group flex items-center gap-4 rounded-2xl border border-bleu-pale bg-white px-4 py-4 text-left transition hover:border-bleu-eau hover:bg-bleu-pale/30">
                   ${o.emoji ? `<span class="text-2xl" aria-hidden="true">${o.emoji}</span>` : ''}
                   <span class="flex-1 font-medium text-noir-eau">${escape(o.label)}</span>
-                  <span class="text-bleu-eau opacity-0 transition group-hover:opacity-100" aria-hidden="true">→</span>
+                  <span class="text-bleu-texte opacity-0 transition group-hover:opacity-100" aria-hidden="true">→</span>
                 </button>`
                 )
                 .join('')}
@@ -99,7 +99,7 @@ const { slug } = Astro.props;
 
           const carte = (c: typeof principale, principal: boolean) => `
             <div class="rounded-2xl border p-5 ${principal ? 'border-bleu-ciel bg-bleu-pale/30' : 'border-bleu-pale bg-white'}">
-              ${principal ? '<p class="text-xs font-medium uppercase tracking-wide text-bleu-eau">Cause la plus probable</p>' : '<p class="text-xs font-medium uppercase tracking-wide text-gris-onde">Ça peut aussi être…</p>'}
+              ${principal ? '<p class="text-xs font-medium uppercase tracking-wide text-bleu-texte">Cause la plus probable</p>' : '<p class="text-xs font-medium uppercase tracking-wide text-gris-onde">Ça peut aussi être…</p>'}
               <h3 class="mt-1 font-display text-xl font-semibold text-noir-eau">${escape(c.titre)}</h3>
               <p class="mt-2 text-sm text-noir-eau/80">${escape(c.conseil)}</p>
               ${
@@ -107,7 +107,7 @@ const { slug } = Astro.props;
                   ? `<div class="mt-3 flex flex-wrap gap-2">${c.liens
                       .map(
                         (l) =>
-                          `<a href="${l.href}" class="inline-flex items-center gap-1 rounded-lg bg-bleu-eau px-3 py-1.5 text-sm font-medium text-white transition hover:bg-bleu-profond">${escape(l.label)} →</a>`
+                          `<a href="${l.href}" class="inline-flex items-center gap-1 rounded-lg bg-bleu-texte px-3 py-1.5 text-sm font-medium text-white transition hover:bg-bleu-profond">${escape(l.label)} →</a>`
                       )
                       .join('')}</div>`
                   : ''

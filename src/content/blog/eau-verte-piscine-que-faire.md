@@ -1,5 +1,5 @@
 ---
-title: 'Mon eau de piscine est verte : que faire en 24h (guide complet)'
+title: 'Mon eau de piscine est verte : que faire en 24h'
 description: 'Eau de piscine verte ? Découvre les 4 causes principales et la méthode pas à pas pour la rattraper en 24h. Calculateur de chlore choc inclus.'
 pubDate: 2026-06-05
 category: 'problemes'
@@ -8,37 +8,37 @@ readTime: 9
 draft: false
 ---
 
-Tu retires la bâche un matin de printemps et là, c'est le drame : l'eau de ta piscine a viré au vert. **Pas de panique** — c'est l'un des problèmes les plus courants, et surtout l'un des plus simples à régler quand on s'y prend bien. Dans ce guide, on t'explique les **4 causes** d'une eau verte et, surtout, la **méthode complète** pour retrouver une eau claire en 24 à 48 h, avec les **doses adaptées à ton bassin**.
+Tu retires la bâche un matin de printemps et l'eau de ta piscine a viré au vert. C'est l'un des problèmes les plus courants, et l'un des plus simples à régler si on suit les étapes dans l'ordre. Voici les **4 causes** d'une eau verte, puis la méthode pour retrouver une eau claire en 24 à 48 h, avec les **doses par volume de bassin**.
 
 ## Pourquoi l'eau de ma piscine devient-elle verte ? Les 4 causes
 
-La couleur verte est la signature des **algues** : microscopiques, elles flottent dans l'air et finissent toujours dans ton bassin. Tant que l'eau est bien désinfectée, le chlore les détruit. Dès que la protection baisse, elles explosent — surtout par forte chaleur. Quatre causes ouvrent la porte :
+La couleur verte est la signature des **algues** : microscopiques, elles flottent dans l'air et finissent toujours dans ton bassin. Tant que l'eau est bien désinfectée, le chlore les détruit. Dès que la protection baisse, elles se multiplient vite, surtout par forte chaleur. Quatre causes ouvrent la porte :
 
 ### 1. Les algues (et un chlore trop bas)
 
-C'est la cause directe. Quand le **chlore libre passe sous 0,5 mg/L**, les algues prolifèrent en 24 à 48 h. Un chlore insuffisant, et c'est parti pour le vert.
+C'est la cause directe. Quand le **chlore libre passe sous 0,5 mg/L**, les algues prolifèrent en 24 à 48 h.
 
 ### 2. Un pH déséquilibré
 
-Au-dessus de 7,4, le chlore perd jusqu'à **50 % de son efficacité** : tu peux avoir un taux correct sur la bandelette et une eau quand même vulnérable. (Tout est expliqué dans notre [guide du pH](/blog/ph-piscine-comment-equilibrer).)
+Au-dessus de 7,4, le chlore perd jusqu'à **50 % de son efficacité** : tu peux avoir un taux correct sur la bandelette et une eau quand même vulnérable. (Tout est expliqué dans notre [guide du pH](/blog/ph-piscine-comment-equilibrer/).)
 
 ### 3. Un stabilisant trop élevé
 
-Le stabilisant protège le chlore du soleil, mais **il s'accumule**. Au-delà de 75 mg/L, il « bloque » ton chlore : présent, mais inefficace. C'est une cause sournoise d'eau verte malgré un entretien correct — voir notre article sur le [stabilisant trop élevé](/blog/stabilisant-piscine-trop-eleve-que-faire).
+Le stabilisant protège le chlore du soleil, mais **il s'accumule**. Au-delà de 75 mg/L, il « bloque » ton chlore : présent, mais inefficace. Elle peut expliquer une eau verte malgré un entretien correct. Voir notre article sur le [stabilisant trop élevé](/blog/stabilisant-piscine-trop-eleve-que-faire/).
 
 ### 4. Une filtration insuffisante
 
-Une eau qui ne circule pas est une eau qui stagne… et qui verdit. Filtration trop courte ou filtre encrassé : les algues s'installent.
+Une eau qui ne circule pas stagne, puis verdit. Avec une filtration trop courte ou un filtre encrassé, les algues s'installent.
 
-## À quel point ton eau est-elle verte ? (diagnostic rapide)
+## Évaluer l'intensité du vert
 
-La nuance de vert t'indique la gravité — et la dose de traitement :
+La nuance de vert indique la gravité, et donc la dose de traitement :
 
 - **Vert clair / translucide** : tu vois encore le fond. Algues débutantes, rattrapage rapide.
 - **Bien vert** : tu ne vois plus le fond. Les algues sont installées.
 - **Vert foncé ou marron** : eau opaque, presque une mare. Prolifération avancée.
 
-> 💡 Pour un diagnostic précis et un plan calculé **pour ton volume**, lance notre [diagnostic eau verte](/diagnostic/eau-verte) : 5 questions, et tu obtiens les doses exactes.
+> 💡 Pour un diagnostic précis et un plan calculé **pour ton volume**, lance notre [diagnostic eau verte](/diagnostic/eau-verte/) : 5 questions, et tu obtiens les doses exactes.
 
 ## Le protocole de rattrapage, étape par étape (24-48h)
 
@@ -64,7 +64,7 @@ La dose dépend de l'intensité du vert. Repères pour le **chlore choc** :
 | 40 m³ | ~600 g | ~800 g | ~1 000 g |
 | 50 m³ | ~750 g | ~1 000 g | ~1 250 g |
 
-> 💧 Notre [diagnostic eau verte](/diagnostic/eau-verte) **calcule ces doses pour ton volume exact** et te construit le plan complet. Ou utilise directement notre [calculateur de chlore choc](/calculateur/chlore-choc).
+> 💧 Notre [diagnostic eau verte](/diagnostic/eau-verte/) **calcule ces doses pour ton volume exact** et te construit le plan complet. Ou utilise directement notre [calculateur de chlore choc](/calculateur/chlore-choc/).
 
 ## Les erreurs courantes à éviter
 
@@ -73,13 +73,13 @@ La dose dépend de l'intensité du vert. Repères pour le **chlore choc** :
 - **Couper la filtration** pendant le traitement : c'est elle qui élimine les algues mortes.
 - **Se baigner trop tôt** : attends que le chlore repasse sous 3 mg/L.
 - **Verser le produit pur sur le liner** : risque de décoloration ; dilue toujours dans un seau.
-- **Renoncer trop vite** : l'eau passe souvent du vert au gris/blanc avant de s'éclaircir — c'est bon signe, laisse filtrer.
+- **Renoncer trop vite** : l'eau passe souvent du vert au gris/blanc avant de s'éclaircir. C'est bon signe : laisse filtrer.
 
 ## Combien de temps pour une eau claire ?
 
-Compte **24 h** pour une eau légèrement verte, et **3 à 4 jours** pour une eau bien chargée. La patience et une **filtration continue** font tout le travail.
+Compte **24 h** pour une eau légèrement verte, et **3 à 4 jours** pour une eau bien chargée. La **filtration continue** fait l'essentiel du travail, à condition de lui laisser le temps.
 
-## FAQ — eau verte de piscine
+## FAQ : eau verte de piscine
 
 **Combien de temps pour rattraper une eau verte ?**
 De 24 h (eau légèrement verte) à 3-4 jours (eau très verte), avec une filtration en continu.
@@ -111,8 +111,6 @@ Pas obligatoire pour une eau légèrement verte, mais recommandé dès que les a
 **Comment éviter que l'eau reverdisse ?**
 Maintiens un chlore stable (0,5-1,5 mg/L), un pH entre 7,2 et 7,4, et une filtration suffisante. Teste ton eau tous les 3 jours.
 
-## En résumé
+---
 
-Une eau verte, c'est impressionnant mais rarement grave : **nettoie, équilibre le pH, fais un chlore choc, ajoute un anti-algues et laisse filtrer**. En quelques jours, ta piscine est de nouveau cristalline.
-
-Pour ne pas y aller au hasard, laisse-toi guider par notre [diagnostic eau verte](/diagnostic/eau-verte), qui te construit un plan d'action personnalisé avec les bonnes quantités. Et pour ne **plus jamais** revivre ça, [EauTopie Premium](/premium) te préviendra au bon moment avec des rappels d'entretien adaptés à ta météo locale. 💧
+Pour les quantités exactes, lance notre [diagnostic eau verte](/diagnostic/eau-verte/) : il te construit un plan d'action avec les doses pour ton volume. Et pour éviter que ça se reproduise, [EauTopie Premium](/premium/) te préviendra au bon moment avec des rappels d'entretien adaptés à ta météo locale. 💧

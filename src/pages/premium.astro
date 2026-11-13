@@ -25,13 +25,13 @@ const benefices = [
   {
     emoji: '🧪',
     titre: 'Mode « expert »',
-    texte: 'Alcalinité (TAC), dureté, stabilisant : le contrôle total.',
+    texte: 'Alcalinité (TAC), dureté, stabilisant : les paramètres avancés.',
   },
 ];
 ---
 
 <BaseLayout
-  title="EauTopie Premium — rejoins la waitlist"
+  title="Premium : rejoins la liste d’attente | EauTopie"
   description="Premium arrive bientôt : historique illimité, rappels selon ta météo, multi-piscines, mode expert. Inscris-toi pour 30 % de réduction à vie."
 >
   <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
@@ -75,14 +75,14 @@ const benefices = [
       }
     </div>
 
-    <!-- Formulaire waitlist -->
+    <!-- Formulaire liste d’attente -->
     <div
       id="premium-form-card"
       class="mt-10 rounded-3xl bg-gradient-to-br from-bleu-profond to-bleu-eau p-0.5 shadow-md"
     >
       <div class="rounded-[1.4rem] bg-white p-6 sm:p-8">
         <h2 class="text-center font-display text-2xl font-semibold text-noir-eau">
-          Rejoins la waitlist
+          Rejoins la liste d’attente
         </h2>
         <p class="mt-2 text-center text-sm text-gris-onde">
           Laisse ton email, on te prévient au lancement (et tu gardes ta remise à
@@ -102,7 +102,7 @@ const benefices = [
             <button
               type="submit"
               id="premium-submit"
-              class="shrink-0 rounded-xl bg-bleu-eau px-6 py-3 font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98] disabled:opacity-60"
+              class="shrink-0 rounded-xl bg-bleu-texte px-6 py-3 font-medium text-white shadow-sm transition hover:bg-bleu-profond active:scale-[0.98] disabled:opacity-60"
             >
               Me prévenir
             </button>
@@ -118,6 +118,13 @@ const benefices = [
         <p class="mt-4 text-center text-xs text-gris-onde">
           À partir de 4,99 €/mois · Sans engagement · On ne spamme pas.
         </p>
+        <p class="mt-2 text-center text-xs text-gris-onde">
+          Ton email sert uniquement à te prévenir du lancement de Premium. Détails
+          et désinscription dans la
+          <a href="/politique-confidentialite/" class="text-bleu-texte underline"
+            >politique de confidentialité</a
+          >.
+        </p>
       </div>
     </div>
 
@@ -132,12 +139,12 @@ const benefices = [
         Merci, on te tient au courant !
       </h2>
       <p class="mx-auto mt-2 max-w-md text-gris-onde">
-        Tu es bien sur la waitlist. On te préviendra en avant-première au
+        Tu es bien sur la liste d’attente. On te préviendra en avant-première au
         lancement, avec ta réduction de 30 % à vie. 🌊
       </p>
       <a
         href="/"
-        class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-eau px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
+        class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-bleu-texte px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-bleu-profond"
       >
         Retour à l’accueil
       </a>
@@ -146,7 +153,8 @@ const benefices = [
 </BaseLayout>
 
 <script>
-  // Endpoint Formspree de la waitlist Premium.
+  import { mesurer } from '../lib/mesure';
+  // Endpoint Formspree de la liste d’attente Premium.
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzdqzljp';
 
   const PREMIUM_KEY = 'eautopie_premium_signup';
@@ -235,11 +243,12 @@ const benefices = [
         } else {
           // Endpoint pas encore configuré : on simule le succès pour tester l'UX.
           console.warn(
-            '[EauTopie] FORMSPREE_ENDPOINT non configuré — soumission simulée :',
+            '[EauTopie] FORMSPREE_ENDPOINT non configuré, soumission simulée :',
             donnees
           );
         }
         enregistrerLocal();
+        mesurer('inscription_liste_attente', { source });
         montrerMerci();
       } catch (err) {
         if (submit) {
