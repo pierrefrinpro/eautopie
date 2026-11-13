@@ -1,6 +1,6 @@
 ---
-title: 'Mon eau de piscine est verte : que faire en 24h'
-description: 'Eau de piscine verte ? Découvre les 4 causes principales et la méthode pas à pas pour la rattraper en 24h. Calculateur de chlore choc inclus.'
+title: 'Mon eau de piscine est verte : que faire, étape par étape'
+description: 'Eau de piscine verte ? Les 4 causes principales et la méthode pas à pas : 24 h pour une eau légèrement verte, 3 à 4 jours si elle est très chargée.'
 pubDate: 2026-06-05
 category: 'problemes'
 tags: ['eau verte', 'algues', 'chlore choc', 'traitement']
@@ -20,7 +20,7 @@ C'est la cause directe. Quand le **chlore libre passe sous 0,5 mg/L**, les algue
 
 ### 2. Un pH déséquilibré
 
-Au-dessus de 7,4, le chlore perd jusqu'à **50 % de son efficacité** : tu peux avoir un taux correct sur la bandelette et une eau quand même vulnérable. (Tout est expliqué dans notre [guide du pH](/blog/ph-piscine-comment-equilibrer/).)
+Au-dessus de 7,4, la part de chlore actif chute vite : à pH 7,5, **la moitié seulement** du chlore libre agit, à pH 8, à peine un quart : tu peux avoir un taux correct sur la bandelette et une eau quand même vulnérable. (Tout est expliqué dans notre [guide du pH](/blog/ph-piscine-comment-equilibrer/).)
 
 ### 3. Un stabilisant trop élevé
 

@@ -28,7 +28,7 @@ Le repère à retenir : **7,2 à 7,4.**
 
 **Un pH trop élevé (> 7,4)** :
 
-- le chlore perd jusqu'à **50 % de son efficacité** (tu chlores dans le vide) ;
+- la part de chlore actif chute : à pH 7,5, **la moitié seulement** du chlore libre agit, à pH 8, à peine un quart (tu chlores dans le vide) ;
 - l'eau devient **trouble** et le **calcaire se dépose** (parois rugueuses, filtre entartré) ;
 - la peau peut tirailler.
 
