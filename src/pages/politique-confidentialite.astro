@@ -3,12 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const societe = {
   raisonSociale: 'GROKIUM',
-  forme: 'EURL au capital variable',
+  forme: 'EURL au capital de 1 000 €',
   gerant: 'Pierre Frin',
   siret: '103 561 296 00015',
   email: 'contact@eautopie.fr',
 };
-const majDate = '5 juin 2026';
+const majDate = '13 novembre 2026';
 ---
 
 <BaseLayout
@@ -120,7 +120,20 @@ const majDate = '5 juin 2026';
             <strong class="text-noir-eau">Google</strong> (Google Analytics 4 &
             Tag Manager) : mesure d’audience, uniquement après consentement.
           </li>
+          <li>
+            <strong class="text-noir-eau">Cloudflare</strong> (hébergement) :
+            héberge le site et conserve des journaux techniques de connexion
+            (adresse IP, pages demandées) pour sa sécurité.
+          </li>
         </ul>
+        <p class="mt-3 text-sm leading-relaxed text-gris-onde">
+          Ces trois prestataires sont établis aux États-Unis : les données
+          qu’ils traitent peuvent donc être transférées hors de l’Union
+          européenne. Ces transferts reposent sur le cadre de protection des
+          données UE-États-Unis (Data Privacy Framework) lorsque le prestataire
+          y adhère, ou à défaut sur les clauses contractuelles types de la
+          Commission européenne.
+        </p>
       </div>
 
       <!-- Cookies -->

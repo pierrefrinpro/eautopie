@@ -3,15 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const societe = {
   raisonSociale: 'GROKIUM',
-  forme: 'EURL au capital variable',
+  forme: 'EURL au capital de 1 000 €',
   gerant: 'Pierre Frin',
-  siege: 'Bordeaux, Nouvelle-Aquitaine, France',
+  siege: '14 rue Bausset, 75015 Paris, France',
   siret: '103 561 296 00015',
   siren: '103 561 296',
-  rcs: 'R.C.S. Bordeaux 103 561 296',
+  rcs: 'R.C.S. Paris 103 561 296',
+  tva: 'FR78103561296',
   email: 'contact@eautopie.fr',
 };
-const majDate = '5 juin 2026';
+const majDate = '13 novembre 2026';
 ---
 
 <BaseLayout
@@ -44,6 +45,7 @@ const majDate = '5 juin 2026';
           <li>Siège social : {societe.siege}</li>
           <li>SIRET : {societe.siret}, SIREN : {societe.siren}</li>
           <li>{societe.rcs}</li>
+          <li>TVA intracommunautaire : {societe.tva}</li>
           <li>Contact : {societe.email}</li>
         </ul>
         <p class="mt-3 text-sm leading-relaxed text-gris-onde">
